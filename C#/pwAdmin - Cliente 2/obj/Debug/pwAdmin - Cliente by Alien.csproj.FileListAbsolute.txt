@@ -1,0 +1,13 @@
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin - Cliente by Alien.csproj.AssemblyReference.cache
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin - Cliente by Alien.csproj.SuggestedBindingRedirects.cache
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.AccountInfo.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.GMControl.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.Forms.Gerenciador.Mapas.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.AddonsList.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.Forms.ItemEditor.WeaponOctetsEditor.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.Forms.Pesquisa.SelectItem.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.SkillByClass.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.Main.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin.Properties.Resources.resources
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin - Cliente by Alien.csproj.GenerateResource.cache
+D:\Perfect World\Tools Criadas Alien C#\PWAdmin\pwAdmin - Cliente by Alien\pwAdmin - Cliente by Alien\obj\Debug\pwAdmin - Cliente by Alien.csproj.CoreCompileInputs.cache
