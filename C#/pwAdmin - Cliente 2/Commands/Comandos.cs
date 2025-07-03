@@ -153,8 +153,9 @@ namespace pwAdmin
                             var bytesRead = stream.Read(buffer, 0, buffer.Length);
                             Console.WriteLine($"Received {bytesRead} bytes response");
                             
-                            var response = new OctetsStream();
-                            response.replace(buffer, 0, bytesRead);
+                            var responseData = new byte[bytesRead];
+                            Array.Copy(buffer, responseData, bytesRead);
+                            var response = new OctetsStream(responseData);
                             return response;
                         }
                         else
