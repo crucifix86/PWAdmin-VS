@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GNET;
+using GNET.Rpc;
 using pwAdmin;
 using static GNET.Rpc.Data;
 
@@ -53,7 +54,7 @@ namespace Protocols.Structs
             INDEX_FLYSWORD = 12,
         };
 
-        public class addon : Rpc.Data      //属性条目
+        public class addon : GNET.Rpc.Data      //属性条目
         {
             public int tid;      // id + tipo de addon (0x2000, 0x4000, 0x6000 ...)
             public int param1;
