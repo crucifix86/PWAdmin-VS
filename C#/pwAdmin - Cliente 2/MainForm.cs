@@ -73,19 +73,19 @@ namespace pwAdmin
             
             // Server connection group
             GroupBox grpConnection = new GroupBox();
-            grpConnection.Text = "Conexão com Servidor";
+            grpConnection.Text = "Server Connection";
             grpConnection.ForeColor = Color.White;
             grpConnection.Location = new Point(10, 10);
             grpConnection.Size = new Size(780, 100);
             
             Label lblStatus = new Label();
-            lblStatus.Text = "Status: Desconectado";
+            lblStatus.Text = "Status: Disconnected";
             lblStatus.Location = new Point(10, 25);
             lblStatus.AutoSize = true;
             grpConnection.Controls.Add(lblStatus);
             
             Button btnConnect = new Button();
-            btnConnect.Text = "Conectar";
+            btnConnect.Text = "Connect";
             btnConnect.Location = new Point(10, 50);
             btnConnect.Size = new Size(100, 30);
             btnConnect.FlatStyle = FlatStyle.Flat;
@@ -97,7 +97,7 @@ namespace pwAdmin
             
             // Server info group
             GroupBox grpInfo = new GroupBox();
-            grpInfo.Text = "Informações do Servidor";
+            grpInfo.Text = "Server Information";
             grpInfo.ForeColor = Color.White;
             grpInfo.Location = new Point(10, 120);
             grpInfo.Size = new Size(780, 200);
@@ -113,7 +113,7 @@ namespace pwAdmin
             
             // Process control group
             GroupBox grpProcesses = new GroupBox();
-            grpProcesses.Text = "Controle de Processos";
+            grpProcesses.Text = "Process Control";
             grpProcesses.ForeColor = Color.White;
             grpProcesses.Location = new Point(10, 330);
             grpProcesses.Size = new Size(780, 150);
@@ -134,7 +134,7 @@ namespace pwAdmin
             searchPanel.Dock = DockStyle.Top;
             
             Label lblSearch = new Label();
-            lblSearch.Text = "Buscar:";
+            lblSearch.Text = "Search:";
             lblSearch.Location = new Point(10, 15);
             lblSearch.AutoSize = true;
             searchPanel.Controls.Add(lblSearch);
@@ -148,7 +148,7 @@ namespace pwAdmin
             searchPanel.Controls.Add(txtSearch);
             
             Button btnSearch = new Button();
-            btnSearch.Text = "Buscar";
+            btnSearch.Text = "Search";
             btnSearch.Location = new Point(270, 10);
             btnSearch.Size = new Size(80, 25);
             btnSearch.FlatStyle = FlatStyle.Flat;
@@ -156,7 +156,7 @@ namespace pwAdmin
             searchPanel.Controls.Add(btnSearch);
             
             Button btnCreateAccount = new Button();
-            btnCreateAccount.Text = "Criar Conta";
+            btnCreateAccount.Text = "Create Account";
             btnCreateAccount.Location = new Point(360, 10);
             btnCreateAccount.Size = new Size(100, 25);
             btnCreateAccount.FlatStyle = FlatStyle.Flat;
@@ -164,9 +164,9 @@ namespace pwAdmin
             searchPanel.Controls.Add(btnCreateAccount);
             
             Button btnOnlineAccounts = new Button();
-            btnOnlineAccounts.Text = "Contas Online";
+            btnOnlineAccounts.Text = "Online Accounts";
             btnOnlineAccounts.Location = new Point(470, 10);
-            btnOnlineAccounts.Size = new Size(100, 25);
+            btnOnlineAccounts.Size = new Size(110, 25);
             btnOnlineAccounts.FlatStyle = FlatStyle.Flat;
             btnOnlineAccounts.BackColor = Color.FromArgb(255, 193, 7);
             btnOnlineAccounts.ForeColor = Color.Black;
@@ -196,14 +196,14 @@ namespace pwAdmin
             
             // Add context menu
             ContextMenuStrip accountMenu = new ContextMenuStrip();
-            accountMenu.Items.Add("Editar Conta", null, (s, e) => EditAccount());
-            accountMenu.Items.Add("Privilégios GM", null, (s, e) => EditGMPrivileges());
+            accountMenu.Items.Add("Edit Account", null, (s, e) => EditAccount());
+            accountMenu.Items.Add("GM Privileges", null, (s, e) => EditGMPrivileges());
             accountMenu.Items.Add("-");
-            accountMenu.Items.Add("Ver Personagens", null, (s, e) => ViewCharacters());
-            accountMenu.Items.Add("Editar Personagem", null, (s, e) => EditCharacter());
+            accountMenu.Items.Add("View Characters", null, (s, e) => ViewCharacters());
+            accountMenu.Items.Add("Edit Character", null, (s, e) => EditCharacter());
             accountMenu.Items.Add("-");
-            accountMenu.Items.Add("Enviar Mail", null, (s, e) => SendMail());
-            accountMenu.Items.Add("Adicionar Cash", null, (s, e) => AddCash());
+            accountMenu.Items.Add("Send Mail", null, (s, e) => SendMail());
+            accountMenu.Items.Add("Add Cash", null, (s, e) => AddCash());
             dgvAccounts.ContextMenuStrip = accountMenu;
             
             Panel gridPanel = new Panel();
@@ -224,7 +224,7 @@ namespace pwAdmin
             
             // Profile selection
             GroupBox grpProfile = new GroupBox();
-            grpProfile.Text = "Perfil";
+            grpProfile.Text = "Profile";
             grpProfile.ForeColor = Color.White;
             grpProfile.Location = new Point(10, 10);
             grpProfile.Size = new Size(780, 60);
@@ -243,7 +243,7 @@ namespace pwAdmin
             
             // File paths
             GroupBox grpFiles = new GroupBox();
-            grpFiles.Text = "Arquivos do Cliente";
+            grpFiles.Text = "Client Files";
             grpFiles.ForeColor = Color.White;
             grpFiles.Location = new Point(10, 80);
             grpFiles.Size = new Size(780, 150);
@@ -297,7 +297,7 @@ namespace pwAdmin
             
             // Server settings
             GroupBox grpServer = new GroupBox();
-            grpServer.Text = "Configurações do Servidor";
+            grpServer.Text = "Server Settings";
             grpServer.ForeColor = Color.White;
             grpServer.Location = new Point(10, 240);
             grpServer.Size = new Size(780, 120);
@@ -317,7 +317,7 @@ namespace pwAdmin
             grpServer.Controls.Add(txtServerIP);
             
             Label lblServerPort = new Label();
-            lblServerPort.Text = "Porta:";
+            lblServerPort.Text = "Port:";
             lblServerPort.Location = new Point(270, 25);
             lblServerPort.AutoSize = true;
             grpServer.Controls.Add(lblServerPort);
@@ -335,7 +335,7 @@ namespace pwAdmin
             
             // Save button
             Button btnSave = new Button();
-            btnSave.Text = "Salvar Configurações";
+            btnSave.Text = "Save Settings";
             btnSave.Location = new Point(10, 380);
             btnSave.Size = new Size(150, 30);
             btnSave.FlatStyle = FlatStyle.Flat;
@@ -383,16 +383,16 @@ namespace pwAdmin
             {
                 if (Comandos.TestServerConnection())
                 {
-                    MessageBox.Show("Conectado ao servidor com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Successfully connected to server!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Falha ao conectar ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to connect to server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao conectar: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
@@ -400,7 +400,7 @@ namespace pwAdmin
         {
             // Save settings
             Settings.Default.Save();
-            MessageBox.Show("Configurações salvas com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Settings saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         private void BrowseFile(TextBox targetTextBox, string filter)
@@ -430,32 +430,32 @@ namespace pwAdmin
         // Context menu methods
         private void EditAccount()
         {
-            MessageBox.Show("Editar Conta - Em desenvolvimento", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Edit Account - In development", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         private void EditGMPrivileges()
         {
-            MessageBox.Show("Privilégios GM - Em desenvolvimento", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("GM Privileges - In development", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         private void ViewCharacters()
         {
-            MessageBox.Show("Ver Personagens - Em desenvolvimento", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("View Characters - In development", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         private void EditCharacter()
         {
-            MessageBox.Show("Editar Personagem - Em desenvolvimento", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Edit Character - In development", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         private void SendMail()
         {
-            MessageBox.Show("Enviar Mail - Em desenvolvimento", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Send Mail - In development", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         
         private void AddCash()
         {
-            MessageBox.Show("Adicionar Cash - Em desenvolvimento", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Add Cash - In development", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

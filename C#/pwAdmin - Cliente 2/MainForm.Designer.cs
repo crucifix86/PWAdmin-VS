@@ -74,7 +74,7 @@ namespace pwAdmin
             
             // Server Management button
             navButtons[0] = new System.Windows.Forms.Button();
-            navButtons[0].Text = "📊 Gerenciar Servidor";
+            navButtons[0].Text = "📊 Server Management";
             navButtons[0].Location = new System.Drawing.Point(0, 10);
             navButtons[0].Size = new System.Drawing.Size(180, 50);
             navButtons[0].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -90,7 +90,7 @@ namespace pwAdmin
             
             // Account Management button
             navButtons[1] = new System.Windows.Forms.Button();
-            navButtons[1].Text = "👥 Gerenciar Contas";
+            navButtons[1].Text = "👥 Account Management";
             navButtons[1].Location = new System.Drawing.Point(0, 65);
             navButtons[1].Size = new System.Drawing.Size(180, 50);
             navButtons[1].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -106,7 +106,7 @@ namespace pwAdmin
             
             // Settings button
             navButtons[2] = new System.Windows.Forms.Button();
-            navButtons[2].Text = "⚙️ Configurações";
+            navButtons[2].Text = "⚙️ Settings";
             navButtons[2].Location = new System.Drawing.Point(0, 120);
             navButtons[2].Size = new System.Drawing.Size(180, 50);
             navButtons[2].FlatStyle = System.Windows.Forms.FlatStyle.Flat;
