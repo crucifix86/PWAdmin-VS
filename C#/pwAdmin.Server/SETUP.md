@@ -1,42 +1,39 @@
 # pwAdmin Server Daemon Setup Guide
 
-This guide will help you set up the pwAdmin server daemon on your Linux server to handle communication between the Windows client and Perfect World game servers.
+This guide covers building and deploying the pwAdmin server daemon to Linux.
 
-## Prerequisites
+## Prerequisites for Deployment
 
 - Linux server (Ubuntu/Debian recommended)
-- .NET 8.0 Runtime
 - MySQL/MariaDB server
 - Perfect World server files already installed
 - Root or sudo access
+- **No .NET Runtime required** - the daemon is self-contained!
 
-## Quick Start
+## Building the Standalone Executable
 
-### 1. Install .NET 8.0 Runtime
+### Option 1: Build on Windows (Recommended)
+Build on your Windows development machine with Visual Studio:
 
-For Ubuntu/Debian:
-```bash
-wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-rm packages-microsoft-prod.deb
-sudo apt-get update
-sudo apt-get install -y dotnet-runtime-8.0
-```
+1. Open PowerShell or Command Prompt in the `C#/pwAdmin.Server` directory
+2. Run one of these scripts:
+   - **PowerShell**: `.\build-windows.ps1`
+   - **Command Prompt**: `build-windows.bat`
+   - **Visual Studio**: Right-click project → Publish → Select Linux profile
 
-For other distributions, see: https://dotnet.microsoft.com/download/dotnet/8.0
+The build creates a fully self-contained Linux executable at:
+`bin\Release\net8.0\linux-x64\publish\pwadmin-server`
 
-### 2. Build the Server
-
-On your development machine:
+### Option 2: Build on Linux (Requires .NET SDK)
+If you have .NET SDK installed on a Linux build machine:
 ```bash
 cd C#/pwAdmin.Server
 ./build.sh
 ```
 
-This creates a self-contained Linux binary at:
-`bin/Release/net8.0/linux-x64/publish/pwadmin-server`
+## Quick Start
 
-### 3. Deploy to Server
+### 1. Deploy to Server
 
 Copy files to your server:
 ```bash
@@ -54,7 +51,7 @@ scp pwadmin.service root@yourserver:/etc/systemd/system/
 ssh root@yourserver chmod +x /usr/local/bin/pwadmin-server
 ```
 
-### 4. Configure the Server
+### 2. Configure the Server
 
 Edit `/etc/pwadmin.conf` on your server:
 
@@ -85,7 +82,7 @@ ip = 127.0.0.1
 port = 29400
 ```
 
-### 5. Create Service User (Optional but Recommended)
+### 3. Create Service User (Optional but Recommended)
 
 ```bash
 # Create a dedicated user for the service
@@ -93,7 +90,7 @@ sudo useradd -r -s /bin/false pwserver
 sudo chown pwserver:pwserver /usr/local/bin/pwadmin-server
 ```
 
-### 6. Start the Service
+### 4. Start the Service
 
 ```bash
 # Reload systemd

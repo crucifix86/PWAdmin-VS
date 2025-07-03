@@ -14,17 +14,31 @@ A Linux server daemon for pwAdmin that handles communication between the Windows
 
 ## Requirements
 
-- .NET 8.0 Runtime on Linux
+- **No .NET Runtime required on Linux** - daemon is self-contained!
 - MySQL/MariaDB server
 - Perfect World game server components
 
 ## Building
 
-```bash
-cd pwAdmin.Server
-dotnet build -c Release
-dotnet publish -c Release -r linux-x64
+### Windows Build (Recommended)
+Build from Windows for Linux deployment:
+
+```powershell
+# PowerShell
+.\build-windows.ps1
+
+# Or Command Prompt
+build-windows.bat
 ```
+
+### Linux Build
+If you have .NET SDK on Linux:
+
+```bash
+./build.sh
+```
+
+Both methods create a self-contained executable that includes the .NET runtime.
 
 ## Installation
 
