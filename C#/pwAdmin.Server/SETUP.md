@@ -12,23 +12,26 @@ This guide covers building and deploying the pwAdmin server daemon to Linux.
 
 ## Building the Standalone Executable
 
-### Option 1: Build on Windows (Recommended)
-Build on your Windows development machine with Visual Studio:
-
-1. Open PowerShell or Command Prompt in the `C#/pwAdmin.Server` directory
-2. Run one of these scripts:
-   - **PowerShell**: `.\build-windows.ps1`
-   - **Command Prompt**: `build-windows.bat`
-   - **Visual Studio**: Right-click project → Publish → Select Linux profile
+### Visual Studio (Recommended)
+1. Open the solution in Visual Studio 2022
+2. Right-click the `pwAdmin.Server` project
+3. Select **Publish**
+4. Choose the **LinuxStandalone** profile
+5. Click **Publish**
 
 The build creates a fully self-contained Linux executable at:
-`bin\Release\net8.0\linux-x64\publish\pwadmin-server`
+`bin\Release\net8.0\publish\linux-standalone\pwadmin-server`
 
-### Option 2: Build on Linux (Requires .NET SDK)
-If you have .NET SDK installed on a Linux build machine:
+For ARM64 servers, use the **LinuxStandaloneARM64** profile instead.
+
+### Command Line Build
+If you prefer command line:
 ```bash
-cd C#/pwAdmin.Server
-./build.sh
+# For x64 Linux servers
+dotnet publish -p:PublishProfile=LinuxStandalone
+
+# For ARM64 Linux servers  
+dotnet publish -p:PublishProfile=LinuxStandaloneARM64
 ```
 
 ## Quick Start

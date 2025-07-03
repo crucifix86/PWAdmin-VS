@@ -40,8 +40,8 @@ PWAdmin-VS/
 
 ### Linux Server Daemon
 
-1. Navigate to `C#/pwAdmin.Server/`
-2. Run `./build.sh` to build the daemon
+1. Open `C#/pwAdmin - Cliente 2/pwAdmin - Cliente by Alien.sln` in Visual Studio 2022
+2. Right-click `pwAdmin.Server` project → Publish → LinuxStandalone
 3. Follow the setup instructions in `C#/pwAdmin.Server/SETUP.md`
 
 ## Requirements
@@ -62,14 +62,12 @@ PWAdmin-VS/
 ### Server Daemon Quick Setup
 
 ```bash
-# Build
-cd C#/pwAdmin.Server
-./build.sh
+# Build in Visual Studio first (see above)
 
 # Deploy to server
-scp bin/Release/net8.0/linux-x64/publish/pwadmin-server root@server:/usr/local/bin/
-scp pwadmin.conf root@server:/etc/
-scp pwadmin.service root@server:/etc/systemd/system/
+scp C#/pwAdmin.Server/bin/Release/net8.0/publish/linux-standalone/pwadmin-server root@server:/usr/local/bin/
+scp C#/pwAdmin.Server/pwadmin.conf root@server:/etc/
+scp C#/pwAdmin.Server/pwadmin.service root@server:/etc/systemd/system/
 
 # Start service
 ssh root@server systemctl enable --now pwadmin

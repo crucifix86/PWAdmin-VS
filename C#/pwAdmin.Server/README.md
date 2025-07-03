@@ -20,31 +20,30 @@ A Linux server daemon for pwAdmin that handles communication between the Windows
 
 ## Building
 
-### Windows Build (Recommended)
-Build from Windows for Linux deployment:
+### Visual Studio
+1. Open the solution in Visual Studio 2022
+2. Right-click `pwAdmin.Server` project → **Publish**
+3. Select **LinuxStandalone** profile
+4. Click **Publish**
 
-```powershell
-# PowerShell
-.\build-windows.ps1
-
-# Or Command Prompt
-build-windows.bat
-```
-
-### Linux Build
-If you have .NET SDK on Linux:
-
+### Command Line
 ```bash
-./build.sh
+# Build standalone Linux x64 binary
+dotnet publish -p:PublishProfile=LinuxStandalone
+
+# Build standalone Linux ARM64 binary
+dotnet publish -p:PublishProfile=LinuxStandaloneARM64
 ```
 
 Both methods create a self-contained executable that includes the .NET runtime.
 
 ## Installation
 
-1. Copy the published binary to your server:
+1. Build the project using Visual Studio or command line (see Building section above)
+
+2. Copy the published binary to your server:
 ```bash
-scp bin/Release/net8.0/linux-x64/publish/pwadmin-server user@server:/usr/local/bin/
+scp bin/Release/net8.0/publish/linux-standalone/pwadmin-server user@server:/usr/local/bin/
 ```
 
 2. Copy the configuration file:
