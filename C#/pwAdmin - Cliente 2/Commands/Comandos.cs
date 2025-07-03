@@ -11,8 +11,34 @@ namespace pwAdmin
 {
     public class Comandos
     {
-        public static string ip = string.IsNullOrEmpty(Settings.Default.ipservidor) ? "127.0.0.1" : Settings.Default.ipservidor;
-        public static int port = Settings.Default.portaservidor <= 0 ? 630 : Settings.Default.portaservidor;
+        private static string _ip = null;
+        private static int? _port = null;
+        
+        public static string ip 
+        { 
+            get 
+            { 
+                if (_ip == null)
+                {
+                    _ip = string.IsNullOrEmpty(Settings.Default.ipservidor) ? "127.0.0.1" : Settings.Default.ipservidor;
+                }
+                return _ip;
+            }
+            set { _ip = value; }
+        }
+        
+        public static int port 
+        { 
+            get 
+            { 
+                if (_port == null)
+                {
+                    _port = Settings.Default.portaservidor <= 0 ? 630 : Settings.Default.portaservidor;
+                }
+                return _port.Value;
+            }
+            set { _port = value; }
+        }
         public static void AddCash(int userid, int valor)
         {
             DebugAddCash arg = new DebugAddCash();
@@ -296,6 +322,13 @@ namespace pwAdmin
         }
 
         public static string LastConnectionError { get; set; } = "";
+        
+        public static void ReloadSettings()
+        {
+            _ip = null;
+            _port = null;
+            Logger.Log($"Settings reloaded - IP will be: {ip}, Port will be: {port}");
+        }
         
         public static bool TestServerConnection()
         {

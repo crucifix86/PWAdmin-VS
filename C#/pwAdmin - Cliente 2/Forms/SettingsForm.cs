@@ -83,11 +83,20 @@ namespace pwAdmin
                     return;
                 }
                 
+                // Save current form values to settings first
+                Settings.Default.ipservidor = txtServerIP.Text.Trim();
+                Settings.Default.portaservidor = (int)nudServerPort.Value;
+                Settings.Default.Save();
+                
+                // Force reload from settings
+                Comandos.ReloadSettings();
+                
                 // Update connection settings before testing
                 Comandos.ip = txtServerIP.Text.Trim();
                 Comandos.port = (int)nudServerPort.Value;
                 
                 Utils.Logger.Log($"Test connection button clicked - IP: '{Comandos.ip}', Port: {Comandos.port}");
+                Utils.Logger.Log($"Settings values - ipservidor: '{Settings.Default.ipservidor}', portaservidor: {Settings.Default.portaservidor}");
                 
                 // Test server connection
                 var result = Comandos.TestServerConnection();
