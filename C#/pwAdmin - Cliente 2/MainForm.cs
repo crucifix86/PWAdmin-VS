@@ -954,7 +954,7 @@ namespace pwAdmin
                     processGrid.Rows.Clear();
                     foreach (Processes proc in info.processes)
                     {
-                        processGrid.Rows.Add(proc.name, $"{proc.mem} MB", $"{proc.cpu}%");
+                        processGrid.Rows.Add(proc.processName, $"{proc.mem} MB", $"{proc.cpu}%");
                     }
                 }
                 
