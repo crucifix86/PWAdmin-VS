@@ -53,17 +53,31 @@ namespace pwAdmin.Server.Services
         public string UniquenamedIp { get; set; } = "127.0.0.1";
         public int UniquenamedPort { get; set; } = 29401;
 
+        public bool IsConfigValid { get; private set; }
+        
         public SessionConfig()
         {
-            LoadConfig();
+            IsConfigValid = LoadConfig();
         }
 
         public bool LoadConfig()
         {
             try
             {
+                const string configFile = "pwadmin.conf";
+                
+                // Check if config file exists
+                if (!File.Exists(configFile))
+                {
+                    Console.WriteLine($"Configuration file '{configFile}' not found!");
+                    Console.WriteLine("Creating default configuration file...");
+                    CreateDefaultConfigFile(configFile);
+                    Console.WriteLine($"Please edit '{configFile}' with your server settings and restart.");
+                    return false;
+                }
+                
                 var parser = new FileIniDataParser();
-                _config = parser.ReadFile("pwadmin.conf");
+                _config = parser.ReadFile(configFile);
 
                 // General section
                 ServName = GetString("General", "servname", ServName);
@@ -138,6 +152,58 @@ namespace pwAdmin.Server.Services
         public string ResolvePath(string path)
         {
             return path.Replace("$HOME$", HomePath + "/");
+        }
+        
+        private void CreateDefaultConfigFile(string filename)
+        {
+            var defaultConfig = @"[General]
+servname = YourServerName
+password = 
+port = 630
+homepath = /home/pwserver
+gs_name = gs
+gs_conf_path = $HOME$gamed/gs.conf
+gs_path = $HOME$gamed
+aid = 1
+zoneid = 1
+servid = 1
+default_icon = 0_0.dds
+log_row_count = 150
+logpath = $HOME$logs
+ServerVersion = 156
+pidfile = /var/run/pwadmin.pid
+PauseStartInstanceFixed = 5
+PauseStartPerInstance = 2
+MaxChatRow = 200
+MaxFormatLogRow = 200
+MaxWorld2LogRow = 400
+AuthDType = 0
+ShellAdd = nohup %s
+GameBackupPath = $HOME$backup
+MysqlBackupPath = $HOME$backup
+MysqlBackupType = 1
+
+[Mysql]
+user = root
+pass = yourpassword
+port = 3306
+base = pw
+host = 127.0.0.1
+
+[GDelivery]
+ip = 127.0.0.1
+port = 29100
+provider_port = 29300
+
+[GameDBD]
+ip = 127.0.0.1
+port = 29400
+
+[Uniquenamed]
+ip = 127.0.0.1
+port = 29401
+";
+            File.WriteAllText(filename, defaultConfig);
         }
     }
 }

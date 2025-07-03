@@ -22,6 +22,13 @@ namespace pwAdmin.Server.Services
         {
             _logger.LogInformation("pwAdmin Server starting...");
 
+            if (!_config.IsConfigValid)
+            {
+                _logger.LogError("Configuration is not valid. Please check pwadmin.conf and restart the service.");
+                Environment.Exit(1);
+                return;
+            }
+
             try
             {
                 _tcpServer = new TcpServer(_config, _logger);

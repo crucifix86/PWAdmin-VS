@@ -38,14 +38,15 @@ dotnet publish -p:PublishProfile=LinuxStandaloneARM64
 
 ### 1. Deploy to Server
 
-Copy files to your server:
+The Visual Studio publish includes all necessary files. Copy the entire publish folder:
 ```bash
-# Copy the binary
-scp bin/Release/net8.0/linux-x64/publish/pwadmin-server root@yourserver:/usr/local/bin/
+# Copy all published files (includes binary and config files)
+scp -r bin/Release/net8.0/publish/linux-standalone/* root@yourserver:/usr/local/bin/
 
-# Copy configuration files
-scp pwadmin.conf root@yourserver:/etc/
-scp processes_config.ini root@yourserver:/etc/
+# Or if you want config files in /etc:
+scp bin/Release/net8.0/publish/linux-standalone/pwadmin-server root@yourserver:/usr/local/bin/
+scp bin/Release/net8.0/publish/linux-standalone/pwadmin.conf root@yourserver:/etc/
+scp bin/Release/net8.0/publish/linux-standalone/processes_config.ini root@yourserver:/etc/
 
 # Copy systemd service
 scp pwadmin.service root@yourserver:/etc/systemd/system/
