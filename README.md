@@ -53,9 +53,9 @@ PWAdmin-VS/
 
 ### Server
 - Linux (Ubuntu/Debian recommended)
-- .NET 8.0 Runtime
 - MySQL/MariaDB
 - Perfect World server installation
+- **No .NET Runtime required** - daemon compiles as self-contained executable
 
 ## Installation
 

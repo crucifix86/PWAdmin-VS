@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  pwadmin:
+    build: .
+    container_name: pwadmin-server
+    restart: unless-stopped
+    ports:
+      - "630:630"
+    volumes:
+      - ./pwadmin.conf:/etc/pwadmin.conf:ro
+      - ./processes_config.ini:/etc/processes_config.ini:ro
+      - /root/pwserver:/root/pwserver:ro  # Mount PW server files read-only
+    environment:
+      - TZ=UTC
+    networks:
+      - pwnet
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: pwadmin-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: pw
+      MYSQL_USER: pwadmin
+      MYSQL_PASSWORD: changeme
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - pwnet
+
+networks:
+  pwnet:
+    driver: bridge
+
+volumes:
+  mysql_data:
