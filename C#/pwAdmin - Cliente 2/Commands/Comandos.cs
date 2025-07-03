@@ -194,29 +194,24 @@ namespace pwAdmin
                         log.AppendLine("Data sent, waiting for response...");
                         Logger.Log("Data sent, waiting for response...");
                         
-                        // Wait for response - give server more time
-                        int waitAttempts = 0;
-                        while (!stream.DataAvailable && waitAttempts < 10)
-                        {
-                            System.Threading.Thread.Sleep(100);
-                            waitAttempts++;
-                            if (waitAttempts % 3 == 0)
-                            {
-                                Logger.Log($"Still waiting for response... {waitAttempts * 100}ms elapsed");
-                            }
-                        }
+                        // Try to read response directly with timeout
+                        var buffer = new byte[65536]; // Increased buffer size
+                        int bytesRead = 0;
                         
-                        if (stream.DataAvailable)
+                        try
                         {
-                            var buffer = new byte[4096];
-                            var bytesRead = stream.Read(buffer, 0, buffer.Length);
-                            log.AppendLine($"Received {bytesRead} bytes response");
-                            Logger.Log($"Received {bytesRead} bytes from server");
-                            Logger.LogData("Response data", buffer, bytesRead);
+                            // The Read will block until data is available or timeout occurs
+                            bytesRead = stream.Read(buffer, 0, buffer.Length);
                             
-                            var responseData = new byte[bytesRead];
-                            Array.Copy(buffer, responseData, bytesRead);
-                            var response = new OctetsStream(responseData);
+                            if (bytesRead > 0)
+                            {
+                                log.AppendLine($"Received {bytesRead} bytes response");
+                                Logger.Log($"Received {bytesRead} bytes from server");
+                                Logger.LogData("Response data", buffer, bytesRead);
+                                
+                                var responseData = new byte[bytesRead];
+                                Array.Copy(buffer, responseData, bytesRead);
+                                var response = new OctetsStream(responseData);
                             
                             // Parse the response
                             try
@@ -269,11 +264,19 @@ namespace pwAdmin
                                 LastConnectionError = log.ToString();
                                 return null;
                             }
+                            }
+                            else
+                            {
+                                log.AppendLine("No data received from server (0 bytes)");
+                                Logger.Log("No data received from server");
+                                LastConnectionError = log.ToString();
+                                return null;
+                            }
                         }
-                        else
+                        catch (Exception readEx)
                         {
-                            log.AppendLine($"No response received from server after {waitAttempts * 100}ms");
-                            Logger.Log($"No response received from server after {waitAttempts * 100}ms wait");
+                            Logger.LogError("Failed to read from stream", readEx);
+                            log.AppendLine($"Read error: {readEx.Message}");
                             LastConnectionError = log.ToString();
                             return null;
                         }
