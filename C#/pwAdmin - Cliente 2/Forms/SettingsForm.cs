@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using pwAdmin.Properties;
+using pwAdmin.MySQL;
 
 namespace pwAdmin
 {
@@ -76,7 +77,7 @@ namespace pwAdmin
             try
             {
                 // Test server connection
-                var result = Commands.Comandos.TestServerConnection();
+                var result = Comandos.TestServerConnection();
                 if (result)
                 {
                     MessageBox.Show("Server connection successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -103,7 +104,7 @@ namespace pwAdmin
                 Settings.Default.login = txtDBUser.Text;
                 Settings.Default.senha = txtDBPassword.Text;
                 
-                MySQL.Connection conn = new MySQL.Connection();
+                Connection conn = new Connection();
                 conn.TestaConexão();
                 
                 MessageBox.Show("Database connection successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

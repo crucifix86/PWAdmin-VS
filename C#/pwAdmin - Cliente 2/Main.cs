@@ -86,7 +86,7 @@ namespace pwAdmin
                 UpdateStatus($"Connecting to server {Settings.Default.ipservidor}:{Settings.Default.portaservidor}...");
                 try
                 {
-                    if (Commands.Comandos.TestServerConnection())
+                    if (Comandos.TestServerConnection())
                     {
                         UpdateStatus($"Connected to {Settings.Default.ipservidor}:{Settings.Default.portaservidor}");
                     }
