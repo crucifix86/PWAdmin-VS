@@ -1,5 +1,7 @@
-using GNET;
-﻿namespace Protocols.Packets
+﻿using GNET;
+using GNET.Rpc;
+
+namespace Protocols.Packets
 {
     public class GFactionRelationApply : GNET.Rpc.Data
     {
