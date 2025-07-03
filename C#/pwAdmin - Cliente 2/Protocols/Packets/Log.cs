@@ -7,13 +7,13 @@ namespace Protocols.Packets
     {
         public string message;
 
-        public override global::OctetsStream marshal(global::OctetsStream os)
+        public override OctetsStream marshal(OctetsStream os)
         {
             os.marshal(message);
             return os;
         }
 
-        public override global::OctetsStream unmarshal(global::OctetsStream os)
+        public override OctetsStream unmarshal(OctetsStream os)
         {
             message = os.unmarshal_String();
             return os;
