@@ -32,6 +32,12 @@ namespace pwAdmin
         {
             InitializeComponent();
             mainWindow = this;
+            
+            // VERIFICATION: This message proves you're running the updated code
+            this.Text = "pwAdmin Client - SimpleSettings v1.0";
+            MessageBox.Show($"UPDATED CODE RUNNING!\n\nSettings will be saved to:\n{Utils.SimpleSettings.GetSettingsPath()}\n\nCurrent settings:\nIP: {Utils.SimpleSettings.ServerIP}\nPort: {Utils.SimpleSettings.ServerPort}", 
+                "Code Version Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             SetupTheme();
             CreateStatusBar();
             CreatePages();
