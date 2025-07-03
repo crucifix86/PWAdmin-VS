@@ -64,10 +64,10 @@ namespace pwAdmin.DDSReader
                 _image.Decompress();
         }
 
-        private void Save<T>(string file)
-        where T : unmanaged, IPixel<T>
+        private void Save<TPixel>(string file)
+        where TPixel : unmanaged, IPixel<TPixel>
         {
-            Image<T> image = Image.LoadPixelData<T>(
+            var image = Image.LoadPixelData<TPixel>(
                 _image.Data, _image.Width, _image.Height);
             image.Save(file);
         }
