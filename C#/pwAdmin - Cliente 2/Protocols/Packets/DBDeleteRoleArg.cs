@@ -1,3 +1,4 @@
+using GNET;
 ﻿namespace Protocols.Packets
 {
     internal class DBDeleteRoleArg : Protocol

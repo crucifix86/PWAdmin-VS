@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+using GNET;
 namespace Protocols.Structs
 {
     public class skill_data

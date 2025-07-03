@@ -1,5 +1,6 @@
 ﻿using System.Text;
 
+using GNET;
 namespace Protocols.Packets
 {
     public class DebugCommand : Protocol

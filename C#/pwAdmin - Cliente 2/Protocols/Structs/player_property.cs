@@ -1,3 +1,4 @@
+using GNET;
 ﻿namespace Protocols.Structs
 {
     public class player_property

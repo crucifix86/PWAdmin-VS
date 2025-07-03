@@ -119,9 +119,10 @@ namespace pwAdmin.Forms.ItemEditor
             }
         }
 
-        private void groupControl10_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
+        private void groupControl10_CustomButtonClick(object sender, EventArgs e)
         {
-            switch (e.Button.Properties.GroupIndex)
+            // TODO: Implement button handling
+            switch (0)
             {
                 case 0:
                     {
@@ -169,9 +170,10 @@ namespace pwAdmin.Forms.ItemEditor
                 UpdateSlotInfo();
         }
 
-        private void listview2_CustomButtonClick(object sender, DevExpress.XtraBars.Docking2010.BaseButtonEventArgs e)
+        private void listview2_CustomButtonClick(object sender, EventArgs e)
         {
-            switch (e.Button.Properties.GroupIndex)
+            // TODO: Implement button handling  
+            switch (0)
             {
                 case 0:
                     {

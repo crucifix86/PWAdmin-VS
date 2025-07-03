@@ -1,5 +1,6 @@
 ﻿using System;
 
+using GNET;
 namespace Protocols.Packets
 {
     public class DBAutoLock : Protocol
