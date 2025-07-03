@@ -5,6 +5,7 @@ using GNET;
 using static GNET.Rpc.Data;
 using Protocols;
 using pwAdmin.GNET;
+using pwAdmin.Utils;
 
 namespace pwAdmin
 {
@@ -124,6 +125,7 @@ namespace pwAdmin
 
         public static OctetsStream UpdateInfosFromServer()
         {
+            Logger.Log("=== UpdateInfosFromServer Started ===");
             var log = new System.Text.StringBuilder();
             
             // For opcode 14 (GetServerConfig), we need to send an empty request
@@ -135,22 +137,34 @@ namespace pwAdmin
             try
             {
                 log.AppendLine($"Sending GetServerConfig request to {ip}:{port}");
+                Logger.Log($"Attempting connection to {ip}:{port}");
+                
                 using (var client = new System.Net.Sockets.TcpClient())
                 {
                     log.AppendLine("Creating TCP client...");
+                    Logger.Log("Creating TCP client with 5 second timeout");
                     client.ReceiveTimeout = 5000; // 5 second timeout
                     client.SendTimeout = 5000;
                     
                     log.AppendLine($"Attempting to connect to {ip}:{port}...");
+                    Logger.Log($"Connecting to {ip}:{port}...");
+                    
                     client.Connect(ip, port);
+                    
                     log.AppendLine("Connected successfully!");
+                    Logger.Log("TCP connection established successfully");
                     
                     using (var stream = client.GetStream())
                     {
                         var data = request.getBytes();
                         log.AppendLine($"Sending {data.Length} bytes: {BitConverter.ToString(data)}");
+                        Logger.LogData("Sending request data", data);
+                        
                         stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        
                         log.AppendLine("Data sent, waiting for response...");
+                        Logger.Log("Data sent, waiting for response...");
                         
                         // Wait for response
                         System.Threading.Thread.Sleep(100);
@@ -160,18 +174,21 @@ namespace pwAdmin
                             var buffer = new byte[4096];
                             var bytesRead = stream.Read(buffer, 0, buffer.Length);
                             log.AppendLine($"Received {bytesRead} bytes response");
-                            log.AppendLine($"Response data: {BitConverter.ToString(buffer, 0, Math.Min(bytesRead, 50))}...");
+                            Logger.Log($"Received {bytesRead} bytes from server");
+                            Logger.LogData("Response data", buffer, bytesRead);
                             
                             var responseData = new byte[bytesRead];
                             Array.Copy(buffer, responseData, bytesRead);
                             var response = new OctetsStream(responseData);
                             
                             LastConnectionError = log.ToString();
+                            Logger.Log("UpdateInfosFromServer completed successfully");
                             return response;
                         }
                         else
                         {
                             log.AppendLine("No response received from server");
+                            Logger.Log("No response received from server after 100ms wait");
                             LastConnectionError = log.ToString();
                             return null;
                         }
@@ -187,6 +204,7 @@ namespace pwAdmin
                     log.AppendLine($"Inner exception: {ex.InnerException.Message}");
                 }
                 LastConnectionError = log.ToString();
+                Logger.LogError("Error in UpdateInfosFromServer", ex);
                 throw;
             }
         }
@@ -281,6 +299,11 @@ namespace pwAdmin
         
         public static bool TestServerConnection()
         {
+            Logger.Log("=== TestServerConnection Started ===");
+            Logger.Log($"Server IP: {ip}");
+            Logger.Log($"Server Port: {port}");
+            Logger.Log($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+            
             var log = new System.Text.StringBuilder();
             try
             {
@@ -294,12 +317,14 @@ namespace pwAdmin
                 {
                     log.AppendLine("Connection successful!");
                     LastConnectionError = log.ToString();
+                    Logger.Log("TestServerConnection: SUCCESS");
                     return true;
                 }
                 else
                 {
                     log.AppendLine("Connection failed: No response from server");
                     LastConnectionError = log.ToString();
+                    Logger.Log("TestServerConnection: FAILED - No response from server");
                     return false;
                 }
             }
@@ -313,6 +338,7 @@ namespace pwAdmin
                 }
                 log.AppendLine($"Stack trace:\n{ex.StackTrace}");
                 LastConnectionError = log.ToString();
+                Logger.LogError("TestServerConnection failed", ex);
                 return false;
             }
         }

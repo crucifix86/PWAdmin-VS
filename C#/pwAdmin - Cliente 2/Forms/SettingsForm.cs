@@ -88,11 +88,11 @@ namespace pwAdmin
                 
                 if (result)
                 {
-                    MessageBox.Show($"Server connection successful!\n\nDetails:\n{log}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Server connection successful!\n\nDetails:\n{log}\n\nFull log saved to:\n{Utils.Logger.GetLogPath()}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show($"Failed to connect to server.\n\nConnection Log:\n{log}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Failed to connect to server.\n\nConnection Log:\n{log}\n\nFull log saved to:\n{Utils.Logger.GetLogPath()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
