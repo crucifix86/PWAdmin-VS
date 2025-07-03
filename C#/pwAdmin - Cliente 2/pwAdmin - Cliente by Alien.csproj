@@ -23,10 +23,5 @@
     <ProjectReference Include="DDSReader\DDSReader.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="GNET">
-      <HintPath>..\..\lib\GNET.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 </Project>
