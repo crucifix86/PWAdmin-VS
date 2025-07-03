@@ -83,6 +83,10 @@ namespace pwAdmin
                     return;
                 }
                 
+                // Debug: Show what we're about to save
+                MessageBox.Show($"About to test connection with:\nIP: {txtServerIP.Text}\nPort: {nudServerPort.Value}\n\nCurrent Settings:\nipservidor: '{Settings.Default.ipservidor}'\nportaservidor: {Settings.Default.portaservidor}", 
+                    "Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                 // Save current form values to settings first
                 Settings.Default.ipservidor = txtServerIP.Text.Trim();
                 Settings.Default.portaservidor = (int)nudServerPort.Value;
