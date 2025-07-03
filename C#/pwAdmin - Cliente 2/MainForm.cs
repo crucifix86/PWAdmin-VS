@@ -34,21 +34,14 @@ namespace pwAdmin
             mainWindow = this;
             
             // VERIFICATION: This message proves you're running the updated code
-            this.Text = "pwAdmin Client - SimpleSettings v1.1";
+            this.Text = "pwAdmin Client - SimpleSettings v1.2";
             
-            // Test creating the connection.txt file directly
-            try
-            {
-                var testPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test_connection.txt");
-                System.IO.File.WriteAllText(testPath, "TEST|123");
-                
-                MessageBox.Show($"UPDATED CODE v1.1 RUNNING!\n\nTest file created at:\n{testPath}\n\nSettings will be saved to:\n{Utils.SimpleSettings.GetSettingsPath()}\n\nCurrent settings:\nIP: {Utils.SimpleSettings.ServerIP}\nPort: {Utils.SimpleSettings.ServerPort}\n\nBase Directory:\n{AppDomain.CurrentDomain.BaseDirectory}", 
-                    "Code Version Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"ERROR creating test file: {ex.Message}", "Write Test Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            // Show settings info on startup
+            var settingsPath = Utils.SimpleSettings.GetSettingsPath();
+            var fileExists = System.IO.File.Exists(settingsPath);
+            
+            MessageBox.Show($"UPDATED CODE v1.2 RUNNING!\n\nSettings file: {settingsPath}\nFile exists: {fileExists}\n\nCurrent settings:\nIP: {Utils.SimpleSettings.ServerIP}\nPort: {Utils.SimpleSettings.ServerPort}\n\nIf the file doesn't exist, it will be created when SimpleSettings.Load() runs.", 
+                "Code Version Check", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             SetupTheme();
             CreateStatusBar();

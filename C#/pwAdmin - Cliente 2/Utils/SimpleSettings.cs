@@ -70,7 +70,29 @@ namespace pwAdmin.Utils
                 }
                 else
                 {
-                    Logger.Log($"No settings file found at {_settingsPath}, using defaults");
+                    Logger.Log($"No settings file found at {_settingsPath}, creating default file");
+                    
+                    // Create the file with default values
+                    try
+                    {
+                        var defaultContent = $"{ServerIP}|{ServerPort}";
+                        File.WriteAllText(_settingsPath, defaultContent);
+                        Logger.Log($"Created default settings file at {_settingsPath}");
+                        
+                        // Verify it was created
+                        if (File.Exists(_settingsPath))
+                        {
+                            Logger.Log("Default settings file created successfully");
+                        }
+                        else
+                        {
+                            Logger.Log("ERROR: Default settings file was not created!");
+                        }
+                    }
+                    catch (Exception createEx)
+                    {
+                        Logger.LogError("Failed to create default settings file", createEx);
+                    }
                 }
             }
             catch (Exception ex)
