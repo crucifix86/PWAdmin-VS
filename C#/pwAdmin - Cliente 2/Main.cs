@@ -46,15 +46,24 @@ namespace pwAdmin
 
         private void InitializeApplication()
         {
-            // Update status
-            UpdateStatus("Initializing...");
-            
-            // Check if settings are configured
-            if (string.IsNullOrEmpty(Settings.Default.ElementsPath))
+            try
             {
-                MessageBox.Show("Please configure the application settings first.\n\nGo to File → Settings to set up server connection, database, and client paths.", 
-                    "Configuration Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UpdateStatus("Not Configured - Please go to File → Settings");
+                // Update status
+                UpdateStatus("Initializing...");
+                
+                // Check if settings are configured
+                if (Settings.Default == null || string.IsNullOrEmpty(Settings.Default.ElementsPath))
+                {
+                    MessageBox.Show("Please configure the application settings first.\n\nGo to File → Settings to set up server connection, database, and client paths.", 
+                        "Configuration Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateStatus("Not Configured - Please go to File → Settings");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error during initialization:\n{ex.Message}\n\nStack Trace:\n{ex.StackTrace}", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UpdateStatus("Initialization Failed");
                 return;
             }
             
