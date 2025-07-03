@@ -84,8 +84,8 @@ namespace pwAdmin
                 }
                 
                 // Debug: Show what we're about to save
-                MessageBox.Show($"About to test connection with:\nIP: {txtServerIP.Text}\nPort: {nudServerPort.Value}\n\nCurrent Settings:\nipservidor: '{Settings.Default.ipservidor}'\nportaservidor: {Settings.Default.portaservidor}", 
-                    "Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"USING NEW CODE - TestDirectConnection\n\nAbout to test connection with:\nIP: {txtServerIP.Text}\nPort: {nudServerPort.Value}\n\nCurrent Settings:\nipservidor: '{Settings.Default.ipservidor}'\nportaservidor: {Settings.Default.portaservidor}", 
+                    "Debug Info - VERSION 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
                 // Save current form values to settings first
                 Settings.Default.ipservidor = txtServerIP.Text.Trim();
@@ -103,6 +103,7 @@ namespace pwAdmin
                 Utils.Logger.Log($"Settings values - ipservidor: '{Settings.Default.ipservidor}', portaservidor: {Settings.Default.portaservidor}");
                 
                 // Test server connection using direct method to bypass static variable issues
+                MessageBox.Show($"NOW CALLING TestDirectConnection with IP: {txtServerIP.Text.Trim()} Port: {(int)nudServerPort.Value}", "Direct Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 var result = Comandos.TestDirectConnection(txtServerIP.Text.Trim(), (int)nudServerPort.Value);
                 
                 // Get the detailed log
