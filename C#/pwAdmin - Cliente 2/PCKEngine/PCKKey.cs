@@ -4,8 +4,8 @@ namespace pwAdmin.PCKEngine
 {
     public class PCKKey
     {
-        public int KEY_1 = (int)pwAdmin.Properties.Settings.Default.key1;
-        public int KEY_2 = (int)pwAdmin.Properties.Settings.Default.key2;
+        public int KEY_1 = string.IsNullOrEmpty(pwAdmin.Properties.Settings.Default.key1) ? 0 : int.Parse(pwAdmin.Properties.Settings.Default.key1);
+        public int KEY_2 = string.IsNullOrEmpty(pwAdmin.Properties.Settings.Default.key2) ? 0 : int.Parse(pwAdmin.Properties.Settings.Default.key2);
         public int ASIG_1 = -33685778;
         public int ASIG_2 = -267534609;
         public int FSIG_1 = 1305093103;

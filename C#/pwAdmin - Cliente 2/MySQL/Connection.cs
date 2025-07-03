@@ -23,7 +23,7 @@ namespace pwAdmin.MySQL
         public void carregaConfiguracao()
         {
             Ip = Properties.Settings.Default.ip;
-            Porta = Properties.Settings.Default.porta;
+            Porta = Properties.Settings.Default.porta.ToString();
             Database = Properties.Settings.Default.db;
             Usuario = Properties.Settings.Default.login;
             Senha = Properties.Settings.Default.senha;
