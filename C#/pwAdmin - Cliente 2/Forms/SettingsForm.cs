@@ -40,12 +40,22 @@ namespace pwAdmin
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Save server settings to our simple text file
-            Utils.SimpleSettings.Save(txtServerIP.Text, (int)nudServerPort.Value);
-            
-            // Still save to Settings for backwards compatibility
-            Settings.Default.ipservidor = txtServerIP.Text;
-            Settings.Default.portaservidor = (int)nudServerPort.Value;
+            try
+            {
+                Utils.Logger.Log($"=== btnSave_Click started ===");
+                Utils.Logger.Log($"IP from textbox: '{txtServerIP.Text}'");
+                Utils.Logger.Log($"Port from numeric: {nudServerPort.Value}");
+                
+                // Save server settings to our simple text file
+                Utils.SimpleSettings.Save(txtServerIP.Text, (int)nudServerPort.Value);
+                
+                // Show where file should be
+                MessageBox.Show($"Settings save attempted.\n\nCheck for file at:\n{Utils.SimpleSettings.GetSettingsPath()}\n\nAlso check log at:\n{Utils.Logger.GetLogPath()}", 
+                    "Save Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                // Still save to Settings for backwards compatibility
+                Settings.Default.ipservidor = txtServerIP.Text;
+                Settings.Default.portaservidor = (int)nudServerPort.Value;
             
             // Save database settings
             Settings.Default.ip = txtDBHost.Text;
@@ -71,6 +81,12 @@ namespace pwAdmin
             
             Settings.Default.Save();
             MessageBox.Show("Settings saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                Utils.Logger.LogError("Error in btnSave_Click", ex);
+                MessageBox.Show($"Error saving settings: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

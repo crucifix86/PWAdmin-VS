@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace pwAdmin.Utils
 {
@@ -14,8 +15,26 @@ namespace pwAdmin.Utils
         {
             try
             {
+                Logger.Log($"SimpleSettings.Save called with IP='{ip}', Port={port}");
+                Logger.Log($"Settings path: {_settingsPath}");
+                Logger.Log($"Directory exists: {Directory.Exists(Path.GetDirectoryName(_settingsPath))}");
+                
                 var content = $"{ip}|{port}";
+                Logger.Log($"Writing content: '{content}'");
+                
                 File.WriteAllText(_settingsPath, content);
+                
+                // Verify file was created
+                if (File.Exists(_settingsPath))
+                {
+                    Logger.Log($"SUCCESS: File created at {_settingsPath}");
+                    var readBack = File.ReadAllText(_settingsPath);
+                    Logger.Log($"File contents: '{readBack}'");
+                }
+                else
+                {
+                    Logger.Log("ERROR: File was not created!");
+                }
                 
                 ServerIP = ip;
                 ServerPort = port;
@@ -25,6 +44,7 @@ namespace pwAdmin.Utils
             catch (Exception ex)
             {
                 Logger.LogError("Failed to save settings", ex);
+                MessageBox.Show($"Failed to save settings:\n{ex.Message}\n\nPath: {_settingsPath}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         
