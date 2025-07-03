@@ -77,6 +77,10 @@ namespace pwAdmin.Server.Services
                 }
                 
                 var parser = new FileIniDataParser();
+                var parserConfig = parser.Parser.Configuration;
+                parserConfig.CommentString = "#";
+                parserConfig.AllowKeysWithoutSection = false;
+                
                 _config = parser.ReadFile(configFile);
 
                 // General section

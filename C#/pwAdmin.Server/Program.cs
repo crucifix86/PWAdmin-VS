@@ -62,8 +62,20 @@ namespace pwAdmin.Server
                 })
                 .Build();
 
+            // Load config to check if it's valid before starting
+            var config = new SessionConfig();
+            if (!config.IsConfigValid)
+            {
+                Console.WriteLine("Error: Configuration is not valid. The service will exit.");
+                return;
+            }
+            
             pidManager.WritePid();
             Console.WriteLine("Starting pwAdmin server...");
+            Console.WriteLine($"Server Name: {config.ServName}");
+            Console.WriteLine($"Port: {config.Port}");
+            Console.WriteLine($"Home Path: {config.HomePath}");
+            
             await host.RunAsync();
         }
 
@@ -86,6 +98,12 @@ namespace pwAdmin.Server
             if (pidManager.IsRunning())
             {
                 Console.WriteLine("pwAdmin server is running.");
+                var config = new SessionConfig();
+                if (config.IsConfigValid)
+                {
+                    Console.WriteLine($"Server Name: {config.ServName}");
+                    Console.WriteLine($"Port: {config.Port}");
+                }
             }
             else
             {
