@@ -17,7 +17,7 @@ namespace pwAdmin
         {
             // Server settings
             txtServerIP.Text = Settings.Default.ipservidor;
-            nudServerPort.Value = Settings.Default.portaservidor > 0 ? Settings.Default.portaservidor : 29000;
+            nudServerPort.Value = Settings.Default.portaservidor > 0 ? Settings.Default.portaservidor : 630;
             
             // Database settings
             txtDBHost.Text = Settings.Default.ip;
@@ -76,17 +76,15 @@ namespace pwAdmin
         {
             try
             {
-                // Capture console output
-                var originalOut = Console.Out;
-                var stringWriter = new System.IO.StringWriter();
-                Console.SetOut(stringWriter);
+                // Update connection settings before testing
+                Comandos.ip = txtServerIP.Text;
+                Comandos.port = (int)nudServerPort.Value;
                 
                 // Test server connection
                 var result = Comandos.TestServerConnection();
                 
-                // Restore console output
-                Console.SetOut(originalOut);
-                var log = stringWriter.ToString();
+                // Get the detailed log
+                var log = Comandos.LastConnectionError;
                 
                 if (result)
                 {
@@ -99,8 +97,7 @@ namespace pwAdmin
             }
             catch (Exception ex)
             {
-                Console.SetOut(Console.Out); // Ensure console is restored
-                MessageBox.Show($"Connection error: {ex.Message}\n\nStack trace:\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Connection error: {ex.Message}\n\nStack trace:\n{ex.StackTrace}\n\nDetailed log:\n{Comandos.LastConnectionError}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

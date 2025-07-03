@@ -124,6 +124,8 @@ namespace pwAdmin
 
         public static OctetsStream UpdateInfosFromServer()
         {
+            var log = new System.Text.StringBuilder();
+            
             // For opcode 14 (GetServerConfig), we need to send an empty request
             var request = new OctetsStream();
             request.compact_uint32(501350); // Key
@@ -132,17 +134,23 @@ namespace pwAdmin
             
             try
             {
-                Console.WriteLine($"Sending GetServerConfig request to {ip}:{port}");
+                log.AppendLine($"Sending GetServerConfig request to {ip}:{port}");
                 using (var client = new System.Net.Sockets.TcpClient())
                 {
+                    log.AppendLine("Creating TCP client...");
+                    client.ReceiveTimeout = 5000; // 5 second timeout
+                    client.SendTimeout = 5000;
+                    
+                    log.AppendLine($"Attempting to connect to {ip}:{port}...");
                     client.Connect(ip, port);
-                    Console.WriteLine("Connected successfully!");
+                    log.AppendLine("Connected successfully!");
                     
                     using (var stream = client.GetStream())
                     {
                         var data = request.getBytes();
+                        log.AppendLine($"Sending {data.Length} bytes: {BitConverter.ToString(data)}");
                         stream.Write(data, 0, data.Length);
-                        Console.WriteLine($"Sent {data.Length} bytes");
+                        log.AppendLine("Data sent, waiting for response...");
                         
                         // Wait for response
                         System.Threading.Thread.Sleep(100);
@@ -151,16 +159,20 @@ namespace pwAdmin
                         {
                             var buffer = new byte[4096];
                             var bytesRead = stream.Read(buffer, 0, buffer.Length);
-                            Console.WriteLine($"Received {bytesRead} bytes response");
+                            log.AppendLine($"Received {bytesRead} bytes response");
+                            log.AppendLine($"Response data: {BitConverter.ToString(buffer, 0, Math.Min(bytesRead, 50))}...");
                             
                             var responseData = new byte[bytesRead];
                             Array.Copy(buffer, responseData, bytesRead);
                             var response = new OctetsStream(responseData);
+                            
+                            LastConnectionError = log.ToString();
                             return response;
                         }
                         else
                         {
-                            Console.WriteLine("No response received");
+                            log.AppendLine("No response received from server");
+                            LastConnectionError = log.ToString();
                             return null;
                         }
                     }
@@ -168,7 +180,13 @@ namespace pwAdmin
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in UpdateInfosFromServer: {ex.Message}");
+                log.AppendLine($"Error in UpdateInfosFromServer: {ex.Message}");
+                log.AppendLine($"Exception type: {ex.GetType().Name}");
+                if (ex.InnerException != null)
+                {
+                    log.AppendLine($"Inner exception: {ex.InnerException.Message}");
+                }
+                LastConnectionError = log.ToString();
                 throw;
             }
         }
@@ -259,30 +277,42 @@ namespace pwAdmin
             return res;
         }
 
+        public static string LastConnectionError { get; set; } = "";
+        
         public static bool TestServerConnection()
         {
+            var log = new System.Text.StringBuilder();
             try
             {
-                Console.WriteLine($"Testing connection to {ip}:{port}...");
+                log.AppendLine($"Testing connection to {ip}:{port}...");
+                log.AppendLine($"Server IP: {ip}");
+                log.AppendLine($"Server Port: {port}");
+                log.AppendLine($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+                
                 var result = UpdateInfosFromServer();
                 if (result != null)
                 {
-                    Console.WriteLine("Connection successful!");
+                    log.AppendLine("Connection successful!");
+                    LastConnectionError = log.ToString();
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Connection failed: No response from server");
+                    log.AppendLine("Connection failed: No response from server");
+                    LastConnectionError = log.ToString();
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Connection error: {ex.Message}");
+                log.AppendLine($"Connection error: {ex.Message}");
+                log.AppendLine($"Exception Type: {ex.GetType().Name}");
                 if (ex.InnerException != null)
                 {
-                    Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                    log.AppendLine($"Inner exception: {ex.InnerException.Message}");
                 }
+                log.AppendLine($"Stack trace:\n{ex.StackTrace}");
+                LastConnectionError = log.ToString();
                 return false;
             }
         }
