@@ -59,14 +59,14 @@ namespace pwAdmin
 
         private void accountInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccountInfo form = new AccountInfo();
-            form.ShowDialog();
+            // AccountInfo requires a Conta object - show message for now
+            MessageBox.Show("Account Info requires selecting an account first.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void gMControlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GMControl form = new GMControl();
-            form.ShowDialog();
+            // GMControl requires a userid - for now just show a message
+            MessageBox.Show("GM Control requires selecting a user ID first.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void mapsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -83,8 +83,8 @@ namespace pwAdmin
 
         private void addonsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddonsList form = new AddonsList();
-            form.ShowDialog();
+            // AddonsList requires a WeaponOctetsEditor instance
+            MessageBox.Show("Addons List should be opened from within the Weapon Editor.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void skillByClassToolStripMenuItem_Click(object sender, EventArgs e)
