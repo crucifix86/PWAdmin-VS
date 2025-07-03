@@ -91,12 +91,6 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3
-            this.simpleButton3.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton3
-            this.simpleButton3.Appearance.Options.UseForeColor = true;
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(672, 389);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(188, 36);
@@ -106,10 +100,6 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2
-            this.simpleButton2
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(477, 389);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(188, 36);

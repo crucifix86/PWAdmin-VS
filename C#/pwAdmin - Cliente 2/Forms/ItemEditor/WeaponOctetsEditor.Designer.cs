@@ -430,8 +430,6 @@
             // 
             // labelControl21
             // 
-            this.labelControl21.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.labelControl21.Appearance.Options.UseForeColor = true;
             this.labelControl21.Location = new System.Drawing.Point(143, 143);
             this.labelControl21.Name = "labelControl21";
             this.labelControl21.Size = new System.Drawing.Size(3, 15);
@@ -672,7 +670,7 @@
             // 
             this.tbTagContent.Location = new System.Drawing.Point(199, 228);
             this.tbTagContent.Name = "tbTagContent";
-            this.tbTagContent.Properties.MaxLength = 20;
+            this.tbTagContent.MaxLength = 20;
             this.tbTagContent.Size = new System.Drawing.Size(141, 22);
             this.tbTagContent.TabIndex = 4;
             // 
@@ -758,21 +756,12 @@
             // groupControl10
             // 
             this.groupControl10.Controls.Add(this.dgvSlots);
-            buttonImageOptions7.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions7.Image")));
-            buttonImageOptions8.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions8.Image")));
-            buttonImageOptions9.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions9.Image")));
-            this.groupControl10.CustomHeaderButtons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("AddFrom", false, buttonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Adicionar do elements.data", -1, true, null, true, false, true, null, 2),
-            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Add", false, buttonImageOptions8, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Adicionar um novo item", -1, true, null, true, false, true, null, 0),
-            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Delete", false, buttonImageOptions9, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Remover itens selecionados", -1, true, null, true, false, true, null, 1)});
-            this.groupControl10.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
             this.groupControl10.Location = new System.Drawing.Point(9, 410);
             this.groupControl10.Name = "groupControl10";
             this.groupControl10.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.groupControl10.Size = new System.Drawing.Size(345, 138);
             this.groupControl10.TabIndex = 66;
             this.groupControl10.Text = "Pedras";
-            this.groupControl10.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.groupControl10_CustomButtonClick);
             // 
             // listview2
             // 
@@ -784,27 +773,18 @@
             this.listview2.Controls.Add(this.bParam2);
             this.listview2.Controls.Add(this.bParam1);
             this.listview2.Controls.Add(this.dgvAddons);
-            buttonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions1.Image")));
-            buttonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions2.Image")));
-            buttonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("buttonImageOptions3.Image")));
-            this.listview2.CustomHeaderButtons.AddRange(new DevExpress.XtraEditors.ButtonPanel.IBaseButton[] {
-            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("AddFromElements", false, buttonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Adicionar do elements.data", -1, true, null, true, false, true, null, 2),
-            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Add", false, buttonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Adicionar um novo item", -1, true, null, true, false, true, null, 0),
-            new DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Delete", false, buttonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "Remover itens selecionados", -1, true, null, true, false, true, null, 1)});
-            this.listview2.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText;
             this.listview2.Location = new System.Drawing.Point(355, 10);
             this.listview2.Name = "listview2";
             this.listview2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.listview2.Size = new System.Drawing.Size(588, 506);
             this.listview2.TabIndex = 67;
             this.listview2.Text = "Atributos";
-            this.listview2.CustomButtonClick += new DevExpress.XtraBars.Docking2010.BaseButtonEventHandler(this.listview2_CustomButtonClick);
             // 
             // bGravura
             // 
             this.bGravura.Location = new System.Drawing.Point(513, 481);
             this.bGravura.Name = "bGravura";
-            this.bGravura.Properties.Caption = "Gravura";
+            this.bGravura.Text = "Gravura";
             this.bGravura.Size = new System.Drawing.Size(70, 19);
             this.bGravura.TabIndex = 2;
             // 
@@ -812,7 +792,7 @@
             // 
             this.bSuite.Location = new System.Drawing.Point(443, 481);
             this.bSuite.Name = "bSuite";
-            this.bSuite.Properties.Caption = "Roupa";
+            this.bSuite.Text = "Roupa";
             this.bSuite.Size = new System.Drawing.Size(60, 19);
             this.bSuite.TabIndex = 2;
             // 
@@ -820,7 +800,7 @@
             // 
             this.bEmbed.Location = new System.Drawing.Point(376, 481);
             this.bEmbed.Name = "bEmbed";
-            this.bEmbed.Properties.Caption = "Pedra";
+            this.bEmbed.Text = "Pedra";
             this.bEmbed.Size = new System.Drawing.Size(57, 19);
             this.bEmbed.TabIndex = 2;
             // 
@@ -828,7 +808,7 @@
             // 
             this.bParam2.Location = new System.Drawing.Point(193, 481);
             this.bParam2.Name = "bParam2";
-            this.bParam2.Properties.Caption = "Contagem de Parâmetros 2";
+            this.bParam2.Text = "Contagem de Parâmetros 2";
             this.bParam2.Size = new System.Drawing.Size(173, 19);
             this.bParam2.TabIndex = 2;
             // 
@@ -836,7 +816,7 @@
             // 
             this.bParam1.Location = new System.Drawing.Point(5, 481);
             this.bParam1.Name = "bParam1";
-            this.bParam1.Properties.Caption = "Contagem de Parâmetros 1";
+            this.bParam1.Text = "Contagem de Parâmetros 1";
             this.bParam1.Size = new System.Drawing.Size(178, 19);
             this.bParam1.TabIndex = 2;
             // 
@@ -923,10 +903,6 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3
-            this.simpleButton3
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(355, 516);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(292, 32);
@@ -936,10 +912,6 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2
-            this.simpleButton2
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(651, 516);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(292, 32);

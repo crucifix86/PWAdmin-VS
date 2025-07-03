@@ -180,10 +180,6 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1
-            this.simpleButton1
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1
             this.simpleButton1.Location = new System.Drawing.Point(16, 493);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(544, 28);
@@ -201,7 +197,6 @@
             this.Controls.Add(this.dgvSkillsByClass);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.listView1);
-            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

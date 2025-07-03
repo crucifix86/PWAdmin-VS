@@ -50,8 +50,6 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1
             this.simpleButton1.Location = new System.Drawing.Point(12, 318);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(150, 40);
@@ -61,8 +59,6 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(168, 318);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(150, 40);
@@ -72,10 +68,6 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3
-            this.simpleButton3
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(561, 318);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(150, 40);
@@ -85,10 +77,6 @@
             // 
             // simpleButton4
             // 
-            this.simpleButton4
-            this.simpleButton4
-            this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4
             this.simpleButton4.Location = new System.Drawing.Point(405, 318);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(150, 40);

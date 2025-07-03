@@ -125,10 +125,6 @@
             // 
             // btnCancel
             // 
-            this.btnCancel
-            this.btnCancel
-            this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.btnCancel
             this.btnCancel.Location = new System.Drawing.Point(168, 153);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(104, 40);
@@ -137,10 +133,6 @@
             // 
             // btnOk
             // 
-            this.btnOk
-            this.btnOk
-            this.btnOk.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.btnOk
             this.btnOk.Location = new System.Drawing.Point(61, 153);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(104, 40);

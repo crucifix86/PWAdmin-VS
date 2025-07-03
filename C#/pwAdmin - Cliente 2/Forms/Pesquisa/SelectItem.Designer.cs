@@ -87,11 +87,6 @@
             this.dgvItens.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
             this.dgvItens.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvItens.Size = new System.Drawing.Size(383, 506);
-            superToolTip1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            toolTipItem1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            toolTipItem1.Text = "teste";
-            superToolTip1.Items.Add(toolTipItem1);
-            this.toolTipController1.SetSuperTip(this.dgvItens, superToolTip1);
             this.dgvItens.TabIndex = 2;
             this.dgvItens.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItens_CellClick);
             this.dgvItens.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItens_CellMouseEnter);
@@ -114,7 +109,6 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
             this.simpleButton1.Location = new System.Drawing.Point(368, 554);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(23, 23);
@@ -123,12 +117,6 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3
-            this.simpleButton3.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton3
-            this.simpleButton3.Appearance.Options.UseForeColor = true;
-            this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(203, 587);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(188, 36);
@@ -137,10 +125,6 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2
-            this.simpleButton2
-            this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(8, 587);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(188, 36);
@@ -174,20 +158,14 @@
             // 
             // toolTipController1
             // 
-            this.toolTipController1.AllowHtmlText = true;
             this.toolTipController1.InitialDelay = 1000;
             this.toolTipController1.ReshowDelay = 1000;
-            this.toolTipController1.ToolTipAnchor = DevExpress.Utils.ToolTipAnchor.Cursor;
-            this.toolTipController1.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
             // 
             // comboBoxEdit1
             // 
             this.comboBoxEdit1.Location = new System.Drawing.Point(8, 14);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.AutoComplete = false;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.comboBoxEdit1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None; // false;
             this.comboBoxEdit1.Size = new System.Drawing.Size(383, 22);
             this.comboBoxEdit1.TabIndex = 8;
             // 
