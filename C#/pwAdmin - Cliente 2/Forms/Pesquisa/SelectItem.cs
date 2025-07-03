@@ -65,7 +65,7 @@ namespace pwAdmin.Forms.Pesquisa
                 if (Main.eLC.Lists[i].listName.Contains("STONE_ESSENCE"))
                 {
                     l = i;
-                    comboBoxEdit1.Properties.Items.Add(Main.eLC.Lists[i].listName);
+                    comboBoxEdit1.Items.Add(Main.eLC.Lists[i].listName);
                     comboBoxEdit1.SelectedIndex = 0;
                     break;
                 }
@@ -91,7 +91,7 @@ namespace pwAdmin.Forms.Pesquisa
                 if (Main.eLC.Lists[i].listName.Contains("PET_ESSENCE"))
                 {
                     l = i;
-                    comboBoxEdit1.Properties.Items.Add(Main.eLC.Lists[i].listName);
+                    comboBoxEdit1.Items.Add(Main.eLC.Lists[i].listName);
                     comboBoxEdit1.SelectedIndex = 0;
                     break;
                 }

@@ -606,7 +606,7 @@ namespace pwAdmin
                         {
                             if (Main.eLC.GetValue(l, e, 0) == id.ToString())
                             {
-                                Bitmap img = Properties.Resources.blank;
+                                Bitmap img = Properties.Resources.blank.ToBitmap();
                                 string path = Path.GetFileName(Main.eLC.GetValue(l, e, pos2));
                                 img = Main.images(path);
                                 return img;

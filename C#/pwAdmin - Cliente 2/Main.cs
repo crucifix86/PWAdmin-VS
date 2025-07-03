@@ -31,7 +31,7 @@ namespace pwAdmin
         {
             // This method should load images from resources or file system
             // For now, return a default blank image
-            return Properties.Resources.blank;
+            return Properties.Resources.blank.ToBitmap();
         }
         
         public Main()

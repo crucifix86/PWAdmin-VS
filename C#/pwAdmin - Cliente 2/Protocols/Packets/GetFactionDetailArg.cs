@@ -15,7 +15,7 @@ using GNET;
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal(key);
+            key.unmarshal(os);
             return os;
         }
     }
