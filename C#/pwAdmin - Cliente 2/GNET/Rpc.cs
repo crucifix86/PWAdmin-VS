@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace GNET.Rpc
@@ -21,7 +22,7 @@ namespace GNET.Rpc
         /// <summary>
         /// Generic vector/list for collections that can be marshaled
         /// </summary>
-        public class DataVector : Marshal
+        public class DataVector : Marshal, IEnumerable<Marshal>
         {
             private List<Marshal> items = new List<Marshal>();
 
@@ -116,6 +117,17 @@ namespace GNET.Rpc
                     items.Add(item);
                 }
                 return os;
+            }
+            
+            // IEnumerable implementation
+            public IEnumerator<Marshal> GetEnumerator()
+            {
+                return items.GetEnumerator();
+            }
+            
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
             }
         }
     }

@@ -881,8 +881,8 @@ namespace pwAdmin
                             serverInfo += $"\n\nServer Status:";
                             serverInfo += $"\nMemory: {info.mem_used}MB / {info.mem_total}MB";
                             serverInfo += $"\nSwap: {info.swp_used}MB / {info.swp_total}MB";
-                            serverInfo += $"\nActive Maps: {info.maps.Count()}";
-                            serverInfo += $"\nProcesses: {info.processes.Count()}";
+                            serverInfo += $"\nActive Maps: {info.maps.Count}";
+                            serverInfo += $"\nProcesses: {info.processes.Count}";
                         }
                         
                         MessageBox.Show(serverInfo, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

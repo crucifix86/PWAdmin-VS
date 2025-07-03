@@ -224,8 +224,8 @@ namespace pwAdmin
                                 Logger.Log($"ServerInfo parsed successfully:");
                                 Logger.Log($"  Memory: {serverInfo.mem_used}/{serverInfo.mem_total} MB");
                                 Logger.Log($"  Swap: {serverInfo.swp_used}/{serverInfo.swp_total} MB");
-                                Logger.Log($"  Maps count: {serverInfo.maps.Count()}");
-                                Logger.Log($"  Processes count: {serverInfo.processes.Count()}");
+                                Logger.Log($"  Maps count: {serverInfo.maps.Count}");
+                                Logger.Log($"  Processes count: {serverInfo.processes.Count}");
                                 
                                 LastConnectionError = log.ToString();
                                 Logger.Log("UpdateInfosFromServer completed successfully");
@@ -445,8 +445,8 @@ namespace pwAdmin
                     
                     log.AppendLine("Connection successful!");
                     log.AppendLine($"Server memory: {serverInfo.mem_used}MB/{serverInfo.mem_total}MB");
-                    log.AppendLine($"Active maps: {serverInfo.maps.Count()}");
-                    log.AppendLine($"Running processes: {serverInfo.processes.Count()}");
+                    log.AppendLine($"Active maps: {serverInfo.maps.Count}");
+                    log.AppendLine($"Running processes: {serverInfo.processes.Count}");
                     
                     LastConnectionError = log.ToString();
                     Logger.Log("TestServerConnection: SUCCESS");
