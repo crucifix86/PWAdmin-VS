@@ -125,7 +125,7 @@ namespace pwAdmin
         public static OctetsStream UpdateInfosFromServer()
         {
             ServerInfo info = new ServerInfo();
-            var os = Packet.SendPacket(ip, port, info, (int)CustomOpcode.UpdateInfoFromServer, true, true, false);
+            var os = Packet.SendPacket(ip, port, info, 14, true, true, false); // Use opcode 14 directly
             return os;
         }
 

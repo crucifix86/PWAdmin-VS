@@ -98,6 +98,23 @@ namespace pwAdmin.Server.Services
                         
                         _logger.LogDebug($"Received {bytesRead} bytes from {clientEndpoint}");
                         
+                        // Log first few bytes for debugging
+                        if (bytesRead >= 12)
+                        {
+                            var os = new OctetsStream(requestData);
+                            try
+                            {
+                                var key = os.UncompactUInt32();
+                                var opcode = os.UncompactUInt32();
+                                var size = os.UncompactUInt32();
+                                _logger.LogInformation($"Request: Key={key}, Opcode={opcode}, Size={size}");
+                            }
+                            catch (Exception debugEx)
+                            {
+                                _logger.LogWarning($"Could not parse request header: {debugEx.Message}");
+                            }
+                        }
+                        
                         // Process request
                         var response = await _requestProcessor.ProcessRequestAsync(requestData);
                         

@@ -25,12 +25,26 @@ namespace GNET
 
         public static void Compact(OctetsStream os, Protocol protocol, int opcode)
         {
-            os.compact_uint32((uint)opcode).marshal((Octets)(new OctetsStream()).marshal((Marshal)protocol));
+            // Add key, opcode, and size header that server expects
+            var data = new OctetsStream();
+            data.marshal((Marshal)protocol);
+            
+            os.compact_uint32(501350); // Key
+            os.compact_uint32((uint)opcode); // Opcode
+            os.compact_uint32((uint)data.size()); // Size
+            os.marshal((Octets)data); // Data
         }
 
         public static void Compact(OctetsStream os, Rpc.Data protocol, int opcode)
         {
-            os.compact_uint32((uint)opcode).marshal((Octets)(new OctetsStream()).marshal((Marshal)protocol));
+            // Add key, opcode, and size header that server expects
+            var data = new OctetsStream();
+            data.marshal((Marshal)protocol);
+            
+            os.compact_uint32(501350); // Key
+            os.compact_uint32((uint)opcode); // Opcode
+            os.compact_uint32((uint)data.size()); // Size
+            os.marshal((Octets)data); // Data
         }
 
         public static OctetsStream SendPacket(string hostname, int port, Protocol data, int Opcode, bool read = true, bool compareOpcode = true, bool removeHeaders = true)
