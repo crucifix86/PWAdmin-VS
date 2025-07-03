@@ -151,7 +151,7 @@ namespace pwAdmin
             return (0 == retcode);
         }
 
-        public static OctetsStream UpdateInfosFromServer()
+        public static ServerInfo UpdateInfosFromServer()
         {
             Logger.Log("=== UpdateInfosFromServer Started ===");
             var log = new System.Text.StringBuilder();
@@ -209,9 +209,35 @@ namespace pwAdmin
                             Array.Copy(buffer, responseData, bytesRead);
                             var response = new OctetsStream(responseData);
                             
-                            LastConnectionError = log.ToString();
-                            Logger.Log("UpdateInfosFromServer completed successfully");
-                            return response;
+                            // Parse the response
+                            try
+                            {
+                                // Skip the header (key, opcode, size)
+                                response.uncompact_uint32(); // Key
+                                response.uncompact_uint32(); // Opcode
+                                response.uncompact_uint32(); // Size
+                                
+                                // Parse ServerInfo
+                                var serverInfo = new ServerInfo();
+                                serverInfo.unmarshal(response);
+                                
+                                Logger.Log($"ServerInfo parsed successfully:");
+                                Logger.Log($"  Memory: {serverInfo.mem_used}/{serverInfo.mem_total} MB");
+                                Logger.Log($"  Swap: {serverInfo.swp_used}/{serverInfo.swp_total} MB");
+                                Logger.Log($"  Maps count: {serverInfo.maps.Count()}");
+                                Logger.Log($"  Processes count: {serverInfo.processes.Count()}");
+                                
+                                LastConnectionError = log.ToString();
+                                Logger.Log("UpdateInfosFromServer completed successfully");
+                                return serverInfo;
+                            }
+                            catch (Exception parseEx)
+                            {
+                                Logger.LogError("Failed to parse ServerInfo", parseEx);
+                                log.AppendLine($"Parse error: {parseEx.Message}");
+                                LastConnectionError = log.ToString();
+                                return null;
+                            }
                         }
                         else
                         {
@@ -411,10 +437,17 @@ namespace pwAdmin
                 log.AppendLine($"Server Port: {port}");
                 log.AppendLine($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                 
-                var result = UpdateInfosFromServer();
-                if (result != null)
+                var serverInfo = UpdateInfosFromServer();
+                if (serverInfo != null)
                 {
+                    // Store the server info globally
+                    MainForm.info = serverInfo;
+                    
                     log.AppendLine("Connection successful!");
+                    log.AppendLine($"Server memory: {serverInfo.mem_used}MB/{serverInfo.mem_total}MB");
+                    log.AppendLine($"Active maps: {serverInfo.maps.Count()}");
+                    log.AppendLine($"Running processes: {serverInfo.processes.Count()}");
+                    
                     LastConnectionError = log.ToString();
                     Logger.Log("TestServerConnection: SUCCESS");
                     return true;

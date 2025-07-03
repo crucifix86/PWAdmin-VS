@@ -26,9 +26,12 @@ namespace pwAdmin
         public static dynamic skill_info { get; set; }
         public static dynamic descricao { get; set; }
         public static dynamic addons { get; set; }
-        public static dynamic info { get; set; }
+        public static Protocols.Packets.ServerInfo info { get; set; }
         public static RichTextBox txtLog { get; set; }
         public static dynamic listItemDesc { get; set; }
+        
+        // Connection state
+        private bool isConnected = false;
         
         public MainForm()
         {
@@ -36,7 +39,7 @@ namespace pwAdmin
             mainWindow = this;
             
             // VERIFICATION: This message proves you're running the updated code
-            this.Text = "pwAdmin Client - SimpleSettings v1.3";
+            this.Text = "pwAdmin Client - SimpleSettings v1.4";
             
             // Show settings info on startup
             var settingsPath = Utils.SimpleSettings.GetSettingsPath();
@@ -814,6 +817,33 @@ namespace pwAdmin
         
         private void BtnConnect_Click(object sender, EventArgs e)
         {
+            Button btnConnect = sender as Button;
+            
+            // Handle disconnect
+            if (isConnected)
+            {
+                isConnected = false;
+                info = null;
+                
+                // Update UI
+                lblConnection.Text = "Disconnected";
+                lblConnection.ForeColor = Color.Red;
+                lblStatus.Text = "Disconnected from server";
+                
+                if (btnConnect != null)
+                {
+                    btnConnect.Text = "Connect";
+                    btnConnect.BackColor = Color.FromArgb(45, 45, 48);
+                }
+                
+                // Clear any data in the UI
+                ClearServerData();
+                
+                MessageBox.Show("Disconnected from server.", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            
+            // Handle connect
             try
             {
                 lblStatus.Text = "Connecting...";
@@ -823,27 +853,38 @@ namespace pwAdmin
                 
                 if (Comandos.TestServerConnection())
                 {
+                    isConnected = true;
+                    
                     // Update UI to show connected
                     lblConnection.Text = "Connected";
                     lblConnection.ForeColor = Color.LightGreen;
                     lblStatus.Text = "Connected to server";
                     
-                    // Update the button if it exists
-                    Button btnConnect = sender as Button;
+                    // Update the button
                     if (btnConnect != null)
                     {
                         btnConnect.Text = "Disconnect";
                         btnConnect.BackColor = Color.FromArgb(200, 50, 50);
                     }
                     
-                    MessageBox.Show($"Successfully connected to server!\nIP: {Comandos.ip}\nPort: {Comandos.port}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    // Try to load server data
+                    // Load and display server data
                     try
                     {
                         lblStatus.Text = "Loading server data...";
-                        // You could call other server commands here to populate the UI
+                        PopulateServerData();
                         lblStatus.Text = "Ready";
+                        
+                        var serverInfo = $"Successfully connected!\n\nIP: {Comandos.ip}\nPort: {Comandos.port}";
+                        if (info != null)
+                        {
+                            serverInfo += $"\n\nServer Status:";
+                            serverInfo += $"\nMemory: {info.mem_used}MB / {info.mem_total}MB";
+                            serverInfo += $"\nSwap: {info.swp_used}MB / {info.swp_total}MB";
+                            serverInfo += $"\nActive Maps: {info.maps.Count()}";
+                            serverInfo += $"\nProcesses: {info.processes.Count()}";
+                        }
+                        
+                        MessageBox.Show(serverInfo, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception dataEx)
                     {
@@ -865,6 +906,109 @@ namespace pwAdmin
                 lblConnection.ForeColor = Color.Red;
                 lblStatus.Text = "Connection error";
                 MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private void PopulateServerData()
+        {
+            if (info == null) return;
+            
+            // Find the grids on the current page
+            if (currentPage == 0 && pages[0] != null) // Server Management page
+            {
+                // Find the server info labels
+                var serverInfoGroup = pages[0].Controls["groupServerInfo"] as GroupBox;
+                if (serverInfoGroup != null)
+                {
+                    // Update memory info table
+                    var memTable = serverInfoGroup.Controls["tableMemory"] as TableLayoutPanel;
+                    if (memTable != null)
+                    {
+                        // Update memory labels (they should be at specific positions in the table)
+                        if (memTable.Controls.Count >= 6)
+                        {
+                            memTable.Controls[1].Text = $"{info.mem_used} MB"; // Memory Used
+                            memTable.Controls[3].Text = $"{info.mem_free} MB"; // Memory Free
+                            memTable.Controls[5].Text = $"{info.mem_total} MB"; // Memory Total
+                        }
+                    }
+                    
+                    // Update swap info table
+                    var swapTable = serverInfoGroup.Controls["tableSwap"] as TableLayoutPanel;
+                    if (swapTable != null)
+                    {
+                        if (swapTable.Controls.Count >= 6)
+                        {
+                            swapTable.Controls[1].Text = $"{info.swp_used} MB"; // Swap Used
+                            swapTable.Controls[3].Text = $"{info.swp_free} MB"; // Swap Free
+                            swapTable.Controls[5].Text = $"{info.swp_total} MB"; // Swap Total
+                        }
+                    }
+                }
+                
+                // Update Process List
+                var processGrid = pages[0].Controls["gridProcessList"] as DataGridView;
+                if (processGrid != null)
+                {
+                    processGrid.Rows.Clear();
+                    foreach (Processes proc in info.processes)
+                    {
+                        processGrid.Rows.Add(proc.name, $"{proc.mem} MB", $"{proc.cpu}%");
+                    }
+                }
+                
+                // Update Active Maps List
+                var mapsGrid = pages[0].Controls["gridActiveMapsList"] as DataGridView;
+                if (mapsGrid != null)
+                {
+                    mapsGrid.Rows.Clear();
+                    foreach (ListMap map in info.maps)
+                    {
+                        if (map.pid != 0) // Only show active instances
+                        {
+                            mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem} MB", $"{map.cpu}%");
+                        }
+                    }
+                }
+            }
+        }
+        
+        private void ClearServerData()
+        {
+            // Clear data from all pages
+            if (pages != null)
+            {
+                foreach (var page in pages)
+                {
+                    if (page == null) continue;
+                    
+                    // Clear all DataGridViews
+                    foreach (Control control in page.Controls)
+                    {
+                        if (control is DataGridView grid)
+                        {
+                            grid.Rows.Clear();
+                        }
+                        else if (control is GroupBox group)
+                        {
+                            // Clear labels in groups
+                            foreach (Control child in group.Controls)
+                            {
+                                if (child is TableLayoutPanel table)
+                                {
+                                    // Reset memory/swap values
+                                    for (int i = 1; i < table.Controls.Count; i += 2)
+                                    {
+                                        if (table.Controls[i] is Label lbl && lbl.Text.Contains("MB"))
+                                        {
+                                            lbl.Text = "0 MB";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         
