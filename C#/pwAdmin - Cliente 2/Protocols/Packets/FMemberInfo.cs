@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class FMemberInfo : Rpc.Data
+    public class FMemberInfo : GNET.Rpc.Data
     {
         public int roleid;
         public byte level;

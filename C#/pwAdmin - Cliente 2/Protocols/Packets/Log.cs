@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class Log : Rpc.Data
+    public class Log : GNET.Rpc.Data
     {
         public string message;
 

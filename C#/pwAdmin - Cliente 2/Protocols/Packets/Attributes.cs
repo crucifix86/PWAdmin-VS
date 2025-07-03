@@ -1,9 +1,10 @@
 ﻿using GNET;
+using GNET.Rpc;
 using static GNET.Rpc.Data;
 
 namespace Protocols.Packets
 {    
-    public class Attributes : Rpc.Data
+    public class Attributes : GNET.Rpc.Data
     {      
         public byte attribute;
         public byte localsid;
@@ -26,7 +27,7 @@ namespace Protocols.Packets
         }
     }
 
-    public class GMGetGameAttributes : Rpc.Data
+    public class GMGetGameAttributes : GNET.Rpc.Data
     {
         public DataVector attr = new DataVector(new Attributes());
 

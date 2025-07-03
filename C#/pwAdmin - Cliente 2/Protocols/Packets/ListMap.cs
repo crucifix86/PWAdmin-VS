@@ -1,9 +1,10 @@
 ﻿using GNET;
+using GNET.Rpc;
 using System.Text;
 
 namespace Protocols.Packets
 {
-    public class ListMap : Rpc.Data
+    public class ListMap : GNET.Rpc.Data
     {
         public int pid = 0;
         public string tag = "";

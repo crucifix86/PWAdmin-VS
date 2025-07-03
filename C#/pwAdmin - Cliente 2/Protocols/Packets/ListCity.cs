@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class ListCity : Rpc.Data
+    public class ListCity : GNET.Rpc.Data
     {
         public int level;
         public int owner;

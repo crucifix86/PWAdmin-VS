@@ -1,9 +1,10 @@
 ﻿using GNET;
+using GNET.Rpc;
 using static GNET.Rpc.Data;
 
 namespace Protocols.Packets
 {
-    public class ServerInfo : Rpc.Data
+    public class ServerInfo : GNET.Rpc.Data
     {
         public int mem_used = 0;
         public int mem_free = 0;

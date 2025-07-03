@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class IntOctets : Rpc.Data
+    public class IntOctets : GNET.Rpc.Data
     {
         public int m_int;
         public Octets m_octets = new Octets();

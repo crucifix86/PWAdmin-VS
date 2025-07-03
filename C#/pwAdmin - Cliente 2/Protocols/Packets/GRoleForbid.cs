@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class GRoleForbid : Rpc.Data
+    public class GRoleForbid : GNET.Rpc.Data
     {
         public byte type;
         public int time;

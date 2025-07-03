@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class Processes : Rpc.Data
+    public class Processes : GNET.Rpc.Data
     {
         public int pid = 0;
         public int processCount = 0;

@@ -1,8 +1,9 @@
 ﻿using GNET;
+using GNET.Rpc;
 
 namespace Protocols.Packets
 {
-    public class IntString : Rpc.Data
+    public class IntString : GNET.Rpc.Data
     {
         public int id;
         public string name;
