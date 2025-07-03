@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using GNET;
@@ -11,16 +12,29 @@ namespace GNET
         {
             try
             {
-                TcpClient tc = new TcpClient(hostname, port);
+                Console.WriteLine($"Connecting to {hostname}:{port}...");
+                TcpClient tc = new TcpClient();
+                tc.Connect(hostname, port);
+                Console.WriteLine($"Connected! Sending {data.size()} bytes...");
+                
                 NetworkStream ns = tc.GetStream();
-                ns.Write(data.getBytes(), 0, data.size());
+                var bytes = data.getBytes();
+                ns.Write(bytes, 0, data.size());
+                
+                // Log first few bytes for debugging
+                Console.WriteLine($"Sent data: {BitConverter.ToString(bytes.Take(Math.Min(20, bytes.Length)).ToArray())}");
+                
                 return ns;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Erro: Não foi possível conectar ao servidor. Favor, verificar se o servidor está ativo e a porta liberada.");
+                Console.WriteLine($"Connection error: {e.GetType().Name}: {e.Message}");
+                if (e.InnerException != null)
+                {
+                    Console.WriteLine($"Inner: {e.InnerException.Message}");
+                }
+                throw; // Re-throw to let caller handle
             }
-            return null;
         }
 
         public static void Compact(OctetsStream os, Protocol protocol, int opcode)
@@ -49,15 +63,33 @@ namespace GNET
 
         public static OctetsStream SendPacket(string hostname, int port, Protocol data, int Opcode, bool read = true, bool compareOpcode = true, bool removeHeaders = true)
         {
+            Console.WriteLine($"SendPacket: Opcode={Opcode}, Read={read}");
             OctetsStream os = new OctetsStream();
             Compact(os, data, (int)Opcode);
             NetworkStream ns = SendPacket(hostname, port, os);
+            
+            if (ns == null)
+            {
+                Console.WriteLine("NetworkStream is null, connection failed");
+                return null;
+            }
+            
             if (read)
             {
-                while (!ns.DataAvailable)
+                Console.WriteLine("Waiting for response...");
+                int waitTime = 0;
+                while (!ns.DataAvailable && waitTime < 5000) // 5 second timeout
                 {
                     Thread.Sleep(20);
+                    waitTime += 20;
                 }
+                
+                if (!ns.DataAvailable)
+                {
+                    Console.WriteLine("No response received within 5 seconds");
+                    return null;
+                }
+                
                 byte[] myReadBuffer = new byte[16384];
                 int tamanho = 0;
                 do

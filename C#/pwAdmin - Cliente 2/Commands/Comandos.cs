@@ -124,9 +124,52 @@ namespace pwAdmin
 
         public static OctetsStream UpdateInfosFromServer()
         {
-            ServerInfo info = new ServerInfo();
-            var os = Packet.SendPacket(ip, port, info, 14, true, true, false); // Use opcode 14 directly
-            return os;
+            // For opcode 14 (GetServerConfig), we need to send an empty request
+            var request = new OctetsStream();
+            request.compact_uint32(501350); // Key
+            request.compact_uint32(14); // Opcode for GetServerConfig
+            request.compact_uint32(0); // Size (empty data)
+            
+            try
+            {
+                Console.WriteLine($"Sending GetServerConfig request to {ip}:{port}");
+                using (var client = new System.Net.Sockets.TcpClient())
+                {
+                    client.Connect(ip, port);
+                    Console.WriteLine("Connected successfully!");
+                    
+                    using (var stream = client.GetStream())
+                    {
+                        var data = request.getBytes();
+                        stream.Write(data, 0, data.Length);
+                        Console.WriteLine($"Sent {data.Length} bytes");
+                        
+                        // Wait for response
+                        System.Threading.Thread.Sleep(100);
+                        
+                        if (stream.DataAvailable)
+                        {
+                            var buffer = new byte[4096];
+                            var bytesRead = stream.Read(buffer, 0, buffer.Length);
+                            Console.WriteLine($"Received {bytesRead} bytes response");
+                            
+                            var response = new OctetsStream();
+                            response.replace(buffer, 0, bytesRead);
+                            return response;
+                        }
+                        else
+                        {
+                            Console.WriteLine("No response received");
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in UpdateInfosFromServer: {ex.Message}");
+                throw;
+            }
         }
 
         public static void StartServer(Processes p)
@@ -219,11 +262,26 @@ namespace pwAdmin
         {
             try
             {
+                Console.WriteLine($"Testing connection to {ip}:{port}...");
                 var result = UpdateInfosFromServer();
-                return result != null;
+                if (result != null)
+                {
+                    Console.WriteLine("Connection successful!");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Connection failed: No response from server");
+                    return false;
+                }
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Connection error: {ex.Message}");
+                if (ex.InnerException != null)
+                {
+                    Console.WriteLine($"Inner exception: {ex.InnerException.Message}");
+                }
                 return false;
             }
         }

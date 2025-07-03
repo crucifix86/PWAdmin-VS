@@ -76,20 +76,31 @@ namespace pwAdmin
         {
             try
             {
+                // Capture console output
+                var originalOut = Console.Out;
+                var stringWriter = new System.IO.StringWriter();
+                Console.SetOut(stringWriter);
+                
                 // Test server connection
                 var result = Comandos.TestServerConnection();
+                
+                // Restore console output
+                Console.SetOut(originalOut);
+                var log = stringWriter.ToString();
+                
                 if (result)
                 {
-                    MessageBox.Show("Server connection successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Server connection successful!\n\nDetails:\n{log}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Failed to connect to server. Please check your settings.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Failed to connect to server.\n\nConnection Log:\n{log}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.SetOut(Console.Out); // Ensure console is restored
+                MessageBox.Show($"Connection error: {ex.Message}\n\nStack trace:\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
