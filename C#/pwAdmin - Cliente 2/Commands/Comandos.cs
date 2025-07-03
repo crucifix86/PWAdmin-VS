@@ -194,8 +194,17 @@ namespace pwAdmin
                         log.AppendLine("Data sent, waiting for response...");
                         Logger.Log("Data sent, waiting for response...");
                         
-                        // Wait for response
-                        System.Threading.Thread.Sleep(100);
+                        // Wait for response - give server more time
+                        int waitAttempts = 0;
+                        while (!stream.DataAvailable && waitAttempts < 10)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                            waitAttempts++;
+                            if (waitAttempts % 3 == 0)
+                            {
+                                Logger.Log($"Still waiting for response... {waitAttempts * 100}ms elapsed");
+                            }
+                        }
                         
                         if (stream.DataAvailable)
                         {
@@ -263,8 +272,8 @@ namespace pwAdmin
                         }
                         else
                         {
-                            log.AppendLine("No response received from server");
-                            Logger.Log("No response received from server after 100ms wait");
+                            log.AppendLine($"No response received from server after {waitAttempts * 100}ms");
+                            Logger.Log($"No response received from server after {waitAttempts * 100}ms wait");
                             LastConnectionError = log.ToString();
                             return null;
                         }
