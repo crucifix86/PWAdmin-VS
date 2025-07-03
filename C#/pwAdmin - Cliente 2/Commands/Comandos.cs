@@ -227,30 +227,5 @@ namespace pwAdmin
                 return false;
             }
         }
-        
-        public static OctetsStream UpdateInfosFromServer()
-        {
-            try
-            {
-                // Test connection to pwAdmin server
-                var request = new OctetsStream();
-                request.compact_uint32(501350); // Key
-                request.compact_uint32(14); // Get server config opcode
-                request.compact_uint32(0); // Size
-                
-                var response = ServerConnection.SendOneShotRequestAsync(
-                    Settings.Default.ipservidor,
-                    Settings.Default.portaservidor,
-                    request
-                ).Result;
-                
-                return response;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error getting server info: {ex.Message}");
-                return null;
-            }
-        }
     }
 }
