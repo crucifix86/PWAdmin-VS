@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using pwAdmin.Forms.Gerenciador;
+using pwAdmin.Forms.ItemEditor;
+using pwAdmin.Forms.Skills;
 
 namespace pwAdmin
 {
@@ -47,6 +50,48 @@ namespace pwAdmin
             // Placeholder implementation - should be implemented based on actual requirements
             // This method should load skill images from resources or files
             return null;
+        }
+
+        // Menu event handlers
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void accountInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccountInfo form = new AccountInfo();
+            form.ShowDialog();
+        }
+
+        private void gMControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GMControl form = new GMControl();
+            form.ShowDialog();
+        }
+
+        private void mapsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Mapas form = new Mapas();
+            form.ShowDialog();
+        }
+
+        private void weaponEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WeaponOctetsEditor form = new WeaponOctetsEditor();
+            form.ShowDialog();
+        }
+
+        private void addonsListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddonsList form = new AddonsList();
+            form.ShowDialog();
+        }
+
+        private void skillByClassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SkillByClass form = new SkillByClass();
+            form.ShowDialog();
         }
     }
 }
