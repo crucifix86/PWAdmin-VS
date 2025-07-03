@@ -217,7 +217,7 @@ namespace pwAdmin
                             try
                             {
                                 Logger.Log($"Response buffer size: {bytesRead} bytes");
-                                Logger.LogData("Raw response (first 100 bytes)", responseData, Math.Min(100, bytesRead));
+                                Logger.LogData("Raw response", responseData, bytesRead);
                                 
                                 // Skip the header (key, opcode, size)
                                 var key = response.uncompact_uint32();

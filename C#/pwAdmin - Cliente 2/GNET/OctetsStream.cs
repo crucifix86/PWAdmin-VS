@@ -117,7 +117,7 @@ namespace GNET
             }
             else
             {
-                byte[] bytes = Encoding.Unicode.GetBytes(s);
+                byte[] bytes = Encoding.UTF8.GetBytes(s);
                 compact_uint32((uint)bytes.Length);
                 writer.Write(bytes);
             }
@@ -195,7 +195,7 @@ namespace GNET
                 return string.Empty;
             
             byte[] bytes = reader.ReadBytes((int)length);
-            return Encoding.Unicode.GetString(bytes);
+            return Encoding.UTF8.GetString(bytes);
         }
 
         public Octets unmarshal_Octets()
