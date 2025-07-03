@@ -367,11 +367,11 @@ namespace pwAdmin.Server.Protocols
             return response.GetData();
         }
 
-        private async Task<byte[]> ExecuteCommands(OctetsStream os, int size)
+        private async Task<byte[]> ExecuteCommands(OctetsStream os, uint size)
         {
             var commandCount = os.UncompactUInt32();
             
-            for (int i = 0; i < commandCount; i++)
+            for (uint i = 0; i < commandCount; i++)
             {
                 var command = os.ReadString();
                 
@@ -457,12 +457,12 @@ namespace pwAdmin.Server.Protocols
             return response.GetData();
         }
 
-        private async Task<byte[]> GetUserCount(OctetsStream os, int size)
+        private async Task<byte[]> GetUserCount(OctetsStream os, uint size)
         {
             var response = new OctetsStream();
             var commandCount = os.UncompactUInt32();
             
-            for (int i = 0; i < commandCount; i++)
+            for (uint i = 0; i < commandCount; i++)
             {
                 var sql = os.ReadString();
                 _logger.LogInformation($"Executing SQL: {sql}");
@@ -545,7 +545,7 @@ namespace pwAdmin.Server.Protocols
             return 0;
         }
 
-        private async Task<byte[]> GetUserList(OctetsStream os, int size)
+        private async Task<byte[]> GetUserList(OctetsStream os, uint size)
         {
             var sql = os.ReadString();
             _logger.LogInformation($"Getting user list with SQL: {sql}");
@@ -605,7 +605,7 @@ namespace pwAdmin.Server.Protocols
             return users;
         }
 
-        private async Task<byte[]> GetGMPrivileges(OctetsStream os, int size)
+        private async Task<byte[]> GetGMPrivileges(OctetsStream os, uint size)
         {
             var sql = os.ReadString();
             _logger.LogInformation($"Getting GM privileges with SQL: {sql}");
@@ -642,13 +642,13 @@ namespace pwAdmin.Server.Protocols
             return response.GetData();
         }
 
-        private async Task<byte[]> ForwardToGameServer(OctetsStream os, int size, int opcode, string ip, int port, bool expectResponse = true)
+        private async Task<byte[]> ForwardToGameServer(OctetsStream os, uint size, uint opcode, string ip, int port, bool expectResponse = true)
         {
             try
             {
-                var data = os.ReadBytes(0, size);
+                var data = os.ReadBytes(0, (int)size);
                 var request = new OctetsStream(data);
-                request.Encode(opcode);
+                request.Encode((int)opcode);
                 
                 var response = await SendToGameServer(request.GetData(), ip, port, expectResponse);
                 
@@ -697,7 +697,7 @@ namespace pwAdmin.Server.Protocols
             return new byte[0];
         }
 
-        private async Task<byte[]> ProcessGMSetGameAttri(OctetsStream os, int size)
+        private async Task<byte[]> ProcessGMSetGameAttri(OctetsStream os, uint size)
         {
             var attribute = os.ReadByte();
             var value = os.ReadByte();
@@ -718,9 +718,9 @@ namespace pwAdmin.Server.Protocols
             return new byte[0];
         }
 
-        private async Task<byte[]> ProcessChatBroadcast(OctetsStream os, int size)
+        private async Task<byte[]> ProcessChatBroadcast(OctetsStream os, uint size)
         {
-            var data = os.ReadBytes(0, size);
+            var data = os.ReadBytes(0, (int)size);
             
             // Forward to game server
             var request = new OctetsStream(data);
@@ -730,9 +730,9 @@ namespace pwAdmin.Server.Protocols
             return new byte[0];
         }
 
-        private async Task<byte[]> ProcessAutoLockSet(OctetsStream os, int size)
+        private async Task<byte[]> ProcessAutoLockSet(OctetsStream os, uint size)
         {
-            var data = os.ReadBytes(0, size);
+            var data = os.ReadBytes(0, (int)size);
             
             // Process autolock set
             // Implementation depends on your specific requirements
@@ -745,9 +745,9 @@ namespace pwAdmin.Server.Protocols
             return $"Server={_config.MysqlHost};Port={_config.MysqlPort};Database={_config.MysqlBase};User={_config.MysqlUser};Password={_config.MysqlPass};";
         }
 
-        private string GetOpcodeName(int opcode)
+        private string GetOpcodeName(uint opcode)
         {
-            return _opcodeNames.TryGetValue(opcode, out string name) ? name : "Unknown";
+            return _opcodeNames.TryGetValue((int)opcode, out string name) ? name : "Unknown";
         }
 
         private Dictionary<int, string> InitializeOpcodeNames()
