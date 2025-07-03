@@ -213,5 +213,18 @@ namespace pwAdmin
             res.unmarshal(os);
             return res;
         }
+
+        public static bool TestServerConnection()
+        {
+            try
+            {
+                var result = UpdateInfosFromServer();
+                return result != null;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

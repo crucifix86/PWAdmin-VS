@@ -130,5 +130,29 @@ namespace pwAdmin.Properties {
                 this["key2"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ClientPath {
+            get {
+                return ((string)(this["ClientPath"]));
+            }
+            set {
+                this["ClientPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ElementsPath {
+            get {
+                return ((string)(this["ElementsPath"]));
+            }
+            set {
+                this["ElementsPath"] = value;
+            }
+        }
     }
 }
