@@ -323,6 +323,66 @@ namespace pwAdmin
 
         public static string LastConnectionError { get; set; } = "";
         
+        public static bool TestDirectConnection(string serverIp, int serverPort)
+        {
+            Logger.Log($"=== TestDirectConnection Started with IP: {serverIp}, Port: {serverPort} ===");
+            
+            var log = new System.Text.StringBuilder();
+            try
+            {
+                log.AppendLine($"Testing direct connection to {serverIp}:{serverPort}...");
+                
+                // Create request directly
+                var request = new OctetsStream();
+                request.compact_uint32(501350); // Key
+                request.compact_uint32(14); // Opcode for GetServerConfig
+                request.compact_uint32(0); // Size (empty data)
+                
+                using (var client = new System.Net.Sockets.TcpClient())
+                {
+                    client.ReceiveTimeout = 5000;
+                    client.SendTimeout = 5000;
+                    
+                    Logger.Log($"Attempting direct connection to {serverIp}:{serverPort}");
+                    client.Connect(serverIp, serverPort);
+                    Logger.Log("Direct connection successful!");
+                    
+                    using (var stream = client.GetStream())
+                    {
+                        var data = request.getBytes();
+                        stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        
+                        System.Threading.Thread.Sleep(100);
+                        
+                        if (stream.DataAvailable)
+                        {
+                            var buffer = new byte[4096];
+                            var bytesRead = stream.Read(buffer, 0, buffer.Length);
+                            Logger.Log($"Received {bytesRead} bytes from server");
+                            log.AppendLine("Connection successful!");
+                            LastConnectionError = log.ToString();
+                            return true;
+                        }
+                        else
+                        {
+                            Logger.Log("No response from server");
+                            log.AppendLine("No response from server");
+                            LastConnectionError = log.ToString();
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log.AppendLine($"Connection error: {ex.Message}");
+                LastConnectionError = log.ToString();
+                Logger.LogError($"TestDirectConnection to {serverIp}:{serverPort} failed", ex);
+                return false;
+            }
+        }
+        
         public static void ReloadSettings()
         {
             _ip = null;
@@ -333,8 +393,12 @@ namespace pwAdmin
         public static bool TestServerConnection()
         {
             Logger.Log("=== TestServerConnection Started ===");
-            Logger.Log($"Server IP: {ip}");
-            Logger.Log($"Server Port: {port}");
+            Logger.Log($"Static IP value: {ip}");
+            Logger.Log($"Static Port value: {port}");
+            Logger.Log($"_ip backing field: {_ip}");
+            Logger.Log($"_port backing field: {_port}");
+            Logger.Log($"Settings.Default.ipservidor: '{Settings.Default.ipservidor}'");
+            Logger.Log($"Settings.Default.portaservidor: {Settings.Default.portaservidor}");
             Logger.Log($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             
             var log = new System.Text.StringBuilder();

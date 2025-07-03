@@ -102,8 +102,8 @@ namespace pwAdmin
                 Utils.Logger.Log($"Test connection button clicked - IP: '{Comandos.ip}', Port: {Comandos.port}");
                 Utils.Logger.Log($"Settings values - ipservidor: '{Settings.Default.ipservidor}', portaservidor: {Settings.Default.portaservidor}");
                 
-                // Test server connection
-                var result = Comandos.TestServerConnection();
+                // Test server connection using direct method to bypass static variable issues
+                var result = Comandos.TestDirectConnection(txtServerIP.Text.Trim(), (int)nudServerPort.Value);
                 
                 // Get the detailed log
                 var log = Comandos.LastConnectionError;
