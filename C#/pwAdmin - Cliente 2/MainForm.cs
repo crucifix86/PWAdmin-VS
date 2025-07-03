@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using pwAdmin.Properties;
+using Protocols.Packets;
 
 namespace pwAdmin
 {
@@ -26,7 +27,7 @@ namespace pwAdmin
         public static dynamic skill_info { get; set; }
         public static dynamic descricao { get; set; }
         public static dynamic addons { get; set; }
-        public static Protocols.Packets.ServerInfo info { get; set; }
+        public static ServerInfo info { get; set; }
         public static RichTextBox txtLog { get; set; }
         public static dynamic listItemDesc { get; set; }
         
