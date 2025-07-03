@@ -17,34 +17,61 @@ namespace pwAdmin.Utils
             {
                 Logger.Log($"SimpleSettings.Save called with IP='{ip}', Port={port}");
                 Logger.Log($"Settings path: {_settingsPath}");
-                Logger.Log($"Directory exists: {Directory.Exists(Path.GetDirectoryName(_settingsPath))}");
                 
+                var dir = Path.GetDirectoryName(_settingsPath);
+                Logger.Log($"Directory: {dir}");
+                Logger.Log($"Directory exists: {Directory.Exists(dir)}");
+                
+                // Try to write using a more robust approach
                 var content = $"{ip}|{port}";
                 Logger.Log($"Writing content: '{content}'");
                 
-                File.WriteAllText(_settingsPath, content);
-                
-                // Verify file was created
+                // First try to delete the old file if it exists
                 if (File.Exists(_settingsPath))
                 {
-                    Logger.Log($"SUCCESS: File created at {_settingsPath}");
+                    Logger.Log("Deleting existing file...");
+                    File.Delete(_settingsPath);
+                }
+                
+                // Write the new content
+                using (var writer = new StreamWriter(_settingsPath, false))
+                {
+                    writer.Write(content);
+                    writer.Flush();
+                }
+                
+                // Force a refresh of file system cache
+                System.Threading.Thread.Sleep(100);
+                
+                // Verify file was created and has correct content
+                if (File.Exists(_settingsPath))
+                {
                     var readBack = File.ReadAllText(_settingsPath);
-                    Logger.Log($"File contents: '{readBack}'");
+                    Logger.Log($"SUCCESS: File saved. Read back: '{readBack}'");
+                    
+                    if (readBack == content)
+                    {
+                        Logger.Log("Verification: Content matches!");
+                        ServerIP = ip;
+                        ServerPort = port;
+                    }
+                    else
+                    {
+                        Logger.Log($"ERROR: Content mismatch! Expected '{content}' but got '{readBack}'");
+                        throw new Exception($"File content verification failed. Expected '{content}' but got '{readBack}'");
+                    }
                 }
                 else
                 {
                     Logger.Log("ERROR: File was not created!");
+                    throw new Exception("File was not created after write attempt");
                 }
-                
-                ServerIP = ip;
-                ServerPort = port;
-                
-                Logger.Log($"Settings saved to {_settingsPath}: IP={ip}, Port={port}");
             }
             catch (Exception ex)
             {
                 Logger.LogError("Failed to save settings", ex);
-                MessageBox.Show($"Failed to save settings:\n{ex.Message}\n\nPath: {_settingsPath}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to save settings:\n{ex.Message}\n\nPath: {_settingsPath}\n\nStack trace:\n{ex.StackTrace}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw; // Re-throw so caller knows it failed
             }
         }
         

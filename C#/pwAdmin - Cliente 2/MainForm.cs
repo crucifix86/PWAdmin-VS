@@ -14,6 +14,8 @@ namespace pwAdmin
         private Button[] navButtons;
         private int currentPage = 0;
         private StatusStrip statusStrip;
+        private ToolStripStatusLabel lblStatus;
+        private ToolStripStatusLabel lblConnection;
         
         // Static properties needed by other parts of the application
         public static dynamic eLC { get; set; }
@@ -34,7 +36,7 @@ namespace pwAdmin
             mainWindow = this;
             
             // VERIFICATION: This message proves you're running the updated code
-            this.Text = "pwAdmin Client - SimpleSettings v1.2";
+            this.Text = "pwAdmin Client - SimpleSettings v1.3";
             
             // Show settings info on startup
             var settingsPath = Utils.SimpleSettings.GetSettingsPath();
@@ -62,14 +64,15 @@ namespace pwAdmin
             statusStrip.BackColor = Color.FromArgb(0, 122, 204);
             statusStrip.ForeColor = Color.White;
             
-            ToolStripStatusLabel lblStatus = new ToolStripStatusLabel();
+            lblStatus = new ToolStripStatusLabel();
             lblStatus.Text = "Ready";
             lblStatus.Spring = true;
             lblStatus.TextAlign = ContentAlignment.MiddleLeft;
             statusStrip.Items.Add(lblStatus);
             
-            ToolStripStatusLabel lblConnection = new ToolStripStatusLabel();
+            lblConnection = new ToolStripStatusLabel();
             lblConnection.Text = "Disconnected";
+            lblConnection.ForeColor = Color.Red;
             lblConnection.BorderSides = ToolStripStatusLabelBorderSides.Left;
             statusStrip.Items.Add(lblConnection);
             
@@ -813,17 +816,54 @@ namespace pwAdmin
         {
             try
             {
+                lblStatus.Text = "Connecting...";
+                lblConnection.Text = "Connecting...";
+                lblConnection.ForeColor = Color.Yellow;
+                Application.DoEvents(); // Force UI update
+                
                 if (Comandos.TestServerConnection())
                 {
-                    MessageBox.Show("Successfully connected to server!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Update UI to show connected
+                    lblConnection.Text = "Connected";
+                    lblConnection.ForeColor = Color.LightGreen;
+                    lblStatus.Text = "Connected to server";
+                    
+                    // Update the button if it exists
+                    Button btnConnect = sender as Button;
+                    if (btnConnect != null)
+                    {
+                        btnConnect.Text = "Disconnect";
+                        btnConnect.BackColor = Color.FromArgb(200, 50, 50);
+                    }
+                    
+                    MessageBox.Show($"Successfully connected to server!\nIP: {Comandos.ip}\nPort: {Comandos.port}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    // Try to load server data
+                    try
+                    {
+                        lblStatus.Text = "Loading server data...";
+                        // You could call other server commands here to populate the UI
+                        lblStatus.Text = "Ready";
+                    }
+                    catch (Exception dataEx)
+                    {
+                        Utils.Logger.LogError("Failed to load server data after connection", dataEx);
+                        lblStatus.Text = "Connected (data load failed)";
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Failed to connect to server.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lblConnection.Text = "Disconnected";
+                    lblConnection.ForeColor = Color.Red;
+                    lblStatus.Text = "Connection failed";
+                    MessageBox.Show($"Failed to connect to server.\n\nDetails:\n{Comandos.LastConnectionError}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
+                lblConnection.Text = "Disconnected";
+                lblConnection.ForeColor = Color.Red;
+                lblStatus.Text = "Connection error";
                 MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

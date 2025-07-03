@@ -47,11 +47,20 @@ namespace pwAdmin
                 Utils.Logger.Log($"Port from numeric: {nudServerPort.Value}");
                 
                 // Save server settings to our simple text file
-                Utils.SimpleSettings.Save(txtServerIP.Text, (int)nudServerPort.Value);
-                
-                // Show where file should be
-                MessageBox.Show($"Settings save attempted.\n\nCheck for file at:\n{Utils.SimpleSettings.GetSettingsPath()}\n\nAlso check log at:\n{Utils.Logger.GetLogPath()}", 
-                    "Save Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    Utils.SimpleSettings.Save(txtServerIP.Text.Trim(), (int)nudServerPort.Value);
+                    
+                    // Only show debug message if save succeeded
+                    MessageBox.Show($"Server settings saved successfully!\n\nFile saved at:\n{Utils.SimpleSettings.GetSettingsPath()}\n\nSaved values:\nIP: {txtServerIP.Text.Trim()}\nPort: {nudServerPort.Value}", 
+                        "Save Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception saveEx)
+                {
+                    // Don't continue if the save failed
+                    Utils.Logger.LogError("SimpleSettings.Save failed in btnSave_Click", saveEx);
+                    return;
+                }
                 
                 // Still save to Settings for backwards compatibility
                 Settings.Default.ipservidor = txtServerIP.Text;
