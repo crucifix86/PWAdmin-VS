@@ -100,6 +100,15 @@ namespace GNET
             return this;
         }
 
+        public OctetsStream marshal(double d)
+        {
+            byte[] bytes = BitConverter.GetBytes(d);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            writer.Write(bytes);
+            return this;
+        }
+
         public OctetsStream marshal(string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -171,6 +180,14 @@ namespace GNET
             return BitConverter.ToSingle(bytes, 0);
         }
 
+        public double unmarshal_double()
+        {
+            byte[] bytes = reader.ReadBytes(8);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+            return BitConverter.ToDouble(bytes, 0);
+        }
+
         public string unmarshal_String()
         {
             uint length = uncompact_uint32();
@@ -186,6 +203,14 @@ namespace GNET
             uint length = uncompact_uint32();
             byte[] data = reader.ReadBytes((int)length);
             return new Octets(data);
+        }
+
+        public OctetsStream unmarshal(Octets o)
+        {
+            uint length = uncompact_uint32();
+            byte[] data = reader.ReadBytes((int)length);
+            o.replace(data);
+            return this;
         }
 
         // Compact integer encoding/decoding

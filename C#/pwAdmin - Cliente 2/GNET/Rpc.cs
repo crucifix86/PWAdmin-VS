@@ -29,6 +29,14 @@ namespace GNET.Rpc
             {
             }
 
+            public DataVector(Marshal initialElement)
+            {
+                if (initialElement != null)
+                {
+                    items.Add(initialElement);
+                }
+            }
+
             public void add(Marshal item)
             {
                 items.Add(item);
@@ -47,6 +55,19 @@ namespace GNET.Rpc
             public Marshal get(int index)
             {
                 return items[index];
+            }
+
+            // Indexer for array-like access
+            public Marshal this[int index]
+            {
+                get { return items[index]; }
+                set { items[index] = value; }
+            }
+
+            // Count property
+            public int Count
+            {
+                get { return items.Count; }
             }
 
             public List<T> ToList<T>() where T : Marshal

@@ -16,7 +16,7 @@ namespace Protocols.Packets
 
         public GRoleTask Task = new GRoleTask();
 
-        public GRoleData() : base((int)Opcode.GetRoleData) { }
+        public GRoleData() { }
 
 
         public override OctetsStream marshal(OctetsStream os)

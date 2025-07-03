@@ -13,7 +13,7 @@ namespace Protocols.Packets
 
         public DataVector task_inventory = new DataVector(new GRoleInventory());
 
-        public GRoleTask() : base((int)Opcode.NULL) { }
+        public GRoleTask() { }
 
 
         public override OctetsStream marshal(OctetsStream os)

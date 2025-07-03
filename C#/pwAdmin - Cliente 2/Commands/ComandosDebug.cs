@@ -15,7 +15,7 @@ namespace pwAdmin.Debug
             DBAutoLockGet arg = new DBAutoLockGet();
             arg.userid.returncode = -1;
             arg.userid.id = userid;
-            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getOpcode());
+            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getProtocolType());
             DBAutoLock res = new DBAutoLock();
             res.unmarshal(os);
             return res;
@@ -27,7 +27,7 @@ namespace pwAdmin.Debug
             arg.userid.returncode = -1;
             arg.userid.id = userid;
             arg.count = 0;
-            Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getOpcode(), false);
+            Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getProtocolType(), false);
         }
 
         public static void SetAttr(byte id, byte status)
@@ -46,7 +46,7 @@ namespace pwAdmin.Debug
             GetFactionDetailArg arg = new GetFactionDetailArg();
             arg.key.returncode = -1;
             arg.key.id = 1;
-            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getOpcode(), true, true, true);
+            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getProtocolType(), true, true, true);
             GetFactionDetailRes res = new GetFactionDetailRes();
             res.unmarshal(os);
             return res;
@@ -54,7 +54,7 @@ namespace pwAdmin.Debug
 
         public static byte SysSendMail(SysSendMail arg)
         {
-            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GDELIVERYD, arg, arg.getOpcode());
+            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GDELIVERYD, arg, arg.getProtocolType());
             return os.unmarshal_byte();
         }
 
@@ -90,7 +90,7 @@ namespace pwAdmin.Debug
             arg.key.id = roleid;
             arg.overwrite = 1;
             arg.value = roledata;
-            Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getOpcode(), false);
+            Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getProtocolType(), false);
         }
 
         public static GetUserRolesRes GetUserRoles(int pid)
@@ -100,7 +100,7 @@ namespace pwAdmin.Debug
             id.id = pid;
             GetUserRolesArg arg = new GetUserRolesArg();
             arg.userid = id;
-            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getOpcode());
+            var os = Packet.SendPacket(Settings.Default.ipservidor, (int)Porta.GAMEDBD, arg, arg.getProtocolType());
             GetUserRolesRes res = new GetUserRolesRes();
             res.unmarshal(os);
             return res;

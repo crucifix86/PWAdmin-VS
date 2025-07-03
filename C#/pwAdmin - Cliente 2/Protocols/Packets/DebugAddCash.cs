@@ -6,7 +6,7 @@ using GNET;
         public int userid;
         public int cashnum;
 
-        public DebugAddCash() : base((int)Opcode.DebugAddCash) { }
+        public DebugAddCash() { }
 
         public override OctetsStream marshal(OctetsStream value)
         {

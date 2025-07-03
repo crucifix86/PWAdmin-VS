@@ -6,7 +6,7 @@ using GNET;
         public int retcode;
         public GFactionDetail body = new GFactionDetail();
 
-        public GetFactionDetailRes() : base((int)Opcode.GetFactionDetail) { }
+        public GetFactionDetailRes() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

@@ -9,7 +9,7 @@ using GNET;
         public byte count;
         public byte value;
 
-        public GMSetGameAttriArg() : base((int)Opcode.GMSetGameAttri) { }
+        public GMSetGameAttriArg() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

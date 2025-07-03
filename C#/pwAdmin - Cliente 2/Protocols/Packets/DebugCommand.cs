@@ -9,7 +9,7 @@ namespace Protocols.Packets
         public int tag;
         public Octets data = new Octets();
 
-        public DebugCommand() : base((int)Opcode.DebugCommand) { }
+        public DebugCommand() { }
 
         public void setCommand(string newmsg)
         {

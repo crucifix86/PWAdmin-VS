@@ -67,7 +67,7 @@ namespace pwAdmin.DDSReader
         private void Save<TPixel>(string file)
         where TPixel : unmanaged, IPixel<TPixel>
         {
-            var image = Image.LoadPixelData<TPixel>(
+            var image = SixLabors.ImageSharp.Image.LoadPixelData<TPixel>(
                 _image.Data, _image.Width, _image.Height);
             image.Save(file);
         }

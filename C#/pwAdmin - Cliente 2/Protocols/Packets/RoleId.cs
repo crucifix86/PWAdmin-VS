@@ -6,7 +6,7 @@ using GNET;
         public int returncode;
         public int id;
 
-        public RoleId() : base((int)Opcode.NULL) { }
+        public RoleId() { }
 
 
         public override OctetsStream marshal(OctetsStream os)

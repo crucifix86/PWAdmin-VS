@@ -27,7 +27,7 @@ namespace Protocols.Packets
         public byte reserved3;
         public byte reserved4;
 
-        public GRoleBase() : base((int)Opcode.NULL) { }
+        public GRoleBase() { }
 
 
         public override OctetsStream marshal(OctetsStream os)

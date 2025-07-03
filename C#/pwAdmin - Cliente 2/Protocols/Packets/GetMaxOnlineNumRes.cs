@@ -8,7 +8,7 @@ using GNET;
         public int fakemaxnum;
         public int curnum;
 
-        public GetMaxOnlineNumRes() : base((int)Opcode.GetMaxOnlineNum) { }
+        public GetMaxOnlineNumRes() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

@@ -25,7 +25,7 @@ namespace Protocols.Packets
 
         public short reserved;
 
-        public GRoleStorehouse() : base((int)Opcode.NULL) { }
+        public GRoleStorehouse() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

@@ -6,7 +6,7 @@ using GNET;
         public int key;
         public int value;
 
-        public GPair() : base((int)Opcode.NULL) { }
+        public GPair() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

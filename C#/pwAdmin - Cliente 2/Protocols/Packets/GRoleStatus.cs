@@ -106,7 +106,7 @@ namespace Protocols.Packets
 
         public byte reserved3;
 
-        public GRoleStatus() : base((int)Opcode.NULL) { }
+        public GRoleStatus() { }
 
 
         public override OctetsStream marshal(OctetsStream os)

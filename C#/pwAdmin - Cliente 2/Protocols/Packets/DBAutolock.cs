@@ -9,7 +9,7 @@ namespace Protocols.Packets
         public int horario;
         public int periodo;
 
-        public DBAutoLock() : base((int)Opcode.NULL) { }
+        public DBAutoLock() { }
 
         public override OctetsStream unmarshal(OctetsStream s)
         {
@@ -55,7 +55,7 @@ namespace Protocols.Packets
         public RoleId userid = new RoleId();
         public byte count;
 
-        public DBAutoLockSet() : base((int)Opcode.AutoLockSet) { }
+        public DBAutoLockSet() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

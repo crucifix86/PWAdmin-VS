@@ -6,11 +6,31 @@ namespace GNET
     public abstract class Protocol : Marshal
     {
         /// <summary>
+        /// Protocol type field
+        /// </summary>
+        protected int type;
+
+        /// <summary>
+        /// Constructor that accepts protocol type
+        /// </summary>
+        public Protocol(int type)
+        {
+            this.type = type;
+        }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Protocol()
+        {
+        }
+
+        /// <summary>
         /// Protocol opcode/command identifier
         /// </summary>
         public virtual int getProtocolType()
         {
-            return 0;
+            return type;
         }
 
         /// <summary>

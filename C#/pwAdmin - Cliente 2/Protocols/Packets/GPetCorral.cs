@@ -11,7 +11,7 @@ namespace Protocols.Packets
         public int capacity;
         public DataVector pets = new DataVector(new GPet());
 
-        public GPetCorral() : base((int)Opcode.NULL) { }
+        public GPetCorral() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

@@ -25,12 +25,12 @@ namespace GNET
 
         public static void Compact(OctetsStream os, Protocol protocol, int opcode)
         {
-            os.compact_uint32(opcode).marshal((Octets)(new OctetsStream()).marshal((Marshal)protocol));
+            os.compact_uint32((uint)opcode).marshal((Octets)(new OctetsStream()).marshal((Marshal)protocol));
         }
 
         public static void Compact(OctetsStream os, Rpc.Data protocol, int opcode)
         {
-            os.compact_uint32(opcode).marshal((Octets)(new OctetsStream()).marshal((Marshal)protocol));
+            os.compact_uint32((uint)opcode).marshal((Octets)(new OctetsStream()).marshal((Marshal)protocol));
         }
 
         public static OctetsStream SendPacket(string hostname, int port, Protocol data, int Opcode, bool read = true, bool compareOpcode = true, bool removeHeaders = true)
@@ -52,7 +52,7 @@ namespace GNET
                     Octets octets = new Octets(myReadBuffer);
                     if (compareOpcode)
                     {
-                        if ((os = new OctetsStream(octets)).uncompact_uint32() == (int)Opcode)
+                        if ((os = new OctetsStream(octets.getBytes())).uncompact_uint32() == (int)Opcode)
                         {
                             if (removeHeaders)
                             {
@@ -98,7 +98,7 @@ namespace GNET
                     Octets octets = new Octets(myReadBuffer);
                     if (compareOpcode)
                     {
-                        if ((os = new OctetsStream(octets)).uncompact_uint32() == (int)Opcode)
+                        if ((os = new OctetsStream(octets.getBytes())).uncompact_uint32() == (int)Opcode)
                         {
                             if (removeHeaders)
                             {

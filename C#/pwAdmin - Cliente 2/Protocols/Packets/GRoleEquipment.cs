@@ -6,7 +6,7 @@ namespace Protocols.Packets
     public class GRoleEquipment : Protocol
     {
         public DataVector inv = new DataVector(new GRoleInventory());
-        public GRoleEquipment() : base((int)Opcode.NULL) { }
+        public GRoleEquipment() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

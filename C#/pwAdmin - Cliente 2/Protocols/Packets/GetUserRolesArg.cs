@@ -5,7 +5,7 @@ using GNET;
     {
         public RoleId userid = new RoleId();
 
-        public GetUserRolesArg() : base((int)Opcode.GetUserRoles) { }
+        public GetUserRolesArg() { }
 
         public override OctetsStream marshal(OctetsStream value)
         {

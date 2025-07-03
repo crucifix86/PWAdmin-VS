@@ -43,7 +43,9 @@ namespace SpyChat
         }
         public static int GetObjectSize(object TestObject)
         {
+#pragma warning disable SYSLIB0011 // Type or member is obsolete
             BinaryFormatter bf = new BinaryFormatter();
+#pragma warning restore SYSLIB0011 // Type or member is obsolete
             MemoryStream ms = new MemoryStream();
             byte[] Array;
             bf.Serialize(ms, TestObject);

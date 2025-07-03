@@ -5,7 +5,7 @@ using GNET;
     {
         public int padding;
 
-        public GetMaxOnlineNumArg() : base((int)Opcode.GetMaxOnlineNum) { }
+        public GetMaxOnlineNumArg() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

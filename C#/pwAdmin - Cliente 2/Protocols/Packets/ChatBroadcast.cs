@@ -11,7 +11,7 @@ namespace Protocols.Packets
         public Octets msg = new Octets();
         public Octets data = new Octets();
 
-        public ChatBroadCast() : base((int)Opcode.ChatBroadcast) { }
+        public ChatBroadCast() { }
 
         public void setData()
         {

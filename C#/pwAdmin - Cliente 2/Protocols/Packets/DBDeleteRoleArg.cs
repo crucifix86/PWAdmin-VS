@@ -6,7 +6,7 @@ using GNET;
         public RoleId roleid = new RoleId();
         public int create_roolback;
 
-        public DBDeleteRoleArg() : base((int)Opcode.DeleteRole) { }
+        public DBDeleteRoleArg() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

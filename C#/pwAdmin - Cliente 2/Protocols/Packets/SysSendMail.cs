@@ -15,7 +15,7 @@ namespace Protocols.Packets
         public GRoleInventory attach_obj = new GRoleInventory();
         public int attach_money;
 
-        public SysSendMail() : base((int)Opcode.SysSendMail) { }
+        public SysSendMail() { }
 
 
         public void setTitle(String msg)
@@ -36,7 +36,7 @@ namespace Protocols.Packets
             os.marshal(this.receiver);
             os.marshal(this.title);
             os.marshal(this.context);
-            os.marshal((Marshal)this.attach_obj);
+            os.marshal(this.attach_obj);
             os.marshal(this.attach_money);
             return os;
         }
@@ -49,7 +49,7 @@ namespace Protocols.Packets
             this.receiver = os.unmarshal_int();
             os.unmarshal(this.title);
             os.unmarshal(this.context);
-            os.unmarshal((Marshal)this.attach_obj);
+            this.attach_obj.unmarshal(os);
             this.attach_money = os.unmarshal_int();
             return os;
         }

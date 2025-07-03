@@ -10,22 +10,22 @@ namespace Protocols.Packets
 
         public GRoleData value = new GRoleData();
 
-        public RoleDataPair() : base((int)Opcode.PutRoleData) { }
+        public RoleDataPair() { }
 
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal((Marshal)this.key);
+            this.key.unmarshal(os);
             this.overwrite = os.unmarshal_byte();
-            os.unmarshal((Marshal)this.value);
+            this.value.unmarshal(os);
             return os;
         }
 
         public override OctetsStream marshal(OctetsStream os)
         {
-            os.marshal((Marshal)this.key);
+            os.marshal(this.key);
             os.marshal(this.overwrite);
-            os.marshal((Marshal)this.value);
+            os.marshal(this.value);
             return os;
         }
     }

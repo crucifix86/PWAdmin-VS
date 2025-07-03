@@ -23,7 +23,7 @@ using GNET;
             return os;
         }
 
-        public GMGetGameAttriArg() : base((int)Opcode.GMGetGameAttri)
+        public GMGetGameAttriArg()
         {
 
         }

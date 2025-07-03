@@ -12,7 +12,7 @@ namespace pwAdmin.PCKEngine
             try
             {
                 using (var ms = new MemoryStream(bytes))
-                using (var zs = new ZlibStream(ms, CompressionMode.Decompress))
+                using (var zs = new ZlibStream(ms, Ionic.Zlib.CompressionMode.Decompress))
                 {
                     byte[] output = new byte[size];
                     zs.Read(output, 0, size);
@@ -30,7 +30,7 @@ namespace pwAdmin.PCKEngine
         {
             using (var ms = new MemoryStream())
             {
-                using (var zs = new ZlibStream(ms, CompressionMode.Compress, CompressionLevel))
+                using (var zs = new ZlibStream(ms, Ionic.Zlib.CompressionMode.Compress, CompressionLevel))
                 {
                     zs.Write(bytes, 0, bytes.Length);
                 }

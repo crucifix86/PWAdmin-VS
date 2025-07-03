@@ -13,7 +13,7 @@ namespace Protocols.Packets
         public int reserved1;
         public int reserved2;
 
-        public GRolePocket() : base((int)Opcode.NULL) { }
+        public GRolePocket() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

@@ -7,7 +7,7 @@ namespace Protocols.Packets
     {
         public DataVector roles = new DataVector(new IntString());
 
-        public GetUserRolesRes() : base((int)Opcode.GetUserRoles) { }
+        public GetUserRolesRes() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

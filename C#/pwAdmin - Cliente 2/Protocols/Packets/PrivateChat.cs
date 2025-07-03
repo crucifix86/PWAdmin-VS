@@ -15,7 +15,7 @@ namespace Protocols.Packets
         public Octets data = new Octets();
         public int src_level;
 
-        public PrivateChat() : base((int)Opcode.ChatPrivate) { }
+        public PrivateChat() { }
 
         public void setData()
         {

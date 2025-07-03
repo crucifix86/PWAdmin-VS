@@ -17,7 +17,7 @@ namespace Protocols.Packets
         public DataVector hostile = new DataVector(new GFactionAllianceOrHostile());
         public DataVector apply = new DataVector(new GFactionRelationApply());
 
-        public GFactionDetail() : base((int)Opcode.GetFactionDetail) { }
+        public GFactionDetail() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {

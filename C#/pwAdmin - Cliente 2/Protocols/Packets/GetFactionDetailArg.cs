@@ -5,7 +5,7 @@ using GNET;
     {
         public RoleId key = new RoleId();
 
-        public GetFactionDetailArg() : base((int)Opcode.GetFactionDetail) { }
+        public GetFactionDetailArg() { }
 
         public override OctetsStream marshal(OctetsStream os)
         {
