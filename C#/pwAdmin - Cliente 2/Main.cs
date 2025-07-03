@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using pwAdmin.Forms.Gerenciador;
 using pwAdmin.Forms.ItemEditor;
+using pwAdmin.Properties;
 
 namespace pwAdmin
 {
