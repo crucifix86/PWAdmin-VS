@@ -124,6 +124,14 @@ namespace pwAdmin
                 // Test using the saved values
                 var result = Comandos.TestDirectConnection(Utils.SimpleSettings.ServerIP, Utils.SimpleSettings.ServerPort);
                 
+                // Also try the regular test
+                if (result)
+                {
+                    Utils.Logger.Log("TestDirectConnection succeeded, now trying TestServerConnection...");
+                    var mainResult = Comandos.TestServerConnection();
+                    Utils.Logger.Log($"TestServerConnection result: {mainResult}");
+                }
+                
                 // Get the detailed log
                 var log = Comandos.LastConnectionError;
                 

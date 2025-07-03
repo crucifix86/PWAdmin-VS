@@ -40,7 +40,7 @@ namespace pwAdmin
             mainWindow = this;
             
             // VERIFICATION: This message proves you're running the updated code
-            this.Text = "pwAdmin Client - SimpleSettings v1.7";
+            this.Text = "pwAdmin Client - SimpleSettings v1.8";
             
             // Show settings info on startup
             var settingsPath = Utils.SimpleSettings.GetSettingsPath();

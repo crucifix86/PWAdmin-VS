@@ -463,6 +463,22 @@ namespace pwAdmin
             Logger.Log($"Settings.Default.portaservidor: {Settings.Default.portaservidor}");
             Logger.Log($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             
+            // First try a simple TCP connection test
+            try
+            {
+                Logger.Log($"Testing basic TCP connection to {ip}:{port}...");
+                using (var testClient = new System.Net.Sockets.TcpClient())
+                {
+                    testClient.Connect(ip, port);
+                    Logger.Log("Basic TCP connection successful!");
+                    testClient.Close();
+                }
+            }
+            catch (Exception tcpEx)
+            {
+                Logger.LogError($"Basic TCP connection failed to {ip}:{port}", tcpEx);
+            }
+            
             var log = new System.Text.StringBuilder();
             try
             {
