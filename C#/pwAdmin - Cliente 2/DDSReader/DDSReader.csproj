@@ -6,7 +6,7 @@
     <AssemblyName>DDSReader</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ProjectGuid>{E8E2E010-DA59-4A99-8331-B986B84C0FD2}</ProjectGuid>
-    <Nullable>enable</Nullable>
+    <Nullable>annotations</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 

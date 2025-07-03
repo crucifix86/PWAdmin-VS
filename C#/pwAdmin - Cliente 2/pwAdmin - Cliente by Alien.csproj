@@ -9,12 +9,12 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <StartupObject>pwAdmin.Program</StartupObject>
     <ProjectGuid>{DE6A09BF-379F-4D80-9BA8-345524500DDF}</ProjectGuid>
-    <Nullable>enable</Nullable>
+    <Nullable>annotations</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.WindowsDesktop.Win" Version="23.2.5" />
+    <PackageReference Include="DevExpress.Win" Version="23.2.5" />
     <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
