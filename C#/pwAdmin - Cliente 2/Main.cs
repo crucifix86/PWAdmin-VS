@@ -40,6 +40,80 @@ namespace pwAdmin
         {
             InitializeComponent();
             mainWindow = this;
+            InitializeApplication();
+        }
+
+        private void InitializeApplication()
+        {
+            // Update status
+            UpdateStatus("Initializing...");
+            
+            // Check if settings are configured
+            if (string.IsNullOrEmpty(Settings.Default.ElementsPath))
+            {
+                MessageBox.Show("Please configure the application settings first.\n\nGo to File → Settings to set up server connection, database, and client paths.", 
+                    "Configuration Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UpdateStatus("Not Configured - Please go to File → Settings");
+                return;
+            }
+            
+            // Try to load elements.data
+            try
+            {
+                if (System.IO.File.Exists(Settings.Default.ElementsPath))
+                {
+                    UpdateStatus("Loading elements.data...");
+                    // TODO: Load elements.data using eListCollection
+                    // eLC = new eListCollection();
+                    // eLC.Load(Settings.Default.ElementsPath);
+                    
+                    MessageBox.Show("Elements data loading not yet implemented.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Elements.data file not found at:\n{Settings.Default.ElementsPath}\n\nPlease check your settings.", 
+                        "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading elements.data:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            // Test server connection if configured
+            if (!string.IsNullOrEmpty(Settings.Default.ipservidor))
+            {
+                UpdateStatus($"Connecting to server {Settings.Default.ipservidor}:{Settings.Default.portaservidor}...");
+                try
+                {
+                    if (Commands.Comandos.TestServerConnection())
+                    {
+                        UpdateStatus($"Connected to {Settings.Default.ipservidor}:{Settings.Default.portaservidor}");
+                    }
+                    else
+                    {
+                        UpdateStatus("Server Offline");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    UpdateStatus("Connection Failed");
+                    MessageBox.Show($"Failed to connect to server:\n{ex.Message}", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                UpdateStatus("No Server Configured");
+            }
+        }
+
+        private void UpdateStatus(string message)
+        {
+            if (toolStripStatusLabel1 != null)
+            {
+                toolStripStatusLabel1.Text = message;
+                Application.DoEvents(); // Force UI update
+            }
         }
 
         public static bool isDebug() { return debugMode; }
