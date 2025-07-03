@@ -1,0 +1,26 @@
+[Unit]
+Description=pwAdmin Server Daemon
+After=network.target mysql.service
+
+[Service]
+Type=notify
+ExecStart=/usr/local/bin/pwadmin-server start
+ExecStop=/usr/local/bin/pwadmin-server stop
+Restart=on-failure
+RestartSec=10
+User=pwserver
+Group=pwserver
+WorkingDirectory=/root/pwserver
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/root/pwserver /var/run
+
+# Environment
+Environment="DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1"
+
+[Install]
+WantedBy=multi-user.target

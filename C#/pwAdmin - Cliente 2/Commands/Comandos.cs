@@ -4,6 +4,7 @@ using Protocols.Packets;
 using GNET;
 using static GNET.Rpc.Data;
 using Protocols;
+using pwAdmin.GNET;
 
 namespace pwAdmin
 {
@@ -218,13 +219,73 @@ namespace pwAdmin
         {
             try
             {
-                var result = UpdateInfosFromServer();
-                return result != null;
+                // Test connection to pwAdmin server
+                var request = new OctetsStream();
+                request.WriteInt32(501350); // Key
+                request.WriteInt32(14); // Get server config opcode
+                request.WriteInt32(0); // Size
+                
+                var response = ServerConnection.SendOneShotRequestAsync(
+                    Settings.Default.ipservidor,
+                    Settings.Default.portaservidor,
+                    request
+                ).Result;
+                
+                return response != null && response.GetData().Length > 0;
             }
             catch
             {
                 return false;
             }
+        }
+        
+        public static ServerInfo UpdateInfosFromServer()
+        {
+            try
+            {
+                var request = new OctetsStream();
+                request.WriteInt32(501350); // Key
+                request.WriteInt32(14); // Get server config opcode
+                request.WriteInt32(0); // Size
+                
+                var response = ServerConnection.SendOneShotRequestAsync(
+                    Settings.Default.ipservidor,
+                    Settings.Default.portaservidor,
+                    request
+                ).Result;
+                
+                if (response != null && response.GetData().Length > 0)
+                {
+                    // Skip headers
+                    response.UncompactUInt32(); // key
+                    response.UncompactUInt32(); // opcode
+                    response.UncompactUInt32(); // size
+                    
+                    var serverInfo = new ServerInfo();
+                    serverInfo.servname = response.ReadString();
+                    serverInfo.password = response.ReadString();
+                    serverInfo.port = response.ReadInt32();
+                    serverInfo.homepath = response.ReadString();
+                    serverInfo.gs_name = response.ReadString();
+                    serverInfo.gs_conf_path = response.ReadString();
+                    serverInfo.gs_path = response.ReadString();
+                    serverInfo.aid = response.ReadInt32();
+                    serverInfo.zoneid = response.ReadInt32();
+                    serverInfo.servid = response.ReadInt32();
+                    serverInfo.default_icon = response.ReadString();
+                    serverInfo.log_row_count = response.ReadInt32();
+                    serverInfo.logpath = response.ReadString();
+                    serverInfo.ServerVersion = response.ReadInt32();
+                    // ... read remaining fields as needed
+                    
+                    return serverInfo;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error getting server info: {ex.Message}");
+            }
+            return null;
         }
     }
 }

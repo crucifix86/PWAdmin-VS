@@ -60,12 +60,44 @@ namespace pwAdmin
             this.Controls.Add(this.leftPanel);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PWAdmin";
+            this.Text = "PWAdmin - Created by Alien";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             
+            // Create header buttons
+            CreateHeaderButtons();
+            
             // Create navigation buttons
             CreateNavigationButtons();
+        }
+        
+        private void CreateHeaderButtons()
+        {
+            // About button
+            System.Windows.Forms.Button btnAbout = new System.Windows.Forms.Button();
+            btnAbout.Text = "🔒 Alien";
+            btnAbout.Location = new System.Drawing.Point(818, 4);
+            btnAbout.Size = new System.Drawing.Size(141, 31);
+            btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnAbout.FlatAppearance.BorderSize = 0;
+            btnAbout.BackColor = System.Drawing.Color.FromArgb(45, 45, 45);
+            btnAbout.ForeColor = System.Drawing.Color.White;
+            btnAbout.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular);
+            btnAbout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnAbout.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            rightPanel.Controls.Add(btnAbout);
+            
+            // Discord button
+            System.Windows.Forms.Button btnDiscord = new System.Windows.Forms.Button();
+            btnDiscord.Text = "🔵";
+            btnDiscord.Location = new System.Drawing.Point(959, 4);
+            btnDiscord.Size = new System.Drawing.Size(31, 31);
+            btnDiscord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnDiscord.FlatAppearance.BorderSize = 0;
+            btnDiscord.BackColor = System.Drawing.Color.FromArgb(45, 45, 45);
+            btnDiscord.ForeColor = System.Drawing.Color.White;
+            btnDiscord.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular);
+            rightPanel.Controls.Add(btnDiscord);
         }
 
         private void CreateNavigationButtons()
