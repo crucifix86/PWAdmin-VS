@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+﻿using System.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +14,7 @@ using TradeGrid;
 
 namespace pwAdmin
 {
-    public partial class SkillByClass : DevExpress.XtraEditors.XtraForm
+    public partial class SkillByClass : System.Windows.Forms.Form
     {
         HabilidadesPersonagem personagem;
 

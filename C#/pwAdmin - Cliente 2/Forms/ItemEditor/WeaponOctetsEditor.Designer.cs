@@ -31,81 +31,81 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions7 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
+            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeaponOctetsEditor));
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions8 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions9 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions1 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions2 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
-            DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions buttonImageOptions3 = new DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions();
+            
+            
+            
+            
+            
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl1 = new System.Windows.Forms.GroupBox();
             this.tbDurabMax = new System.Windows.Forms.NumericUpDown();
-            this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl8 = new System.Windows.Forms.Label();
             this.tbDurab = new System.Windows.Forms.NumericUpDown();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new System.Windows.Forms.Label();
             this.tbAgi = new System.Windows.Forms.NumericUpDown();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new System.Windows.Forms.Label();
             this.tbInt = new System.Windows.Forms.NumericUpDown();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new System.Windows.Forms.Label();
             this.tbFor = new System.Windows.Forms.NumericUpDown();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new System.Windows.Forms.Label();
             this.tbCon = new System.Windows.Forms.NumericUpDown();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new System.Windows.Forms.Label();
             this.tbRace = new System.Windows.Forms.NumericUpDown();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new System.Windows.Forms.Label();
             this.tbLevel = new System.Windows.Forms.NumericUpDown();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl1 = new System.Windows.Forms.Label();
+            this.groupControl2 = new System.Windows.Forms.GroupBox();
             this.tbAtraso = new System.Windows.Forms.NumericUpDown();
-            this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl20 = new System.Windows.Forms.Label();
             this.tbTipo = new System.Windows.Forms.NumericUpDown();
-            this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl22 = new System.Windows.Forms.Label();
+            this.labelControl21 = new System.Windows.Forms.Label();
             this.tbAtqRangeShort = new System.Windows.Forms.NumericUpDown();
-            this.asd = new DevExpress.XtraEditors.LabelControl();
+            this.asd = new System.Windows.Forms.Label();
             this.tbAtqRange = new System.Windows.Forms.NumericUpDown();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl19 = new System.Windows.Forms.Label();
             this.tbVelAtq = new System.Windows.Forms.NumericUpDown();
-            this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl18 = new System.Windows.Forms.Label();
             this.tbAtqMMax = new System.Windows.Forms.NumericUpDown();
             this.tbAtqFMax = new System.Windows.Forms.NumericUpDown();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl17 = new System.Windows.Forms.Label();
+            this.labelControl16 = new System.Windows.Forms.Label();
             this.tbAtqM = new System.Windows.Forms.NumericUpDown();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl15 = new System.Windows.Forms.Label();
             this.tbAtqF = new System.Windows.Forms.NumericUpDown();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl14 = new System.Windows.Forms.Label();
             this.tbProjet = new System.Windows.Forms.NumericUpDown();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl13 = new System.Windows.Forms.Label();
             this.tbLevelInfo = new System.Windows.Forms.NumericUpDown();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl12 = new System.Windows.Forms.Label();
             this.tbClasse = new System.Windows.Forms.NumericUpDown();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.tbTagContent = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl11 = new System.Windows.Forms.Label();
+            this.labelControl10 = new System.Windows.Forms.Label();
+            this.tbTagContent = new System.Windows.Forms.TextBox();
             this.tbTagType = new System.Windows.Forms.NumericUpDown();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new System.Windows.Forms.Label();
             this.dgvSlots = new System.Windows.Forms.DataGridView();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Time = new TradeGrid.TextAndImageColumn();
-            this.groupControl10 = new DevExpress.XtraEditors.GroupControl();
-            this.listview2 = new DevExpress.XtraEditors.GroupControl();
-            this.bGravura = new DevExpress.XtraEditors.CheckEdit();
-            this.bSuite = new DevExpress.XtraEditors.CheckEdit();
-            this.bEmbed = new DevExpress.XtraEditors.CheckEdit();
-            this.bParam2 = new DevExpress.XtraEditors.CheckEdit();
-            this.bParam1 = new DevExpress.XtraEditors.CheckEdit();
+            this.groupControl10 = new System.Windows.Forms.GroupBox();
+            this.listview2 = new System.Windows.Forms.GroupBox();
+            this.bGravura = new System.Windows.Forms.CheckBox();
+            this.bSuite = new System.Windows.Forms.CheckBox();
+            this.bEmbed = new System.Windows.Forms.CheckBox();
+            this.bParam2 = new System.Windows.Forms.CheckBox();
+            this.bParam1 = new System.Windows.Forms.CheckBox();
             this.dgvAddons = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textAndImageColumn1 = new TradeGrid.TextAndImageColumn();
             this.param1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.param2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numparams = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton3 = new System.Windows.Forms.Button();
+            this.simpleButton2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbDurabMax)).BeginInit();
@@ -923,10 +923,10 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
-            this.simpleButton3.Appearance.Options.UseBackColor = true;
+            this.simpleButton3
+            this.simpleButton3
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(355, 516);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(292, 32);
@@ -936,10 +936,10 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
+            this.simpleButton2
+            this.simpleButton2
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(651, 516);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(292, 32);
@@ -1006,66 +1006,66 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private System.Windows.Forms.GroupBox groupControl1;
+        private System.Windows.Forms.GroupBox groupControl2;
         private System.Windows.Forms.NumericUpDown tbDurabMax;
-        private DevExpress.XtraEditors.LabelControl labelControl8;
+        private System.Windows.Forms.Label labelControl8;
         private System.Windows.Forms.NumericUpDown tbDurab;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private System.Windows.Forms.Label labelControl7;
         private System.Windows.Forms.NumericUpDown tbAgi;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private System.Windows.Forms.Label labelControl6;
         private System.Windows.Forms.NumericUpDown tbInt;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private System.Windows.Forms.Label labelControl5;
         private System.Windows.Forms.NumericUpDown tbFor;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private System.Windows.Forms.Label labelControl4;
         private System.Windows.Forms.NumericUpDown tbCon;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.Label labelControl3;
         private System.Windows.Forms.NumericUpDown tbRace;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.Label labelControl2;
         private System.Windows.Forms.NumericUpDown tbLevel;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Label labelControl1;
         private System.Windows.Forms.NumericUpDown tbTagType;
-        private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.LabelControl labelControl21;
+        private System.Windows.Forms.Label labelControl9;
+        private System.Windows.Forms.Label labelControl21;
         private System.Windows.Forms.NumericUpDown tbAtqRangeShort;
-        private DevExpress.XtraEditors.LabelControl asd;
+        private System.Windows.Forms.Label asd;
         private System.Windows.Forms.NumericUpDown tbAtqRange;
-        private DevExpress.XtraEditors.LabelControl labelControl19;
+        private System.Windows.Forms.Label labelControl19;
         private System.Windows.Forms.NumericUpDown tbVelAtq;
-        private DevExpress.XtraEditors.LabelControl labelControl18;
+        private System.Windows.Forms.Label labelControl18;
         private System.Windows.Forms.NumericUpDown tbAtqMMax;
         private System.Windows.Forms.NumericUpDown tbAtqFMax;
-        private DevExpress.XtraEditors.LabelControl labelControl17;
-        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private System.Windows.Forms.Label labelControl17;
+        private System.Windows.Forms.Label labelControl16;
         private System.Windows.Forms.NumericUpDown tbAtqM;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
+        private System.Windows.Forms.Label labelControl15;
         private System.Windows.Forms.NumericUpDown tbAtqF;
-        private DevExpress.XtraEditors.LabelControl labelControl14;
+        private System.Windows.Forms.Label labelControl14;
         private System.Windows.Forms.NumericUpDown tbProjet;
-        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private System.Windows.Forms.Label labelControl13;
         private System.Windows.Forms.NumericUpDown tbLevelInfo;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private System.Windows.Forms.Label labelControl12;
         private System.Windows.Forms.NumericUpDown tbClasse;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
-        private DevExpress.XtraEditors.LabelControl labelControl10;
-        private DevExpress.XtraEditors.TextEdit tbTagContent;
+        private System.Windows.Forms.Label labelControl11;
+        private System.Windows.Forms.Label labelControl10;
+        private System.Windows.Forms.TextBox tbTagContent;
         private System.Windows.Forms.DataGridView dgvSlots;
-        private DevExpress.XtraEditors.GroupControl groupControl10;
-        private DevExpress.XtraEditors.GroupControl listview2;
+        private System.Windows.Forms.GroupBox groupControl10;
+        private System.Windows.Forms.GroupBox listview2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
         private TradeGrid.TextAndImageColumn Time;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.CheckEdit bParam1;
-        private DevExpress.XtraEditors.CheckEdit bGravura;
-        private DevExpress.XtraEditors.CheckEdit bSuite;
-        private DevExpress.XtraEditors.CheckEdit bEmbed;
-        private DevExpress.XtraEditors.CheckEdit bParam2;
+        private System.Windows.Forms.Button simpleButton3;
+        private System.Windows.Forms.Button simpleButton2;
+        private System.Windows.Forms.CheckBox bParam1;
+        private System.Windows.Forms.CheckBox bGravura;
+        private System.Windows.Forms.CheckBox bSuite;
+        private System.Windows.Forms.CheckBox bEmbed;
+        private System.Windows.Forms.CheckBox bParam2;
         public System.Windows.Forms.DataGridView dgvAddons;
         private System.Windows.Forms.NumericUpDown tbAtraso;
-        private DevExpress.XtraEditors.LabelControl labelControl20;
+        private System.Windows.Forms.Label labelControl20;
         private System.Windows.Forms.NumericUpDown tbTipo;
-        private DevExpress.XtraEditors.LabelControl labelControl22;
+        private System.Windows.Forms.Label labelControl22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private TradeGrid.TextAndImageColumn textAndImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn param1;

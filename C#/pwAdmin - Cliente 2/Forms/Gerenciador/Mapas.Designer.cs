@@ -32,8 +32,8 @@
             this.listMaps = new System.Windows.Forms.ListView();
             this.Tag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Map = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new System.Windows.Forms.Button();
+            this.simpleButton2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listMaps
@@ -69,7 +69,7 @@
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton1
             this.simpleButton1.Location = new System.Drawing.Point(11, 549);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(198, 40);
@@ -80,7 +80,7 @@
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(213, 549);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(198, 40);
@@ -111,7 +111,7 @@
         private System.Windows.Forms.ListView listMaps;
         private System.Windows.Forms.ColumnHeader Tag;
         private System.Windows.Forms.ColumnHeader Map;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private System.Windows.Forms.Button simpleButton1;
+        private System.Windows.Forms.Button simpleButton2;
     }
 }

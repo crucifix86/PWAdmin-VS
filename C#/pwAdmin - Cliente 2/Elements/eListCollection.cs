@@ -11,7 +11,7 @@ namespace pwAdmin.Elements
     public class eListCollection
     {
         Main Main;
-        public eListCollection(Main form, string elFile, ref DevExpress.XtraEditors.ProgressBarControl pb)
+        public eListCollection(Main form, string elFile, ref ProgressBar pb)
         {
             this.Main = form;
             Lists = Load(elFile, ref pb);
@@ -228,7 +228,7 @@ namespace pwAdmin.Elements
         public static int[] SStat;
 
         // only works for PW !!!
-        public eList[] Load(string elFile, ref DevExpress.XtraEditors.ProgressBarControl pb)
+        public eList[] Load(string elFile, ref ProgressBar pb)
         {
             eList[] Li = new eList[0];
             addonIndex = new Dictionary<int, int>();

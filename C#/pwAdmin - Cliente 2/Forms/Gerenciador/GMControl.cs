@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+﻿using System.Windows.Forms;
 using pwAdmin.GerenciarContas;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace pwAdmin
 {
-    public partial class GMControl : DevExpress.XtraEditors.XtraForm
+    public partial class GMControl : System.Windows.Forms.Form
     {
         public int userid;
         public GMControl(int userid)

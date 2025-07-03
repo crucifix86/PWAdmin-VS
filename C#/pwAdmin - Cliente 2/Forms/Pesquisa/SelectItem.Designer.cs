@@ -30,23 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            
+            
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectItem));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvItens = new System.Windows.Forms.DataGridView();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.textEdit1 = new System.Windows.Forms.TextBox();
+            this.labelControl1 = new System.Windows.Forms.Label();
+            this.simpleButton1 = new System.Windows.Forms.Button();
+            this.simpleButton3 = new System.Windows.Forms.Button();
+            this.simpleButton2 = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textAndImageColumn1 = new TradeGrid.TextAndImageColumn();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.toolTipController1 = new System.Windows.Forms.ToolTip(this.components);
+            this.comboBoxEdit1 = new System.Windows.Forms.ComboBox();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new TradeGrid.TextAndImageColumn();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -123,12 +123,12 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Warning;
+            this.simpleButton3
             this.simpleButton3.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.simpleButton3.Appearance.Options.UseBackColor = true;
+            this.simpleButton3
             this.simpleButton3.Appearance.Options.UseForeColor = true;
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(203, 587);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(188, 36);
@@ -137,10 +137,10 @@
             // 
             // simpleButton2
             // 
-            this.simpleButton2.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success;
-            this.simpleButton2.Appearance.Options.UseBackColor = true;
+            this.simpleButton2
+            this.simpleButton2
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(8, 587);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(188, 36);
@@ -251,15 +251,15 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvItens;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
+        private System.Windows.Forms.TextBox textEdit1;
+        private System.Windows.Forms.Label labelControl1;
+        private System.Windows.Forms.Button simpleButton1;
+        private System.Windows.Forms.Button simpleButton3;
+        private System.Windows.Forms.Button simpleButton2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private TradeGrid.TextAndImageColumn textAndImageColumn1;
-        public DevExpress.Utils.ToolTipController toolTipController1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
+        public System.Windows.Forms.ToolTip toolTipController1;
+        private System.Windows.Forms.ComboBox comboBoxEdit1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private TradeGrid.TextAndImageColumn Nome;
         private System.Windows.Forms.WebBrowser webBrowser1;

@@ -13,7 +13,7 @@ namespace pwAdmin
             switch (id)
             {
                 case 1:
-                    DevExpress.XtraEditors.XtraMessageBox.Show("Não foi possível conectar com o servidor.\n" +
+                    MessageBox.Show("Não foi possível conectar com o servidor.\n" +
                         "Verifique se o servidor está ativo ou se as configurações de servidor estão corretas.", 
                         "Erro 001");
                     break;

@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GMControl));
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new System.Windows.Forms.Button();
+            this.simpleButton2 = new System.Windows.Forms.Button();
+            this.simpleButton3 = new System.Windows.Forms.Button();
+            this.simpleButton4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -51,7 +51,7 @@
             // simpleButton1
             // 
             this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.simpleButton1.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton1
             this.simpleButton1.Location = new System.Drawing.Point(12, 318);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(150, 40);
@@ -62,7 +62,7 @@
             // simpleButton2
             // 
             this.simpleButton2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.ImageOptions.Image")));
-            this.simpleButton2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton2
             this.simpleButton2.Location = new System.Drawing.Point(168, 318);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(150, 40);
@@ -72,10 +72,10 @@
             // 
             // simpleButton3
             // 
-            this.simpleButton3.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
-            this.simpleButton3.Appearance.Options.UseBackColor = true;
+            this.simpleButton3
+            this.simpleButton3
             this.simpleButton3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.simpleButton3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton3
             this.simpleButton3.Location = new System.Drawing.Point(561, 318);
             this.simpleButton3.Name = "simpleButton3";
             this.simpleButton3.Size = new System.Drawing.Size(150, 40);
@@ -85,10 +85,10 @@
             // 
             // simpleButton4
             // 
-            this.simpleButton4.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
-            this.simpleButton4.Appearance.Options.UseBackColor = true;
+            this.simpleButton4
+            this.simpleButton4
             this.simpleButton4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.simpleButton4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.simpleButton4
             this.simpleButton4.Location = new System.Drawing.Point(405, 318);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(150, 40);
@@ -118,9 +118,9 @@
         #endregion
 
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton4;
+        private System.Windows.Forms.Button simpleButton1;
+        private System.Windows.Forms.Button simpleButton2;
+        private System.Windows.Forms.Button simpleButton3;
+        private System.Windows.Forms.Button simpleButton4;
     }
 }

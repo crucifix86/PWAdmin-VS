@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+﻿using System.Windows.Forms;
 using pwAdmin.GerenciarContas;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace pwAdmin
 {
-    public partial class AccountInfo : DevExpress.XtraEditors.XtraForm
+    public partial class AccountInfo : System.Windows.Forms.Form
     {
         public Conta conta;
         public AccountInfo(Conta conta)

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace pwAdmin.Forms.Gerenciador
 {
-    public partial class Mapas : DevExpress.XtraEditors.XtraForm
+    public partial class Mapas : System.Windows.Forms.Form
     {
         public Mapas()
         {

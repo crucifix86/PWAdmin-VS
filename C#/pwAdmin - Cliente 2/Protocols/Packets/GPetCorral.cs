@@ -1,4 +1,4 @@
-﻿using DevExpress.XtraEditors;
+﻿using System.Windows.Forms;
 using GNET;
 using Protocols.Structs;
 using System.Linq;

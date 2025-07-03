@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountInfo));
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.tbID = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.tbUser = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.tbName = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.tbPasswd = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.tbEmail = new DevExpress.XtraEditors.TextEdit();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnOk = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl1 = new System.Windows.Forms.Label();
+            this.tbID = new System.Windows.Forms.TextBox();
+            this.labelControl2 = new System.Windows.Forms.Label();
+            this.tbUser = new System.Windows.Forms.TextBox();
+            this.labelControl3 = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.labelControl4 = new System.Windows.Forms.Label();
+            this.tbPasswd = new System.Windows.Forms.TextBox();
+            this.labelControl5 = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).BeginInit();
@@ -125,10 +125,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger;
-            this.btnCancel.Appearance.Options.UseBackColor = true;
+            this.btnCancel
+            this.btnCancel
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton3.ImageOptions.Image")));
-            this.btnCancel.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnCancel
             this.btnCancel.Location = new System.Drawing.Point(168, 153);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(104, 40);
@@ -137,10 +137,10 @@
             // 
             // btnOk
             // 
-            this.btnOk.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary;
-            this.btnOk.Appearance.Options.UseBackColor = true;
+            this.btnOk
+            this.btnOk
             this.btnOk.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton4.ImageOptions.Image")));
-            this.btnOk.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.LeftCenter;
+            this.btnOk
             this.btnOk.Location = new System.Drawing.Point(61, 153);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(104, 40);
@@ -182,17 +182,17 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.TextEdit tbID;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.TextEdit tbUser;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit tbName;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.TextEdit tbPasswd;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.TextEdit tbEmail;
-        private DevExpress.XtraEditors.SimpleButton btnCancel;
-        private DevExpress.XtraEditors.SimpleButton btnOk;
+        private System.Windows.Forms.Label labelControl1;
+        private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.Label labelControl2;
+        private System.Windows.Forms.TextBox tbUser;
+        private System.Windows.Forms.Label labelControl3;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label labelControl4;
+        private System.Windows.Forms.TextBox tbPasswd;
+        private System.Windows.Forms.Label labelControl5;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnOk;
     }
 }

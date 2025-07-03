@@ -8,7 +8,7 @@ using static pwAdmin.AddonsList;
 
 namespace pwAdmin.Forms.ItemEditor
 {
-    public partial class WeaponOctetsEditor : DevExpress.XtraEditors.XtraForm
+    public partial class WeaponOctetsEditor : System.Windows.Forms.Form
     {
         public EditarPersonagem personagem;
         public weapon_essence weapon = new weapon_essence();

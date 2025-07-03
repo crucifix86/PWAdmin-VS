@@ -1,5 +1,4 @@
-﻿using DevExpress.Utils;
-using DevExpress.XtraEditors;
+using System.Windows.Forms;
 using pwAdmin.Forms.ItemEditor;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ namespace pwAdmin.Forms.Pesquisa
     }
 
 
-    public partial class SelectItem : DevExpress.XtraEditors.XtraForm
+    public partial class SelectItem : System.Windows.Forms.Form
     {
         List<Item> item = new List<Item>();
         WeaponOctetsEditor weaponOctetsEditor;

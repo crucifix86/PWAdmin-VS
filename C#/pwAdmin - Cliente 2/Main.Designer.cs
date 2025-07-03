@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.directXFormContainerControl1 = new DevExpress.XtraEditors.DirectXFormContainerControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // directXFormContainerControl1
+            // panel1
             // 
-            this.directXFormContainerControl1.Location = new System.Drawing.Point(1, 31);
-            this.directXFormContainerControl1.Name = "directXFormContainerControl1";
-            this.directXFormContainerControl1.Size = new System.Drawing.Size(903, 426);
-            this.directXFormContainerControl1.TabIndex = 0;
+            this.panel1.Location = new System.Drawing.Point(1, 31);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(903, 426);
+            this.panel1.TabIndex = 0;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ChildControls.Add(this.directXFormContainerControl1);
+            this.Controls.Add(this.panel1);
             this.ClientSize = new System.Drawing.Size(905, 458);
             this.Name = "Main";
             this.Text = "Main";
@@ -52,7 +52,7 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.DirectXFormContainerControl directXFormContainerControl1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

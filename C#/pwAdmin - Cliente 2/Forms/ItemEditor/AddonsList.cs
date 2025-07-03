@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace pwAdmin
 {
-    public partial class AddonsList : DevExpress.XtraEditors.XtraForm
+    public partial class AddonsList : System.Windows.Forms.Form
     {
         public WeaponOctetsEditor editor;
         public class EQUIPMENT_ADDON

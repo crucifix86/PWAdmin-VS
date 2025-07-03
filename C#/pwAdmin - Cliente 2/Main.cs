@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace pwAdmin
 {
-    public partial class Main : DevExpress.XtraEditors.DirectXForm
+    public partial class Main : Form
     {
         private static bool debugMode;
         public Main()
