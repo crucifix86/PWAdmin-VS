@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
-using zlib;
+using System.IO.Compression;
+using Ionic.Zlib;
 
 namespace pwAdmin.PCKEngine
 {
@@ -8,26 +9,34 @@ namespace pwAdmin.PCKEngine
     {
         public static byte[] Decompress(byte[] bytes, int size)
         {
-            byte[] output = new byte[size];
-            ZOutputStream zos = new ZOutputStream(new MemoryStream(output));
             try
             {
-                CopyStream(new MemoryStream(bytes), zos, size);
+                using (var ms = new MemoryStream(bytes))
+                using (var zs = new ZlibStream(ms, CompressionMode.Decompress))
+                {
+                    byte[] output = new byte[size];
+                    zs.Read(output, 0, size);
+                    return output;
+                }
             }
             catch
             {
                 Console.WriteLine("Bad zlib data");
+                return new byte[size];
             }
-            return output;
         }
 
         public static byte[] Compress(byte[] bytes, int CompressionLevel)
         {
-            MemoryStream ms = new MemoryStream();
-            ZOutputStream zos = new ZOutputStream(ms, CompressionLevel);
-            CopyStream(new MemoryStream(bytes), zos, bytes.Length);
-            zos.finish();
-            return ms.ToArray().Length < bytes.Length ? ms.ToArray() : bytes;
+            using (var ms = new MemoryStream())
+            {
+                using (var zs = new ZlibStream(ms, CompressionMode.Compress, CompressionLevel))
+                {
+                    zs.Write(bytes, 0, bytes.Length);
+                }
+                var compressed = ms.ToArray();
+                return compressed.Length < bytes.Length ? compressed : bytes;
+            }
         }
 
         public static void CopyStream(Stream input, Stream output, int Size)

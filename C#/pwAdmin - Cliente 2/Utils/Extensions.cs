@@ -5,7 +5,6 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 
 namespace pwAdmin
@@ -20,8 +19,10 @@ namespace pwAdmin
 
             foreach (var val in valor)
             {
-                var output = new SoapHexBinary(SoapHexBinary.Parse(val).Value.Reverse().ToArray())
-            .ToString();
+                // Parse hex string to bytes, reverse, and convert back to hex
+                byte[] bytes = Convert.FromHexString(val);
+                Array.Reverse(bytes);
+                string output = Convert.ToHexString(bytes);
                 final.Add(output);
             }
 
@@ -58,8 +59,10 @@ namespace pwAdmin
 
             foreach (var val in valor)
             {
-                var output = new SoapHexBinary(SoapHexBinary.Parse(val).Value.Reverse().ToArray())
-            .ToString();
+                // Parse hex string to bytes, reverse, and convert back to hex
+                byte[] bytes = Convert.FromHexString(val);
+                Array.Reverse(bytes);
+                string output = Convert.ToHexString(bytes);
                 final.Add(Convert.ToInt32(output, 16));
             }
             return final;

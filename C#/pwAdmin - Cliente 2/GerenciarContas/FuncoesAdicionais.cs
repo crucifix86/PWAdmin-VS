@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using pwAdmin.Configuracoes;
+using pwAdmin.MySQL;
 using MySqlConnector;
 using System.Windows.Forms;
 

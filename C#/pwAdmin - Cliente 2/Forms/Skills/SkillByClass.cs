@@ -16,13 +16,15 @@ namespace pwAdmin
 {
     public partial class SkillByClass : System.Windows.Forms.Form
     {
-        HabilidadesPersonagem personagem;
+        // HabilidadesPersonagem personagem; // TODO: Missing HabilidadesPersonagem class
+        object personagem;
 
         public SkillByClass()
         {
             AddItens();
         }
-        public SkillByClass(HabilidadesPersonagem personagem)
+        // TODO: Fix when HabilidadesPersonagem is available
+        public SkillByClass(object personagem)
         {
             InitializeComponent();
             NullDocument();

@@ -10,7 +10,7 @@ namespace pwAdmin.Forms.ItemEditor
 {
     public partial class WeaponOctetsEditor : System.Windows.Forms.Form
     {
-        public EditarPersonagem personagem;
+        // public EditarPersonagem personagem; // TODO: Missing EditarPersonagem class
         public weapon_essence weapon = new weapon_essence();
         public WeaponOctetsEditor()
         {

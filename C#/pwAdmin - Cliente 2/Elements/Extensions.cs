@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Windows.Forms;
 
@@ -22,8 +21,10 @@ namespace pwAdmin.Elements
 
             foreach (var val in valor)
             {
-                var output = new SoapHexBinary(SoapHexBinary.Parse(val).Value.Reverse().ToArray())
-            .ToString();
+                // Parse hex string to bytes, reverse, and convert back to hex
+                byte[] bytes = Convert.FromHexString(val);
+                Array.Reverse(bytes);
+                string output = Convert.ToHexString(bytes);
                 final.Add(Convert.ToInt32(output, 16));
             }
             return final;
