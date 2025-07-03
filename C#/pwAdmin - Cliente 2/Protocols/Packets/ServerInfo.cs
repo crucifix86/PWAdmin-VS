@@ -36,8 +36,27 @@ namespace Protocols.Packets
             swp_used = os.unmarshal_int();
             swp_free = os.unmarshal_int();
             swp_total = os.unmarshal_int();
-            maps.unmarshal(os);
-            processes.unmarshal(os);
+            
+            // Properly unmarshal the maps DataVector
+            uint mapCount = os.uncompact_uint32();
+            maps = new DataVector(new ListMap());
+            for (uint i = 0; i < mapCount; i++)
+            {
+                ListMap map = new ListMap();
+                map.unmarshal(os);
+                maps.add(map);
+            }
+            
+            // Properly unmarshal the processes DataVector
+            uint processCount = os.uncompact_uint32();
+            processes = new DataVector(new Processes());
+            for (uint i = 0; i < processCount; i++)
+            {
+                Processes proc = new Processes();
+                proc.unmarshal(os);
+                processes.add(proc);
+            }
+            
             return os;
         }
     }

@@ -212,10 +212,22 @@ namespace pwAdmin
                             // Parse the response
                             try
                             {
+                                Logger.Log($"Response buffer size: {bytesRead} bytes");
+                                Logger.LogData("Raw response (first 100 bytes)", responseData, Math.Min(100, bytesRead));
+                                
                                 // Skip the header (key, opcode, size)
-                                response.uncompact_uint32(); // Key
-                                response.uncompact_uint32(); // Opcode
-                                response.uncompact_uint32(); // Size
+                                var key = response.uncompact_uint32();
+                                var opcode = response.uncompact_uint32();
+                                var size = response.uncompact_uint32();
+                                
+                                Logger.Log($"Response header - Key: {key}, Opcode: {opcode}, Size: {size}");
+                                
+                                // Verify we got the right response
+                                if (key != 501350)
+                                {
+                                    Logger.Log($"ERROR: Invalid key in response: {key}");
+                                    return null;
+                                }
                                 
                                 // Parse ServerInfo
                                 var serverInfo = new ServerInfo();
@@ -226,6 +238,16 @@ namespace pwAdmin
                                 Logger.Log($"  Swap: {serverInfo.swp_used}/{serverInfo.swp_total} MB");
                                 Logger.Log($"  Maps count: {serverInfo.maps.Count}");
                                 Logger.Log($"  Processes count: {serverInfo.processes.Count}");
+                                
+                                // Log if counts are 0
+                                if (serverInfo.maps.Count == 0)
+                                {
+                                    Logger.Log("WARNING: No maps returned from server");
+                                }
+                                if (serverInfo.processes.Count == 0)
+                                {
+                                    Logger.Log("WARNING: No processes returned from server");
+                                }
                                 
                                 LastConnectionError = log.ToString();
                                 Logger.Log("UpdateInfosFromServer completed successfully");
