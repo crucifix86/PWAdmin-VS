@@ -219,19 +219,8 @@ namespace pwAdmin
         {
             try
             {
-                // Test connection to pwAdmin server
-                var request = new OctetsStream();
-                request.WriteInt32(501350); // Key
-                request.WriteInt32(14); // Get server config opcode
-                request.WriteInt32(0); // Size
-                
-                var response = ServerConnection.SendOneShotRequestAsync(
-                    Settings.Default.ipservidor,
-                    Settings.Default.portaservidor,
-                    request
-                ).Result;
-                
-                return response != null && response.GetData().Length > 0;
+                var result = UpdateInfosFromServer();
+                return result != null;
             }
             catch
             {
@@ -239,14 +228,15 @@ namespace pwAdmin
             }
         }
         
-        public static ServerInfo UpdateInfosFromServer()
+        public static OctetsStream UpdateInfosFromServer()
         {
             try
             {
+                // Test connection to pwAdmin server
                 var request = new OctetsStream();
-                request.WriteInt32(501350); // Key
-                request.WriteInt32(14); // Get server config opcode
-                request.WriteInt32(0); // Size
+                request.compact_uint32(501350); // Key
+                request.compact_uint32(14); // Get server config opcode
+                request.compact_uint32(0); // Size
                 
                 var response = ServerConnection.SendOneShotRequestAsync(
                     Settings.Default.ipservidor,
@@ -254,38 +244,13 @@ namespace pwAdmin
                     request
                 ).Result;
                 
-                if (response != null && response.GetData().Length > 0)
-                {
-                    // Skip headers
-                    response.UncompactUInt32(); // key
-                    response.UncompactUInt32(); // opcode
-                    response.UncompactUInt32(); // size
-                    
-                    var serverInfo = new ServerInfo();
-                    serverInfo.servname = response.ReadString();
-                    serverInfo.password = response.ReadString();
-                    serverInfo.port = response.ReadInt32();
-                    serverInfo.homepath = response.ReadString();
-                    serverInfo.gs_name = response.ReadString();
-                    serverInfo.gs_conf_path = response.ReadString();
-                    serverInfo.gs_path = response.ReadString();
-                    serverInfo.aid = response.ReadInt32();
-                    serverInfo.zoneid = response.ReadInt32();
-                    serverInfo.servid = response.ReadInt32();
-                    serverInfo.default_icon = response.ReadString();
-                    serverInfo.log_row_count = response.ReadInt32();
-                    serverInfo.logpath = response.ReadString();
-                    serverInfo.ServerVersion = response.ReadInt32();
-                    // ... read remaining fields as needed
-                    
-                    return serverInfo;
-                }
+                return response;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error getting server info: {ex.Message}");
+                return null;
             }
-            return null;
         }
     }
 }

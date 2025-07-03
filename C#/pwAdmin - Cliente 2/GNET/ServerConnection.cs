@@ -1,6 +1,7 @@
 using System;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using GNET;
 
 namespace pwAdmin.GNET
 {
@@ -54,7 +55,7 @@ namespace pwAdmin.GNET
 
             try
             {
-                var data = request.GetData();
+                var data = request.getBytes();
                 await _stream.WriteAsync(data, 0, data.Length);
 
                 if (!expectResponse)
@@ -88,7 +89,7 @@ namespace pwAdmin.GNET
                 await client.ConnectAsync(serverIp, serverPort);
                 using (var stream = client.GetStream())
                 {
-                    var data = request.GetData();
+                    var data = request.getBytes();
                     await stream.WriteAsync(data, 0, data.Length);
 
                     if (!expectResponse)
