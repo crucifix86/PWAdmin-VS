@@ -18,26 +18,28 @@ namespace pwAdmin
         { 
             get 
             { 
-                if (_ip == null)
-                {
-                    _ip = string.IsNullOrEmpty(Settings.Default.ipservidor) ? "127.0.0.1" : Settings.Default.ipservidor;
-                }
-                return _ip;
+                // Always use SimpleSettings
+                return Utils.SimpleSettings.ServerIP;
             }
-            set { _ip = value; }
+            set 
+            { 
+                _ip = value;
+                Utils.SimpleSettings.ServerIP = value;
+            }
         }
         
         public static int port 
         { 
             get 
             { 
-                if (_port == null)
-                {
-                    _port = Settings.Default.portaservidor <= 0 ? 630 : Settings.Default.portaservidor;
-                }
-                return _port.Value;
+                // Always use SimpleSettings
+                return Utils.SimpleSettings.ServerPort;
             }
-            set { _port = value; }
+            set 
+            { 
+                _port = value;
+                Utils.SimpleSettings.ServerPort = value;
+            }
         }
         public static void AddCash(int userid, int valor)
         {

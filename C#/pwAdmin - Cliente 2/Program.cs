@@ -16,10 +16,13 @@ namespace pwAdmin
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
+            // Load simple settings
+            Utils.SimpleSettings.Load();
+            
             // Log startup settings
             Utils.Logger.Log("=== Application Starting ===");
-            Utils.Logger.Log($"Settings - ipservidor: '{Properties.Settings.Default.ipservidor}'");
-            Utils.Logger.Log($"Settings - portaservidor: {Properties.Settings.Default.portaservidor}");
+            Utils.Logger.Log($"SimpleSettings loaded - IP: '{Utils.SimpleSettings.ServerIP}', Port: {Utils.SimpleSettings.ServerPort}");
+            Utils.Logger.Log($"Settings file: {Utils.SimpleSettings.GetSettingsPath()}");
             
             Application.Run(new MainForm());
         }

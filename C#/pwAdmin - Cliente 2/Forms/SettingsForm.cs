@@ -15,9 +15,12 @@ namespace pwAdmin
 
         private void LoadSettings()
         {
+            // Load from our simple text file
+            Utils.SimpleSettings.Load();
+            
             // Server settings
-            txtServerIP.Text = Settings.Default.ipservidor;
-            nudServerPort.Value = Settings.Default.portaservidor > 0 ? Settings.Default.portaservidor : 630;
+            txtServerIP.Text = Utils.SimpleSettings.ServerIP;
+            nudServerPort.Value = Utils.SimpleSettings.ServerPort;
             
             // Database settings
             txtDBHost.Text = Settings.Default.ip;
@@ -37,7 +40,10 @@ namespace pwAdmin
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Save server settings
+            // Save server settings to our simple text file
+            Utils.SimpleSettings.Save(txtServerIP.Text, (int)nudServerPort.Value);
+            
+            // Still save to Settings for backwards compatibility
             Settings.Default.ipservidor = txtServerIP.Text;
             Settings.Default.portaservidor = (int)nudServerPort.Value;
             
@@ -83,28 +89,15 @@ namespace pwAdmin
                     return;
                 }
                 
-                // Debug: Show what we're about to save
-                MessageBox.Show($"USING NEW CODE - TestDirectConnection\n\nAbout to test connection with:\nIP: {txtServerIP.Text}\nPort: {nudServerPort.Value}\n\nCurrent Settings:\nipservidor: '{Settings.Default.ipservidor}'\nportaservidor: {Settings.Default.portaservidor}", 
-                    "Debug Info - VERSION 2", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Save to our simple text file first
+                Utils.SimpleSettings.Save(txtServerIP.Text.Trim(), (int)nudServerPort.Value);
                 
-                // Save current form values to settings first
-                Settings.Default.ipservidor = txtServerIP.Text.Trim();
-                Settings.Default.portaservidor = (int)nudServerPort.Value;
-                Settings.Default.Save();
+                // Show what we saved
+                MessageBox.Show($"Settings saved to: {Utils.SimpleSettings.GetSettingsPath()}\n\nSaved values:\nIP: {Utils.SimpleSettings.ServerIP}\nPort: {Utils.SimpleSettings.ServerPort}\n\nNow testing connection...", 
+                    "Simple Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-                // Force reload from settings
-                Comandos.ReloadSettings();
-                
-                // Update connection settings before testing
-                Comandos.ip = txtServerIP.Text.Trim();
-                Comandos.port = (int)nudServerPort.Value;
-                
-                Utils.Logger.Log($"Test connection button clicked - IP: '{Comandos.ip}', Port: {Comandos.port}");
-                Utils.Logger.Log($"Settings values - ipservidor: '{Settings.Default.ipservidor}', portaservidor: {Settings.Default.portaservidor}");
-                
-                // Test server connection using direct method to bypass static variable issues
-                MessageBox.Show($"NOW CALLING TestDirectConnection with IP: {txtServerIP.Text.Trim()} Port: {(int)nudServerPort.Value}", "Direct Test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                var result = Comandos.TestDirectConnection(txtServerIP.Text.Trim(), (int)nudServerPort.Value);
+                // Test using the saved values
+                var result = Comandos.TestDirectConnection(Utils.SimpleSettings.ServerIP, Utils.SimpleSettings.ServerPort);
                 
                 // Get the detailed log
                 var log = Comandos.LastConnectionError;
