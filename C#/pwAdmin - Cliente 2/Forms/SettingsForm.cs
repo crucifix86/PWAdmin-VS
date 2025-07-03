@@ -76,9 +76,18 @@ namespace pwAdmin
         {
             try
             {
+                // Validate inputs
+                if (string.IsNullOrWhiteSpace(txtServerIP.Text))
+                {
+                    MessageBox.Show("Please enter a server IP address.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
                 // Update connection settings before testing
-                Comandos.ip = txtServerIP.Text;
+                Comandos.ip = txtServerIP.Text.Trim();
                 Comandos.port = (int)nudServerPort.Value;
+                
+                Utils.Logger.Log($"Test connection button clicked - IP: '{Comandos.ip}', Port: {Comandos.port}");
                 
                 // Test server connection
                 var result = Comandos.TestServerConnection();

@@ -11,8 +11,8 @@ namespace pwAdmin
 {
     public class Comandos
     {
-        public static string ip = Settings.Default.ipservidor;
-        public static int port = Convert.ToInt32(Settings.Default.portaservidor);
+        public static string ip = string.IsNullOrEmpty(Settings.Default.ipservidor) ? "127.0.0.1" : Settings.Default.ipservidor;
+        public static int port = Settings.Default.portaservidor <= 0 ? 630 : Settings.Default.portaservidor;
         public static void AddCash(int userid, int valor)
         {
             DebugAddCash arg = new DebugAddCash();
