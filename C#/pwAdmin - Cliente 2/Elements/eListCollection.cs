@@ -271,8 +271,8 @@ namespace pwAdmin.Elements
                 // configure an eList array with the configuration file
                 ConfigFile = configFiles[0];
                 Li = loadConfiguration(ConfigFile);
-                pb.Properties.Maximum = Li.Length;
-                pb.Position = 0;
+                pb.Maximum = Li.Length;
+                pb.Value = 0;
                 Main.txtLog.AppendText("Carregando arquivos data...");
                 // read the element file
                 for (int l = 0; l < Li.Length; l++)
@@ -438,7 +438,7 @@ namespace pwAdmin.Elements
                             }
                         }
                     }
-                    pb.Position++;
+                    pb.Value++;
                 }
                 Main.txtLog.Text += "sucesso!" + Environment.NewLine;
 

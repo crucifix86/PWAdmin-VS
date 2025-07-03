@@ -40,6 +40,7 @@ namespace Protocols.Packets
             occupation = os.unmarshal_byte();
             froleid = os.unmarshal_byte();
             loginday = os.unmarshal_short();
+            online_status = os.unmarshal_byte();
             os.unmarshal(name);
             os.unmarshal(nickname);
             contrib = os.unmarshal_int();

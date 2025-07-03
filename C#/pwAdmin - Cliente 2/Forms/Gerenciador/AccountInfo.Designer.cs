@@ -41,11 +41,7 @@
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.tbID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbUser.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbPasswd.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEmail.Properties)).BeginInit();
+            // Removed .Properties references for standard TextBox controls
             this.SuspendLayout();
             // 
             // labelControl1
@@ -162,11 +158,7 @@
             this.Name = "AccountInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informações da Conta";
-            ((System.ComponentModel.ISupportInitialize)(this.tbID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbUser.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbPasswd.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEmail.Properties)).EndInit();
+            // Removed .Properties references for standard TextBox controls
             this.ResumeLayout(false);
             this.PerformLayout();
 

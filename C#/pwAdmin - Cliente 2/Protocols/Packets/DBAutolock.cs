@@ -39,13 +39,13 @@ namespace Protocols.Packets
 
         public override OctetsStream marshal(OctetsStream os)
         {
-            os.marshal(userid);
+            userid.marshal(os);
             return os;
         }
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal(userid);
+            userid.unmarshal(os);
             return os;
         }
     }
@@ -59,14 +59,14 @@ namespace Protocols.Packets
 
         public override OctetsStream marshal(OctetsStream os)
         {
-            os.marshal(userid);
+            userid.marshal(os);
             os.marshal(count);
             return os;
         }
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal(userid);
+            userid.unmarshal(os);
             count = os.unmarshal_byte();
             return os;
         }

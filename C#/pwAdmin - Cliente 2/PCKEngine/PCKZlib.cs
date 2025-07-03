@@ -30,7 +30,7 @@ namespace pwAdmin.PCKEngine
         {
             using (var ms = new MemoryStream())
             {
-                using (var zs = new ZlibStream(ms, Ionic.Zlib.CompressionMode.Compress, CompressionLevel))
+                using (var zs = new ZlibStream(ms, Ionic.Zlib.CompressionMode.Compress, (Ionic.Zlib.CompressionLevel)CompressionLevel))
                 {
                     zs.Write(bytes, 0, bytes.Length);
                 }

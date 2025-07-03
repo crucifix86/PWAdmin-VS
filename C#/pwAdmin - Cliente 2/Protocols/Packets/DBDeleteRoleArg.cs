@@ -10,14 +10,14 @@ using GNET;
 
         public override OctetsStream marshal(OctetsStream os)
         {
-            os.marshal(roleid);
+            roleid.marshal(os);
             os.marshal(create_roolback);
             return os;
         }
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal(roleid);
+            roleid.unmarshal(os);
             create_roolback = os.unmarshal_int();
             return os;
         }

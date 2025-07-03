@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using TradeGrid;
 using static Protocols.Structs.item_editor;
 using static pwAdmin.AddonsList;
+using GNET;
 
 namespace pwAdmin.Forms.ItemEditor
 {

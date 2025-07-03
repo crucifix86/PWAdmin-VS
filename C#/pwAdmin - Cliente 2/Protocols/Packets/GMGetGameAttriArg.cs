@@ -9,7 +9,7 @@ using GNET;
 
         public override OctetsStream marshal(OctetsStream os)
         {
-            os.marshal(this.gmroleid);
+            this.gmroleid.marshal(os);
             os.marshal(this.localsid);
             os.marshal(this.attribute);
             return os;
@@ -17,7 +17,7 @@ using GNET;
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal(gmroleid);
+            gmroleid.unmarshal(os);
             this.localsid = os.unmarshal_int();
             this.attribute = os.unmarshal_byte();
             return os;

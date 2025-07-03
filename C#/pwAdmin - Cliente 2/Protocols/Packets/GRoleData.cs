@@ -21,23 +21,23 @@ namespace Protocols.Packets
 
         public override OctetsStream marshal(OctetsStream os)
         {
-            os.marshal((Marshal)this.Base);
-            os.marshal((Marshal)this.Status);
-            os.marshal((Marshal)this.Pocket);
-            os.marshal((Marshal)this.Equipment);
-            os.marshal((Marshal)this.Storehouse);
-            os.marshal((Marshal)this.Task);
+            this.Base.marshal(os);
+            this.Status.marshal(os);
+            this.Pocket.marshal(os);
+            this.Equipment.marshal(os);
+            this.Storehouse.marshal(os);
+            this.Task.marshal(os);
             return os;
         }
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            os.unmarshal((Marshal)this.Base);
-            os.unmarshal((Marshal)this.Status);
-            os.unmarshal((Marshal)this.Pocket);
-            os.unmarshal((Marshal)this.Equipment);
-            os.unmarshal((Marshal)this.Storehouse);
-            os.unmarshal((Marshal)this.Task);
+            this.Base.unmarshal(os);
+            this.Status.unmarshal(os);
+            this.Pocket.unmarshal(os);
+            this.Equipment.unmarshal(os);
+            this.Storehouse.unmarshal(os);
+            this.Task.unmarshal(os);
             return os;
         }
     }

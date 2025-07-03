@@ -44,7 +44,7 @@
             // 
             this.xtraTabControl1.Location = new System.Drawing.Point(12, 12);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.SelectedIndex = 0;
             this.xtraTabControl1.Size = new System.Drawing.Size(848, 371);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new System.Windows.Forms.TabPage[] {

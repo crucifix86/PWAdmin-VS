@@ -175,9 +175,9 @@ namespace Protocols.Packets
             this.pp = os.unmarshal_int();
             this.hp = os.unmarshal_int();
             this.mp = os.unmarshal_int();
-            this.posx = os.unmarshal_float(true);
-            this.posy = os.unmarshal_float(true);
-            this.posz = os.unmarshal_float(true);
+            this.posx = os.unmarshal_float();
+            this.posy = os.unmarshal_float();
+            this.posz = os.unmarshal_float();
             this.worldtag = os.unmarshal_int();
             this.invader_state = os.unmarshal_int();
             this.invader_time = os.unmarshal_int();

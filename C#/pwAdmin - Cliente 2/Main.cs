@@ -23,6 +23,16 @@ namespace pwAdmin
         public static dynamic descricao { get; set; }
         public static dynamic addons { get; set; }
         public static dynamic info { get; set; }
+        public static RichTextBox txtLog { get; set; }
+        public static dynamic listItemDesc { get; set; }
+        
+        // Method to get image from resources
+        public static Bitmap images(string filename)
+        {
+            // This method should load images from resources or file system
+            // For now, return a default blank image
+            return Properties.Resources.blank;
+        }
         
         public Main()
         {

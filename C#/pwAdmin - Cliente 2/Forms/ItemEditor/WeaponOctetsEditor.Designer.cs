@@ -130,18 +130,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbProjet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLevelInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbClasse)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTagContent.Properties)).BeginInit();
+            // Removed .Properties reference for standard TextBox control
             ((System.ComponentModel.ISupportInitialize)(this.tbTagType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSlots)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).BeginInit();
             this.groupControl10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listview2)).BeginInit();
             this.listview2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bGravura.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSuite.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bEmbed.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bParam2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bParam1.Properties)).BeginInit();
+            // Removed .Properties references for standard CheckBox controls
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddons)).BeginInit();
             this.SuspendLayout();
             // 
@@ -929,7 +925,7 @@
             this.Controls.Add(this.groupControl10);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
-            this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("WeaponOctetsEditor.IconOptions.LargeImage")));
+            // this.IconOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("WeaponOctetsEditor.IconOptions.LargeImage"))); // Commented out DevExpress specific property
             this.Name = "WeaponOctetsEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editor de Arma";
@@ -959,18 +955,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbProjet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLevelInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbClasse)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTagContent.Properties)).EndInit();
+            // Removed .Properties reference for standard TextBox control
             ((System.ComponentModel.ISupportInitialize)(this.tbTagType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSlots)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).EndInit();
             this.groupControl10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listview2)).EndInit();
             this.listview2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bGravura.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bSuite.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bEmbed.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bParam2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bParam1.Properties)).EndInit();
+            // Removed .Properties references for standard CheckBox controls
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddons)).EndInit();
             this.ResumeLayout(false);
 

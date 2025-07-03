@@ -51,8 +51,7 @@
             this.Nome = new TradeGrid.TextAndImageColumn();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItens)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            // Removed .Properties references for standard TextBox and ComboBox controls
             this.SuspendLayout();
             // 
             // dgvItens
@@ -165,7 +164,7 @@
             // 
             this.comboBoxEdit1.Location = new System.Drawing.Point(8, 14);
             this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None; // false;
+            this.comboBoxEdit1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.comboBoxEdit1.Size = new System.Drawing.Size(383, 22);
             this.comboBoxEdit1.TabIndex = 8;
             // 
@@ -219,8 +218,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selecione um item...";
             ((System.ComponentModel.ISupportInitialize)(this.dgvItens)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            // Removed .Properties references for standard TextBox and ComboBox controls
             this.ResumeLayout(false);
             this.PerformLayout();
 

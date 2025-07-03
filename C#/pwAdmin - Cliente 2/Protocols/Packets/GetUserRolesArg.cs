@@ -9,13 +9,13 @@ using GNET;
 
         public override OctetsStream marshal(OctetsStream value)
         {
-            value.marshal(userid);
+            userid.marshal(value);
             return value;
         }
 
         public override OctetsStream unmarshal(OctetsStream value)
         {
-            value.unmarshal(userid);
+            userid.unmarshal(value);
             return value;
         }
     }

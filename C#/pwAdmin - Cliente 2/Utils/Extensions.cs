@@ -614,7 +614,7 @@ namespace pwAdmin
                         }
                         else
                         {
-                            return Properties.Resources._0;
+                            return new Bitmap(Properties.Resources._0);
                         }
                     }
                 }

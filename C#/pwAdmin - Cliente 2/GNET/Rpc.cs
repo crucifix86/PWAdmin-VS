@@ -42,6 +42,12 @@ namespace GNET.Rpc
                 items.Add(item);
             }
 
+            // C# style Add method (uppercase)
+            public void Add(Marshal item)
+            {
+                items.Add(item);
+            }
+
             public void clear()
             {
                 items.Clear();

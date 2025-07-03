@@ -20,7 +20,7 @@ namespace Protocols.Packets
             os.marshal(this.capacity);
             os.marshal(this.timestamp);
             os.marshal(this.money);
-            os.compact_uint32(items.Count);
+            os.compact_uint32((uint)items.Count);
             for (int i = 0; i < items.Count; i++)
             {
                 items[i].marshal(os);
@@ -35,7 +35,7 @@ namespace Protocols.Packets
             this.capacity = os.unmarshal_int();
             this.timestamp = os.unmarshal_int();
             this.money = os.unmarshal_int();
-             int num = os.uncompact_uint32();
+             int num = (int)os.uncompact_uint32();
              for (int i = 0; i < num; i++)
              {
                  GRoleInventory item = new GRoleInventory();
