@@ -792,10 +792,11 @@ namespace pwAdmin
                                     var map = new ListMap();
                                     map.tag = response.unmarshal_String();
                                     map.pid = response.unmarshal_int(); // Instance ID
-                                    map.name = map.tag; // Use tag as name
+                                    map.name = $"Instance {map.pid}"; // Show instance ID in name
                                     map.mem = 0; // Server doesn't send memory for instances
                                     map.cpu = 0;
                                     instances.add(map);
+                                    Logger.Log($"Instance: tag={map.tag}, id={map.pid}");
                                 }
                                 
                                 Logger.Log($"Got {count} instances");

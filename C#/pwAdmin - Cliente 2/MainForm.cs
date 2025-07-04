@@ -1091,12 +1091,12 @@ namespace pwAdmin
                     if (mapsGrid != null)
                     {
                         mapsGrid.Rows.Clear();
+                        Utils.Logger.Log($"Populating maps grid with {info.maps.Count} maps");
                         foreach (ListMap map in info.maps)
                         {
-                            if (map.pid != 0) // Only show active instances
-                            {
-                                mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem} MB", $"{map.cpu}%");
-                            }
+                            // Show all instances returned by the server
+                            Utils.Logger.Log($"Map: tag={map.tag}, name={map.name}, pid={map.pid}, mem={map.mem}, cpu={map.cpu}");
+                            mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem}%", $"{map.cpu}%");
                         }
                     }
                 }
