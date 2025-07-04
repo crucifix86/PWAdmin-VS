@@ -585,10 +585,10 @@ namespace pwAdmin
             {
                 Logger.Log("=== GetServerInfo Started ===");
                 
-                // Try opcode 0 first to see if it returns full ServerInfo
+                // Create request for custom opcode 10 (GetMemoryInfo)
                 var request = new OctetsStream();
                 request.compact_uint32(501350); // Key
-                request.compact_uint32(0); // Try opcode 0 (UpdateInfoFromServer)
+                request.compact_uint32(10); // Custom opcode for GetMemoryInfo
                 request.compact_uint32(0); // Size (empty data)
                 
                 using (var client = new System.Net.Sockets.TcpClient())
@@ -623,48 +623,25 @@ namespace pwAdmin
                             
                             if (key == 501350)
                             {
-                                // Try to parse as full ServerInfo first
-                                try
-                                {
-                                    Logger.Log("Trying to parse as full ServerInfo with maps/processes...");
-                                    var result = new ServerInfo();
-                                    result.unmarshal(response);
-                                    
-                                    Logger.Log($"ServerInfo parsed - Memory: {result.mem_used}/{result.mem_total} MB");
-                                    Logger.Log($"ServerInfo parsed - Maps: {result.maps.Count}, Processes: {result.processes.Count}");
-                                    
-                                    return result;
-                                }
-                                catch (Exception parseEx)
-                                {
-                                    Logger.Log($"Full ServerInfo parse failed: {parseEx.Message}, falling back to opcode 10 method");
-                                    
-                                    // Reset stream position
-                                    response = new OctetsStream(responseData);
-                                    response.uncompact_uint32(); // Skip key
-                                    response.uncompact_uint32(); // Skip opcode
-                                    response.uncompact_uint32(); // Skip size
-                                    
-                                    // For opcode 10, we get memory info in a specific format
-                                    var memInfo = new MemoryInfoResponse();
-                                    memInfo.unmarshal(response);
-                                    
-                                    var result = new ServerInfo();
-                                    result.mem_total = (int)(memInfo.mem_total / 1024 / 1024); // Convert bytes to MB
-                                    result.mem_used = (int)(memInfo.mem_used / 1024 / 1024);
-                                    result.mem_free = (int)(memInfo.mem_free / 1024 / 1024);
-                                    result.swp_total = (int)(memInfo.swp_total / 1024 / 1024);
-                                    result.swp_used = (int)(memInfo.swp_used / 1024 / 1024);
-                                    result.swp_free = (int)(memInfo.swp_free / 1024 / 1024);
-                                    
-                                    Logger.Log($"Memory info parsed - Memory: {result.mem_used}/{result.mem_total} MB");
-                                    Logger.Log($"Memory info parsed - Swap: {result.swp_used}/{result.swp_total} MB");
-                                    
-                                    // Get process list (opcode 11) separately
-                                    GetProcessesAndMaps(result);
-                                    
-                                    return result;
-                                }
+                                // For opcode 10, we get memory info in a specific format
+                                var memInfo = new MemoryInfoResponse();
+                                memInfo.unmarshal(response);
+                                
+                                var result = new ServerInfo();
+                                result.mem_total = (int)(memInfo.mem_total / 1024 / 1024); // Convert bytes to MB
+                                result.mem_used = (int)(memInfo.mem_used / 1024 / 1024);
+                                result.mem_free = (int)(memInfo.mem_free / 1024 / 1024);
+                                result.swp_total = (int)(memInfo.swp_total / 1024 / 1024);
+                                result.swp_used = (int)(memInfo.swp_used / 1024 / 1024);
+                                result.swp_free = (int)(memInfo.swp_free / 1024 / 1024);
+                                
+                                Logger.Log($"Memory info parsed - Memory: {result.mem_used}/{result.mem_total} MB");
+                                Logger.Log($"Memory info parsed - Swap: {result.swp_used}/{result.swp_total} MB");
+                                
+                                // Get process list (opcode 11) separately
+                                GetProcessesAndMaps(result);
+                                
+                                return result;
                             }
                         }
                     }
