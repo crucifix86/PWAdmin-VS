@@ -198,6 +198,16 @@ namespace GNET
             return Encoding.UTF8.GetString(bytes);
         }
 
+        public string unmarshal_String_ByteLength()
+        {
+            byte length = unmarshal_byte();
+            if (length == 0)
+                return string.Empty;
+            
+            byte[] bytes = reader.ReadBytes(length);
+            return Encoding.UTF8.GetString(bytes);
+        }
+
         public Octets unmarshal_Octets()
         {
             uint length = uncompact_uint32();

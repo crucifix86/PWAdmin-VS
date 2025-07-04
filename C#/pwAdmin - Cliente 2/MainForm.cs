@@ -28,6 +28,7 @@ namespace pwAdmin
         public static dynamic descricao { get; set; }
         public static dynamic addons { get; set; }
         public static ServerInfo info { get; set; }
+        public static ServerConfig serverConfig { get; set; }
         public static RichTextBox txtLog { get; set; }
         public static dynamic listItemDesc { get; set; }
         

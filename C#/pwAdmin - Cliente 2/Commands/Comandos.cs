@@ -151,7 +151,7 @@ namespace pwAdmin
             return (0 == retcode);
         }
 
-        public static ServerInfo UpdateInfosFromServer()
+        public static ServerConfig UpdateInfosFromServer()
         {
             Logger.Log("=== UpdateInfosFromServer Started ===");
             var log = new System.Text.StringBuilder();
@@ -233,33 +233,25 @@ namespace pwAdmin
                                     return null;
                                 }
                                 
-                                // Parse ServerInfo
-                                var serverInfo = new ServerInfo();
-                                serverInfo.unmarshal(response);
+                                // Parse ServerConfig
+                                var serverConfig = new ServerConfig();
+                                serverConfig.unmarshal(response);
                                 
-                                Logger.Log($"ServerInfo parsed successfully:");
-                                Logger.Log($"  Memory: {serverInfo.mem_used}/{serverInfo.mem_total} MB");
-                                Logger.Log($"  Swap: {serverInfo.swp_used}/{serverInfo.swp_total} MB");
-                                Logger.Log($"  Maps count: {serverInfo.maps.Count}");
-                                Logger.Log($"  Processes count: {serverInfo.processes.Count}");
-                                
-                                // Log if counts are 0
-                                if (serverInfo.maps.Count == 0)
-                                {
-                                    Logger.Log("WARNING: No maps returned from server");
-                                }
-                                if (serverInfo.processes.Count == 0)
-                                {
-                                    Logger.Log("WARNING: No processes returned from server");
-                                }
+                                Logger.Log($"ServerConfig parsed successfully:");
+                                Logger.Log($"  Server Name: {serverConfig.ServName}");
+                                Logger.Log($"  Home Path: {serverConfig.HomePath}");
+                                Logger.Log($"  GS Path: {serverConfig.GsPath}");
+                                Logger.Log($"  Log Path: {serverConfig.LogPath}");
+                                Logger.Log($"  MySQL Host: {serverConfig.MysqlHost}");
+                                Logger.Log($"  GDelivery: {serverConfig.GDeliveryIp}:{serverConfig.GDeliveryPort}");
                                 
                                 LastConnectionError = log.ToString();
                                 Logger.Log("UpdateInfosFromServer completed successfully");
-                                return serverInfo;
+                                return serverConfig;
                             }
                             catch (Exception parseEx)
                             {
-                                Logger.LogError("Failed to parse ServerInfo", parseEx);
+                                Logger.LogError("Failed to parse ServerConfig", parseEx);
                                 log.AppendLine($"Parse error: {parseEx.Message}");
                                 LastConnectionError = log.ToString();
                                 return null;
@@ -487,16 +479,16 @@ namespace pwAdmin
                 log.AppendLine($"Server Port: {port}");
                 log.AppendLine($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
                 
-                var serverInfo = UpdateInfosFromServer();
-                if (serverInfo != null)
+                var serverConfig = UpdateInfosFromServer();
+                if (serverConfig != null)
                 {
-                    // Store the server info globally
-                    MainForm.info = serverInfo;
+                    // Store the server config globally
+                    MainForm.serverConfig = serverConfig;
                     
                     log.AppendLine("Connection successful!");
-                    log.AppendLine($"Server memory: {serverInfo.mem_used}MB/{serverInfo.mem_total}MB");
-                    log.AppendLine($"Active maps: {serverInfo.maps.Count}");
-                    log.AppendLine($"Running processes: {serverInfo.processes.Count}");
+                    log.AppendLine($"Server name: {serverConfig.ServName}");
+                    log.AppendLine($"Home path: {serverConfig.HomePath}");
+                    log.AppendLine($"MySQL: {serverConfig.MysqlHost}:{serverConfig.MysqlPort}");
                     
                     LastConnectionError = log.ToString();
                     Logger.Log("TestServerConnection: SUCCESS");
