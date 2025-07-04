@@ -1,51 +1,53 @@
-[2025-07-03 18:14:21.851] === TestServerConnection Started ===
-[2025-07-03 18:14:21.852] Static IP value: 212.28.181.47
-[2025-07-03 18:14:21.852] Static Port value: 630
-[2025-07-03 18:14:21.852] _ip backing field: 
-[2025-07-03 18:14:21.853] _port backing field: 
-[2025-07-03 18:14:21.853] Settings.Default.ipservidor: ''
-[2025-07-03 18:14:21.853] Settings.Default.portaservidor: 0
-[2025-07-03 18:14:21.853] Time: 2025-07-03 18:14:21
-[2025-07-03 18:14:21.853] Testing basic TCP connection to 212.28.181.47:630...
-[2025-07-03 18:14:21.951] Basic TCP connection successful!
-[2025-07-03 18:14:21.952] === UpdateInfosFromServer Started ===
-[2025-07-03 18:14:21.954] Attempting connection to 212.28.181.47:630
-[2025-07-03 18:14:21.955] Creating TCP client with 5 second timeout
-[2025-07-03 18:14:21.955] Connecting to 212.28.181.47:630...
-[2025-07-03 18:14:22.013] TCP connection established successfully
-[2025-07-03 18:14:22.014] Sending request data (5 bytes): C7-A6-66-0E-00
-[2025-07-03 18:14:22.014] Data sent, waiting for response...
-[2025-07-03 18:14:22.067] Received 264 bytes from server
-[2025-07-03 18:14:22.067] Response data (65536 bytes, showing first 264): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00...
-[2025-07-03 18:14:22.068] Response buffer size: 264 bytes
-[2025-07-03 18:14:22.068] Raw response (264 bytes): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00
-[2025-07-03 18:14:22.068] Response header - Key: 501350, Opcode: 14, Size: 258
-[2025-07-03 18:14:22.069] Stream position before ServerConfig parse: 6, remaining: 258
-[2025-07-03 18:14:22.069] Read ServName: 'Local', position: 12, remaining: 252
-[2025-07-03 18:14:22.069] ServerConfig parsed successfully:
-[2025-07-03 18:14:22.069]   Server Name: Local
-[2025-07-03 18:14:22.070]   Home Path: /home
-[2025-07-03 18:14:22.070]   GS Path: $HOME$gamed
-[2025-07-03 18:14:22.070]   Log Path: $HOME$logs
-[2025-07-03 18:14:22.070]   MySQL Host: 127.0.0.1
-[2025-07-03 18:14:22.070]   GDelivery: 127.0.0.1:-1401880576
-[2025-07-03 18:14:22.071] UpdateInfosFromServer completed successfully
-[2025-07-03 18:14:22.071] TestServerConnection: SUCCESS
-[2025-07-03 18:14:22.072] === GetServerInfo Started ===
-[2025-07-03 18:14:22.160] Sending GetServerInfo request (6 bytes): C7-A6-66-90-33-00
-[2025-07-03 18:14:27.195] ERROR: GetServerInfo failed
-Exception: IOException
-Message: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond..
-StackTrace:    at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
-   at pwAdmin.Comandos.GetServerInfo() in C:\Users\Administrator\Source\Repos\PWAdmin-VS\C#\pwAdmin - Cliente 2\Commands\Comandos.cs:line 608
-Inner Exception: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
-
-[2025-07-03 18:14:27.195] === GetOnlinePlayerCount Started ===
-[2025-07-03 18:14:27.270] Sending GetMaxOnlineNum request (6 bytes): C7-A6-66-81-77-00
-[2025-07-03 18:14:32.295] ERROR: GetOnlinePlayerCount failed
-Exception: IOException
-Message: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond..
-StackTrace:    at System.Net.Sockets.NetworkStream.Read(Byte[] buffer, Int32 offset, Int32 count)
-   at pwAdmin.Comandos.GetOnlinePlayerCount() in C:\Users\Administrator\Source\Repos\PWAdmin-VS\C#\pwAdmin - Cliente 2\Commands\Comandos.cs:line 547
-Inner Exception: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
-
+[2025-07-03 19:13:17.778] Settings loaded from C:\Users\Administrator\Source\Repos\PWAdmin-VS\C#\pwAdmin - Cliente 2\bin\Debug\net8.0-windows\connection.txt: IP=212.28.181.47, Port=630
+[2025-07-03 19:13:17.779] === Application Starting ===
+[2025-07-03 19:13:17.780] SimpleSettings loaded - IP: '212.28.181.47', Port: 630
+[2025-07-03 19:13:17.780] Settings file: C:\Users\Administrator\Source\Repos\PWAdmin-VS\C#\pwAdmin - Cliente 2\bin\Debug\net8.0-windows\connection.txt
+[2025-07-03 19:13:20.804] === TestServerConnection Started ===
+[2025-07-03 19:13:20.804] Static IP value: 212.28.181.47
+[2025-07-03 19:13:20.806] Static Port value: 630
+[2025-07-03 19:13:20.807] _ip backing field: 
+[2025-07-03 19:13:20.807] _port backing field: 
+[2025-07-03 19:13:20.807] Settings.Default.ipservidor: ''
+[2025-07-03 19:13:20.807] Settings.Default.portaservidor: 0
+[2025-07-03 19:13:20.808] Time: 2025-07-03 19:13:20
+[2025-07-03 19:13:20.808] Testing basic TCP connection to 212.28.181.47:630...
+[2025-07-03 19:13:20.903] Basic TCP connection successful!
+[2025-07-03 19:13:20.907] === UpdateInfosFromServer Started ===
+[2025-07-03 19:13:20.908] Attempting connection to 212.28.181.47:630
+[2025-07-03 19:13:20.908] Creating TCP client with 5 second timeout
+[2025-07-03 19:13:20.909] Connecting to 212.28.181.47:630...
+[2025-07-03 19:13:20.993] TCP connection established successfully
+[2025-07-03 19:13:20.995] Sending request data (5 bytes): C7-A6-66-0E-00
+[2025-07-03 19:13:20.996] Data sent, waiting for response...
+[2025-07-03 19:13:21.093] Received 264 bytes from server
+[2025-07-03 19:13:21.094] Response data (65536 bytes, showing first 264): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00...
+[2025-07-03 19:13:21.095] Response buffer size: 264 bytes
+[2025-07-03 19:13:21.095] Raw response (264 bytes): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00
+[2025-07-03 19:13:21.096] Response header - Key: 501350, Opcode: 14, Size: 258
+[2025-07-03 19:13:21.098] Stream position before ServerConfig parse: 6, remaining: 258
+[2025-07-03 19:13:21.099] Read ServName: 'Local', position: 12, remaining: 252
+[2025-07-03 19:13:21.100] ServerConfig parsed successfully:
+[2025-07-03 19:13:21.100]   Server Name: Local
+[2025-07-03 19:13:21.100]   Home Path: /home
+[2025-07-03 19:13:21.100]   GS Path: $HOME$gamed
+[2025-07-03 19:13:21.100]   Log Path: $HOME$logs
+[2025-07-03 19:13:21.101]   MySQL Host: 127.0.0.1
+[2025-07-03 19:13:21.101]   GDelivery: 127.0.0.1:-1401880576
+[2025-07-03 19:13:21.101] UpdateInfosFromServer completed successfully
+[2025-07-03 19:13:21.102] TestServerConnection: SUCCESS
+[2025-07-03 19:13:21.107] === GetServerInfo Started ===
+[2025-07-03 19:13:21.196] Sending GetServerInfo request (5 bytes): C7-A6-66-0A-00
+[2025-07-03 19:13:21.282] Received 53 bytes for ServerInfo
+[2025-07-03 19:13:21.283] GetServerInfo response - Key: 501350, Opcode: 10, Size: 48
+[2025-07-03 19:13:21.284] Memory info parsed - Memory: 659456/255270928 MB
+[2025-07-03 19:13:21.284] Memory info parsed - Swap: 0/0 MB
+[2025-07-03 19:13:21.477] Got 10 processes
+[2025-07-03 19:13:21.649] Got 0 instances
+[2025-07-03 19:13:21.651] Got ServerInfo - Memory: 255270928MB, Processes: 11
+[2025-07-03 19:13:21.699] Found Active Maps List GroupBox
+[2025-07-03 19:13:21.699] Found maps DataGridView with 4 columns
+[2025-07-03 19:13:21.700] Populating maps grid with 1 maps
+[2025-07-03 19:13:21.700] Map: tag=, name=, pid=0, mem=0, cpu=0
+[2025-07-03 19:13:21.700] Added row at index 0
+[2025-07-03 19:13:21.700] Maps grid now has 1 rows
+[2025-07-03 19:13:21.721] Online player count not implemented in server yet

@@ -718,7 +718,7 @@ namespace pwAdmin
                             {
                                 // Parse process list
                                 var count = response.uncompact_uint32();
-                                var processes = new DataVector(new Processes());
+                                var processes = new DataVector(); // Don't add template object
                                 
                                 for (uint i = 0; i < count; i++)
                                 {
@@ -743,7 +743,7 @@ namespace pwAdmin
                 Logger.LogError("GetProcessList failed", ex);
             }
             
-            return new DataVector(new Processes());
+            return new DataVector(); // Return empty DataVector without template object
         }
         
         private static DataVector GetInstanceList()
@@ -785,7 +785,7 @@ namespace pwAdmin
                             {
                                 // Parse instance list
                                 var count = response.uncompact_uint32();
-                                var instances = new DataVector(new ListMap());
+                                var instances = new DataVector(); // Don't add template object
                                 
                                 for (uint i = 0; i < count; i++)
                                 {
@@ -811,7 +811,7 @@ namespace pwAdmin
                 Logger.LogError("GetInstanceList failed", ex);
             }
             
-            return new DataVector(new ListMap());
+            return new DataVector(); // Return empty DataVector without template object
         }
     }
 }
