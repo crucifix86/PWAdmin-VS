@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using pwAdmin.Properties;
 using Protocols.Packets;
@@ -873,10 +874,20 @@ namespace pwAdmin
                     try
                     {
                         lblStatus.Text = "Loading server data...";
+                        PopulateServerConfigData();
                         PopulateServerData();
                         lblStatus.Text = "Ready";
                         
                         var serverInfo = $"Successfully connected!\n\nIP: {Comandos.ip}\nPort: {Comandos.port}";
+                        if (serverConfig != null)
+                        {
+                            serverInfo += $"\n\nServer Configuration:";
+                            serverInfo += $"\nServer Name: {serverConfig.ServName}";
+                            serverInfo += $"\nHome Path: {serverConfig.HomePath}";
+                            serverInfo += $"\nGame Path: {serverConfig.GsPath}";
+                            serverInfo += $"\nMySQL: {serverConfig.MysqlHost}:{serverConfig.MysqlPort}";
+                            serverInfo += $"\nGDelivery: {serverConfig.GDeliveryIp}:{serverConfig.GDeliveryPort}";
+                        }
                         if (info != null)
                         {
                             serverInfo += $"\n\nServer Status:";
@@ -908,6 +919,41 @@ namespace pwAdmin
                 lblConnection.ForeColor = Color.Red;
                 lblStatus.Text = "Connection error";
                 MessageBox.Show($"Connection error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private void PopulateServerConfigData()
+        {
+            if (serverConfig == null) return;
+            
+            // Find the server info group on the current page
+            if (currentPage == 0 && pages[0] != null)
+            {
+                // Find all labels in the server info group
+                var serverInfoGroup = pages[0].Controls.OfType<GroupBox>()
+                    .FirstOrDefault(g => g.Text == "Server Information");
+                    
+                if (serverInfoGroup != null)
+                {
+                    // Find the server detail labels
+                    var labels = serverInfoGroup.Controls.OfType<Label>().ToList();
+                    
+                    // Update server name
+                    var nameLabel = labels.FirstOrDefault(l => l.Location.X == 340 && l.Location.Y == 20);
+                    if (nameLabel != null) nameLabel.Text = serverConfig.ServName;
+                    
+                    // Update version
+                    var versionLabel = labels.FirstOrDefault(l => l.Location.X == 340 && l.Location.Y == 45);
+                    if (versionLabel != null) versionLabel.Text = serverConfig.ServerVersion.ToString();
+                    
+                    // Update ZoneID
+                    var zoneLabel = labels.FirstOrDefault(l => l.Location.X == 340 && l.Location.Y == 70);
+                    if (zoneLabel != null) zoneLabel.Text = serverConfig.ZoneId.ToString();
+                    
+                    // Update AID
+                    var aidLabel = labels.FirstOrDefault(l => l.Location.X == 340 && l.Location.Y == 95);
+                    if (aidLabel != null) aidLabel.Text = serverConfig.Aid.ToString();
+                }
             }
         }
         
