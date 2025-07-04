@@ -52,7 +52,6 @@ namespace GNET
             stream.Position = 0;
         }
 
-        public long Position => stream.Position;
         public long Remaining => stream.Length - stream.Position;
 
         // Marshal methods for writing data
