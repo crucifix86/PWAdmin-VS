@@ -209,8 +209,8 @@ namespace pwAdmin.Server.Protocols
                     {
                         processes.Add(new ProcessInfo
                         {
-                            Name = parts[0].Trim(),
-                            Path = parts[1].Trim(),
+                            ProcessName = parts[0].Trim(),
+                            ProcessDir = parts[1].Trim(),
                             Pid = 0,
                             MemoryPercent = 0,
                             CpuPercent = 0
@@ -221,14 +221,14 @@ namespace pwAdmin.Server.Protocols
             else
             {
                 // Default processes
-                processes.Add(new ProcessInfo { Name = "logservice", Path = "./logservice/logservice" });
-                processes.Add(new ProcessInfo { Name = "uniquenamed", Path = "./uniquenamed/uniquenamed" });
-                processes.Add(new ProcessInfo { Name = "authd", Path = "./authd/authd" });
-                processes.Add(new ProcessInfo { Name = "gamedbd", Path = "./gamedbd/gamedbd" });
-                processes.Add(new ProcessInfo { Name = "gdeliveryd", Path = "./gdeliveryd/gdeliveryd" });
-                processes.Add(new ProcessInfo { Name = "gacd", Path = "./gacd/gacd" });
-                processes.Add(new ProcessInfo { Name = "gfactiond", Path = "./gfactiond/gfactiond" });
-                processes.Add(new ProcessInfo { Name = "glinkd", Path = "./glinkd/glinkd" });
+                processes.Add(new ProcessInfo { ProcessName = "logservice", ProcessDir = "./logservice/logservice" });
+                processes.Add(new ProcessInfo { ProcessName = "uniquenamed", ProcessDir = "./uniquenamed/uniquenamed" });
+                processes.Add(new ProcessInfo { ProcessName = "authd", ProcessDir = "./authd/authd" });
+                processes.Add(new ProcessInfo { ProcessName = "gamedbd", ProcessDir = "./gamedbd/gamedbd" });
+                processes.Add(new ProcessInfo { ProcessName = "gdeliveryd", ProcessDir = "./gdeliveryd/gdeliveryd" });
+                processes.Add(new ProcessInfo { ProcessName = "gacd", ProcessDir = "./gacd/gacd" });
+                processes.Add(new ProcessInfo { ProcessName = "gfactiond", ProcessDir = "./gfactiond/gfactiond" });
+                processes.Add(new ProcessInfo { ProcessName = "glinkd", ProcessDir = "./glinkd/glinkd" });
             }
             
             return processes;
@@ -238,7 +238,7 @@ namespace pwAdmin.Server.Protocols
         {
             try
             {
-                var processes = Process.GetProcessesByName(procInfo.Name);
+                var processes = Process.GetProcessesByName(procInfo.ProcessName);
                 if (processes.Length > 0)
                 {
                     var proc = processes[0];
@@ -249,11 +249,37 @@ namespace pwAdmin.Server.Protocols
                     
                     // Get CPU usage (simplified)
                     procInfo.CpuPercent = GetProcessCpuPercent(proc);
+                    
+                    // Get command line arguments from /proc/{pid}/cmdline on Linux
+                    try
+                    {
+                        var cmdlineFile = $"/proc/{proc.Id}/cmdline";
+                        if (File.Exists(cmdlineFile))
+                        {
+                            var cmdlineBytes = File.ReadAllBytes(cmdlineFile);
+                            var cmdline = Encoding.UTF8.GetString(cmdlineBytes).Replace('\0', ' ').Trim();
+                            
+                            // Split command line into parts
+                            var parts = cmdline.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                            if (parts.Length > 0)
+                            {
+                                procInfo.ProcessFileName = parts[0];
+                                if (parts.Length > 1)
+                                {
+                                    procInfo.ProcessParams = string.Join(" ", parts.Skip(1));
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception cmdEx)
+                    {
+                        _logger.LogWarning(cmdEx, $"Could not read command line for process {proc.Id}");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error updating process info for {procInfo.Name}");
+                _logger.LogError(ex, $"Error updating process info for {procInfo.ProcessName}");
             }
         }
 
@@ -315,12 +341,41 @@ namespace pwAdmin.Server.Protocols
                 {
                     var procInfo = new ProcessInfo
                     {
-                        Name = "gs",
-                        Path = proc.MainModule?.FileName ?? "gs",
+                        ProcessName = "gs",
+                        ProcessDir = proc.MainModule?.FileName ?? "/home/gamed/gs",
                         Pid = proc.Id,
                         MemoryPercent = GetProcessMemoryPercent(proc),
                         CpuPercent = GetProcessCpuPercent(proc)
                     };
+                    
+                    // Get command line arguments from /proc/{pid}/cmdline
+                    try
+                    {
+                        var cmdlineFile = $"/proc/{proc.Id}/cmdline";
+                        if (File.Exists(cmdlineFile))
+                        {
+                            var cmdlineBytes = await File.ReadAllBytesAsync(cmdlineFile);
+                            var cmdline = Encoding.UTF8.GetString(cmdlineBytes).Replace('\0', ' ').Trim();
+                            
+                            // Split command line into parts
+                            var parts = cmdline.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                            if (parts.Length > 0)
+                            {
+                                procInfo.ProcessFileName = parts[0];
+                                if (parts.Length > 1)
+                                {
+                                    // The map tag (gs01, is01, etc) should be in the parameters
+                                    procInfo.ProcessParams = string.Join(" ", parts.Skip(1));
+                                    _logger.LogInformation($"GS process {proc.Id} params: {procInfo.ProcessParams}");
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception cmdEx)
+                    {
+                        _logger.LogWarning(cmdEx, $"Could not read command line for gs process {proc.Id}");
+                    }
+                    
                     processes.Add(procInfo);
                 }
             }

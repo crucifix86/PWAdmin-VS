@@ -796,33 +796,24 @@ namespace pwAdmin
                 
                 foreach (ListMap map in allMaps)
                 {
-                    // Since PWAdmin.Server doesn't provide map tags in process info,
-                    // we'll use a simple assignment based on convention:
-                    // - gs01 (World) always gets the first gs process
-                    // - Other instances get subsequent gs processes in order
+                    // Check if this map is running by looking for its tag in the process list
+                    bool isRunning = false;
+                    foreach (Processes proc in gsProcesses)
+                    {
+                        // Check if the process parameters contain the map tag
+                        // The gs process should have parameters like "gs01" or "is01"
+                        if (!string.IsNullOrEmpty(proc.processParams) && proc.processParams.Contains(map.tag))
+                        {
+                            map.pid = proc.pid;
+                            map.mem = proc.mem / 100.0; // Convert to percentage
+                            map.cpu = proc.cpu / 100.0; // Convert to percentage
+                            isRunning = true;
+                            Logger.Log($"MATCH: Found running map '{map.tag}' ({map.name}) with PID {map.pid} - params: {proc.processParams}");
+                            break;
+                        }
+                    }
                     
-                    if (map.tag == "gs01" && gsProcesses.Count > 0)
-                    {
-                        // Assign first gs process to main world
-                        var gsProc = gsProcesses[0];
-                        map.pid = gsProc.pid;
-                        map.mem = gsProc.mem / 100.0; // Convert to percentage if needed
-                        map.cpu = gsProc.cpu / 100.0; // Convert to percentage if needed
-                        Logger.Log($"MATCH: Assigned gs01 (World) to first gs process with PID {map.pid}");
-                        gsIndex = 1; // Start instances at index 1
-                    }
-                    else if (map.tag != "gs01" && gsIndex < gsProcesses.Count && gsIndex > 0)
-                    {
-                        // Assign other gs processes to instances
-                        // This is a temporary solution until the server provides proper map identification
-                        var gsProc = gsProcesses[gsIndex];
-                        map.pid = gsProc.pid;
-                        map.mem = gsProc.mem / 100.0; // Convert to percentage if needed
-                        map.cpu = gsProc.cpu / 100.0; // Convert to percentage if needed
-                        Logger.Log($"MATCH: Assigned '{map.tag}' ({map.name}) to gs process #{gsIndex} with PID {map.pid}");
-                        gsIndex++;
-                    }
-                    else
+                    if (!isRunning)
                     {
                         map.pid = 0; // Not running
                     }

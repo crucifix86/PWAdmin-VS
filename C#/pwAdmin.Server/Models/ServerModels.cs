@@ -25,19 +25,35 @@ namespace pwAdmin.Server.Models
 
     public class ProcessInfo
     {
-        public string Name { get; set; }
-        public string Path { get; set; }
         public int Pid { get; set; }
+        public int ProcessCount { get; set; } = 0;
+        public string ProcessName { get; set; } = "";
+        public string ProcessDir { get; set; } = "";
+        public string ProcessFileName { get; set; } = "";
+        public string ProcessParams { get; set; } = "";
+        public string ProcessStart { get; set; } = "";
+        public string ProcessKill { get; set; } = "";
+        public int ServerProcess { get; set; } = 0;
+        public int StartSleep { get; set; } = 0;
+        public int StopSleep { get; set; } = 0;
         public double MemoryPercent { get; set; }
         public double CpuPercent { get; set; }
 
         public void Marshal(OctetsStream os)
         {
-            os.WriteString(Name);
-            os.WriteString(Path);
             os.WriteInt32(Pid);
-            os.WriteInt32((int)(MemoryPercent * 100)); // Convert to integer representation
-            os.WriteInt32((int)(CpuPercent * 100));
+            os.WriteInt32(ProcessCount);
+            os.WriteString(ProcessName);
+            os.WriteString(ProcessDir);
+            os.WriteString(ProcessFileName);
+            os.WriteString(ProcessParams);
+            os.WriteString(ProcessStart);
+            os.WriteString(ProcessKill);
+            os.WriteInt32(ServerProcess);
+            os.WriteInt32(StartSleep);
+            os.WriteInt32(StopSleep);
+            os.WriteDouble(MemoryPercent);
+            os.WriteDouble(CpuPercent);
         }
     }
 
