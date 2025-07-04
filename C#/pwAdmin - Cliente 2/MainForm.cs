@@ -888,17 +888,18 @@ namespace pwAdmin
                             Utils.Logger.Log("Failed to get ServerInfo - server may not support this opcode");
                         }
                         
-                        // Get online player count
-                        var onlineInfo = Comandos.GetOnlinePlayerCount();
-                        if (onlineInfo != null)
-                        {
-                            Utils.Logger.Log($"Got online player count: {onlineInfo.curnum}/{onlineInfo.maxnum}");
-                            PopulateOnlineAccountData(onlineInfo);
-                        }
-                        else
-                        {
-                            Utils.Logger.Log("Failed to get online player count");
-                        }
+                        // Get online player count - disabled for now as server doesn't implement it
+                        // var onlineInfo = Comandos.GetOnlinePlayerCount();
+                        // if (onlineInfo != null)
+                        // {
+                        //     Utils.Logger.Log($"Got online player count: {onlineInfo.curnum}/{onlineInfo.maxnum}");
+                        //     PopulateOnlineAccountData(onlineInfo);
+                        // }
+                        // else
+                        // {
+                        //     Utils.Logger.Log("Failed to get online player count");
+                        // }
+                        Utils.Logger.Log("Online player count not implemented in server yet");
                         
                         lblStatus.Text = "Ready";
                         

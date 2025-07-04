@@ -638,9 +638,8 @@ namespace pwAdmin
                                 Logger.Log($"Memory info parsed - Memory: {result.mem_used}/{result.mem_total} MB");
                                 Logger.Log($"Memory info parsed - Swap: {result.swp_used}/{result.swp_total} MB");
                                 
-                                // TODO: Get process list (opcode 11) and instance list (opcode 12)
-                                result.processes = new DataVector(new Processes());
-                                result.maps = new DataVector(new ListMap());
+                                // Get process list (opcode 11) separately
+                                GetProcessesAndMaps(result);
                                 
                                 return result;
                             }
@@ -654,6 +653,164 @@ namespace pwAdmin
             }
             
             return null;
+        }
+        
+        private static void GetProcessesAndMaps(ServerInfo serverInfo)
+        {
+            try
+            {
+                // Get process list (opcode 11)
+                var processes = GetProcessList();
+                if (processes != null)
+                {
+                    serverInfo.processes = processes;
+                }
+                
+                // Get instance list (opcode 12)
+                var instances = GetInstanceList();
+                if (instances != null)
+                {
+                    serverInfo.maps = instances;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Failed to get processes/maps", ex);
+            }
+        }
+        
+        private static DataVector GetProcessList()
+        {
+            try
+            {
+                var request = new OctetsStream();
+                request.compact_uint32(501350); // Key
+                request.compact_uint32(11); // Custom opcode for GetProcessList
+                request.compact_uint32(0); // Size
+                
+                using (var client = new System.Net.Sockets.TcpClient())
+                {
+                    client.ReceiveTimeout = 5000;
+                    client.SendTimeout = 5000;
+                    client.Connect(ip, port);
+                    
+                    using (var stream = client.GetStream())
+                    {
+                        var data = request.getBytes();
+                        stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        
+                        var buffer = new byte[65536];
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        
+                        if (bytesRead > 0)
+                        {
+                            var responseData = new byte[bytesRead];
+                            Array.Copy(buffer, responseData, bytesRead);
+                            var response = new OctetsStream(responseData);
+                            
+                            // Skip header
+                            var key = response.uncompact_uint32();
+                            var opcode = response.uncompact_uint32();
+                            var size = response.uncompact_uint32();
+                            
+                            if (key == 501350)
+                            {
+                                // Parse process list
+                                var count = response.uncompact_uint32();
+                                var processes = new DataVector(new Processes());
+                                
+                                for (uint i = 0; i < count; i++)
+                                {
+                                    var proc = new Processes();
+                                    proc.processName = response.unmarshal_String();
+                                    proc.processPath = response.unmarshal_String();
+                                    proc.pid = response.unmarshal_int();
+                                    proc.mem = response.unmarshal_int() / 100.0; // Server sends as int * 100
+                                    proc.cpu = response.unmarshal_int() / 100.0;
+                                    processes.add(proc);
+                                }
+                                
+                                Logger.Log($"Got {count} processes");
+                                return processes;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("GetProcessList failed", ex);
+            }
+            
+            return new DataVector(new Processes());
+        }
+        
+        private static DataVector GetInstanceList()
+        {
+            try
+            {
+                var request = new OctetsStream();
+                request.compact_uint32(501350); // Key
+                request.compact_uint32(12); // Custom opcode for GetInstanceList
+                request.compact_uint32(0); // Size
+                
+                using (var client = new System.Net.Sockets.TcpClient())
+                {
+                    client.ReceiveTimeout = 5000;
+                    client.SendTimeout = 5000;
+                    client.Connect(ip, port);
+                    
+                    using (var stream = client.GetStream())
+                    {
+                        var data = request.getBytes();
+                        stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        
+                        var buffer = new byte[65536];
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        
+                        if (bytesRead > 0)
+                        {
+                            var responseData = new byte[bytesRead];
+                            Array.Copy(buffer, responseData, bytesRead);
+                            var response = new OctetsStream(responseData);
+                            
+                            // Skip header
+                            var key = response.uncompact_uint32();
+                            var opcode = response.uncompact_uint32();
+                            var size = response.uncompact_uint32();
+                            
+                            if (key == 501350)
+                            {
+                                // Parse instance list
+                                var count = response.uncompact_uint32();
+                                var instances = new DataVector(new ListMap());
+                                
+                                for (uint i = 0; i < count; i++)
+                                {
+                                    var map = new ListMap();
+                                    map.tag = response.unmarshal_String();
+                                    map.pid = response.unmarshal_int(); // Instance ID
+                                    map.name = map.tag; // Use tag as name
+                                    map.mem = 0; // Server doesn't send memory for instances
+                                    map.cpu = 0;
+                                    instances.add(map);
+                                }
+                                
+                                Logger.Log($"Got {count} instances");
+                                return instances;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("GetInstanceList failed", ex);
+            }
+            
+            return new DataVector(new ListMap());
         }
     }
 }
