@@ -46,6 +46,11 @@ namespace pwAdmin.Server.Protocols
             _data.AddRange(BitConverter.GetBytes(value));
         }
 
+        public void WriteDouble(double value)
+        {
+            _data.AddRange(BitConverter.GetBytes(value));
+        }
+
         public void WriteString(string value)
         {
             var bytes = Encoding.UTF8.GetBytes(value);
