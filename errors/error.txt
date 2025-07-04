@@ -1,62 +1,473 @@
-[2025-07-03 19:25:30.222] Settings loaded from C:\Users\Administrator\Source\Repos\PWAdmin-VS\C#\pwAdmin - Cliente 2\bin\Debug\net8.0-windows\connection.txt: IP=212.28.181.47, Port=630
-[2025-07-03 19:25:30.224] === Application Starting ===
-[2025-07-03 19:25:30.224] SimpleSettings loaded - IP: '212.28.181.47', Port: 630
-[2025-07-03 19:25:30.224] Settings file: C:\Users\Administrator\Source\Repos\PWAdmin-VS\C#\pwAdmin - Cliente 2\bin\Debug\net8.0-windows\connection.txt
-[2025-07-03 19:25:34.436] === TestServerConnection Started ===
-[2025-07-03 19:25:34.437] Static IP value: 212.28.181.47
-[2025-07-03 19:25:34.439] Static Port value: 630
-[2025-07-03 19:25:34.440] _ip backing field: 
-[2025-07-03 19:25:34.440] _port backing field: 
-[2025-07-03 19:25:34.440] Settings.Default.ipservidor: ''
-[2025-07-03 19:25:34.441] Settings.Default.portaservidor: 0
-[2025-07-03 19:25:34.441] Time: 2025-07-03 19:25:34
-[2025-07-03 19:25:34.441] Testing basic TCP connection to 212.28.181.47:630...
-[2025-07-03 19:25:34.531] Basic TCP connection successful!
-[2025-07-03 19:25:34.533] === UpdateInfosFromServer Started ===
-[2025-07-03 19:25:34.533] Attempting connection to 212.28.181.47:630
-[2025-07-03 19:25:34.534] Creating TCP client with 5 second timeout
-[2025-07-03 19:25:34.534] Connecting to 212.28.181.47:630...
-[2025-07-03 19:25:34.606] TCP connection established successfully
-[2025-07-03 19:25:34.608] Sending request data (5 bytes): C7-A6-66-0E-00
-[2025-07-03 19:25:34.609] Data sent, waiting for response...
-[2025-07-03 19:25:34.682] Received 264 bytes from server
-[2025-07-03 19:25:34.683] Response data (65536 bytes, showing first 264): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00...
-[2025-07-03 19:25:34.684] Response buffer size: 264 bytes
-[2025-07-03 19:25:34.684] Raw response (264 bytes): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00
-[2025-07-03 19:25:34.685] Response header - Key: 501350, Opcode: 14, Size: 258
-[2025-07-03 19:25:34.686] Stream position before ServerConfig parse: 6, remaining: 258
-[2025-07-03 19:25:34.688] Read ServName: 'Local', position: 12, remaining: 252
-[2025-07-03 19:25:34.690] ServerConfig parsed successfully:
-[2025-07-03 19:25:34.690]   Server Name: Local
-[2025-07-03 19:25:34.691]   Home Path: /home
-[2025-07-03 19:25:34.691]   GS Path: $HOME$gamed
-[2025-07-03 19:25:34.691]   Log Path: $HOME$logs
-[2025-07-03 19:25:34.692]   MySQL Host: 127.0.0.1
-[2025-07-03 19:25:34.692]   GDelivery: 127.0.0.1:-1401880576
-[2025-07-03 19:25:34.692] UpdateInfosFromServer completed successfully
-[2025-07-03 19:25:34.693] TestServerConnection: SUCCESS
-[2025-07-03 19:25:34.699] === GetServerInfo Started ===
-[2025-07-03 19:25:34.752] Sending GetServerInfo request (5 bytes): C7-A6-66-0A-00
-[2025-07-03 19:25:34.810] Received 53 bytes for ServerInfo
-[2025-07-03 19:25:34.811] GetServerInfo response - Key: 501350, Opcode: 10, Size: 48
-[2025-07-03 19:25:34.814] Memory info parsed - Memory: 148488192/255270928 MB
-[2025-07-03 19:25:34.814] Memory info parsed - Swap: 0/0 MB
-[2025-07-03 19:25:35.022] Got 10 processes
-[2025-07-03 19:25:35.023] Set serverInfo.processes with 10 items
-[2025-07-03 19:25:35.174] GetInstanceList received 6 bytes
-[2025-07-03 19:25:35.175] GetInstanceList raw response (6 bytes): C7-A6-66-0C-01-00
-[2025-07-03 19:25:35.175] GetInstanceList response - Key: 501350, Opcode: 12, Size: 1
-[2025-07-03 19:25:35.175] Bytes remaining before count: 1
-[2025-07-03 19:25:35.175] Instance count from server: 0
-[2025-07-03 19:25:35.175] Parsed 0 instances total
-[2025-07-03 19:25:35.176] Set serverInfo.maps with 0 items
-[2025-07-03 19:25:35.176] DEBUG: Adding fake instance for testing
-[2025-07-03 19:25:35.176] Added fake instance, now have 1 maps
-[2025-07-03 19:25:35.176] Got ServerInfo - Memory: 255270928MB, Processes: 10
-[2025-07-03 19:25:35.218] Found Active Maps List GroupBox
-[2025-07-03 19:25:35.219] Found maps DataGridView with 4 columns
-[2025-07-03 19:25:35.219] Populating maps grid with 1 maps
-[2025-07-03 19:25:35.219] Map: tag=test_instance, name=Test Instance 1234, pid=1234, mem=50.5, cpu=25.3
-[2025-07-03 19:25:35.220] Added row at index 0
-[2025-07-03 19:25:35.221] Maps grid now has 1 rows
-[2025-07-03 19:25:35.257] Online player count not implemented in server yet
+[2025-07-03 20:01:14.242] === TestServerConnection Started ===
+[2025-07-03 20:01:14.242] Static IP value: 212.28.181.47
+[2025-07-03 20:01:14.243] Static Port value: 630
+[2025-07-03 20:01:14.243] _ip backing field: 
+[2025-07-03 20:01:14.244] _port backing field: 
+[2025-07-03 20:01:14.244] Settings.Default.ipservidor: ''
+[2025-07-03 20:01:14.244] Settings.Default.portaservidor: 0
+[2025-07-03 20:01:14.245] Time: 2025-07-03 20:01:14
+[2025-07-03 20:01:14.246] Testing basic TCP connection to 212.28.181.47:630...
+[2025-07-03 20:01:14.342] Basic TCP connection successful!
+[2025-07-03 20:01:14.346] === UpdateInfosFromServer Started ===
+[2025-07-03 20:01:14.349] Attempting connection to 212.28.181.47:630
+[2025-07-03 20:01:14.349] Creating TCP client with 5 second timeout
+[2025-07-03 20:01:14.350] Connecting to 212.28.181.47:630...
+[2025-07-03 20:01:14.416] TCP connection established successfully
+[2025-07-03 20:01:14.417] Sending request data (5 bytes): C7-A6-66-0E-00
+[2025-07-03 20:01:14.418] Data sent, waiting for response...
+[2025-07-03 20:01:14.495] Received 264 bytes from server
+[2025-07-03 20:01:14.496] Response data (65536 bytes, showing first 264): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00...
+[2025-07-03 20:01:14.497] Response buffer size: 264 bytes
+[2025-07-03 20:01:14.498] Raw response (264 bytes): C7-A6-66-0E-81-02-05-4C-6F-63-61-6C-00-76-02-00-00-05-2F-68-6F-6D-65-02-67-73-13-24-48-4F-4D-45-24-67-61-6D-65-64-2F-67-73-2E-63-6F-6E-66-0B-24-48-4F-4D-45-24-67-61-6D-65-64-01-00-00-00-01-00-00-00-01-00-00-00-07-30-5F-30-2E-64-64-73-96-00-00-00-0A-24-48-4F-4D-45-24-6C-6F-67-73-9C-00-00-00-14-2F-76-61-72-2F-72-75-6E-2F-70-77-61-64-6D-69-6E-2E-70-69-64-05-00-00-00-02-00-00-00-C8-00-00-00-C8-00-00-00-90-01-00-00-00-00-00-00-08-6E-6F-68-75-70-20-25-73-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-0C-24-48-4F-4D-45-24-62-61-63-6B-75-70-01-00-00-00-05-61-64-6D-69-6E-0D-4F-76-55-39-34-69-4C-67-39-39-41-42-39-EA-0C-00-00-02-70-77-09-31-32-37-2E-30-2E-30-2E-31-09-31-32-37-2E-30-2E-30-2E-31-AC-71-00-00-74-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D8-72-00-00-09-31-32-37-2E-30-2E-30-2E-31-D9-72-00-00
+[2025-07-03 20:01:14.499] Response header - Key: 501350, Opcode: 14, Size: 258
+[2025-07-03 20:01:14.501] Stream position before ServerConfig parse: 6, remaining: 258
+[2025-07-03 20:01:14.502] Read ServName: 'Local', position: 12, remaining: 252
+[2025-07-03 20:01:14.502] ServerConfig parsed successfully:
+[2025-07-03 20:01:14.503]   Server Name: Local
+[2025-07-03 20:01:14.503]   Home Path: /home
+[2025-07-03 20:01:14.503]   GS Path: $HOME$gamed
+[2025-07-03 20:01:14.503]   Log Path: $HOME$logs
+[2025-07-03 20:01:14.503]   MySQL Host: 127.0.0.1
+[2025-07-03 20:01:14.503]   GDelivery: 127.0.0.1:-1401880576
+[2025-07-03 20:01:14.503] UpdateInfosFromServer completed successfully
+[2025-07-03 20:01:14.504] TestServerConnection: SUCCESS
+[2025-07-03 20:01:14.508] === GetServerInfo Started ===
+[2025-07-03 20:01:14.585] Sending GetServerInfo request (5 bytes): C7-A6-66-0A-00
+[2025-07-03 20:01:14.664] Received 53 bytes for ServerInfo
+[2025-07-03 20:01:14.665] GetServerInfo response - Key: 501350, Opcode: 10, Size: 48
+[2025-07-03 20:01:14.668] Memory info parsed - Memory: 55209984/255270928 MB
+[2025-07-03 20:01:14.669] Memory info parsed - Swap: 0/0 MB
+[2025-07-03 20:01:14.859] Process 0: name='logservice', dir='./logservice/logservice', pid=639827968, mem=671088.64, cpu=167772.16
+[2025-07-03 20:01:14.860] Process 1: name='uniquenamed', dir='./uniquenamed/uniquenamed', pid=774045696, mem=2348810.24, cpu=671088.64
+[2025-07-03 20:01:14.860] Process 2: name='authd', dir='./authd/authd', pid=958595072, mem=167772.16, cpu=0
+[2025-07-03 20:01:14.860] Process 3: name='gamedbd', dir='./gamedbd/gamedbd', pid=1629683712, mem=3690987.52, cpu=2181038.08
+[2025-07-03 20:01:14.860] Process 4: name='gdeliveryd', dir='./gdeliveryd/gdeliveryd', pid=2099445760, mem=2181038.08, cpu=335544.32
+[2025-07-03 20:01:14.861] Process 5: name='gacd', dir='./gacd/gacd', pid=2032336896, mem=1845493.76, cpu=0
+[2025-07-03 20:01:14.861] Process 6: name='gfactiond', dir='./gfactiond/gfactiond', pid=2065891328, mem=1006632.96, cpu=0
+[2025-07-03 20:01:14.861] Process 7: name='glinkd', dir='./glinkd/glinkd', pid=-2094858240, mem=1006632.96, cpu=335544.32
+[2025-07-03 20:01:14.861] Process 8: name='gs', dir='/home/gamed/gs', pid=-1675362304, mem=3192913.92, cpu=-13252689.92
+[2025-07-03 20:01:14.861] Process 9: name='gs', dir='/home/gamed/gs', pid=-1641807872, mem=13088849.92, cpu=2685665.28
+[2025-07-03 20:01:14.861] Got 10 processes
+[2025-07-03 20:01:14.861] Set serverInfo.processes with 10 items
+[2025-07-03 20:01:15.068] Process 0: name='logservice', dir='./logservice/logservice', pid=639827968, mem=671088.64, cpu=167772.16
+[2025-07-03 20:01:15.069] Process 1: name='uniquenamed', dir='./uniquenamed/uniquenamed', pid=774045696, mem=2348810.24, cpu=671088.64
+[2025-07-03 20:01:15.070] Process 2: name='authd', dir='./authd/authd', pid=958595072, mem=167772.16, cpu=0
+[2025-07-03 20:01:15.070] Process 3: name='gamedbd', dir='./gamedbd/gamedbd', pid=1629683712, mem=3690987.52, cpu=2181038.08
+[2025-07-03 20:01:15.071] Process 4: name='gdeliveryd', dir='./gdeliveryd/gdeliveryd', pid=2099445760, mem=2181038.08, cpu=335544.32
+[2025-07-03 20:01:15.071] Process 5: name='gacd', dir='./gacd/gacd', pid=2032336896, mem=1845493.76, cpu=0
+[2025-07-03 20:01:15.071] Process 6: name='gfactiond', dir='./gfactiond/gfactiond', pid=2065891328, mem=1006632.96, cpu=0
+[2025-07-03 20:01:15.072] Process 7: name='glinkd', dir='./glinkd/glinkd', pid=-2094858240, mem=1006632.96, cpu=335544.32
+[2025-07-03 20:01:15.072] Process 8: name='gs', dir='/home/gamed/gs', pid=-1675362304, mem=3192913.92, cpu=-13252689.92
+[2025-07-03 20:01:15.072] Process 9: name='gs', dir='/home/gamed/gs', pid=-1641807872, mem=13088849.92, cpu=2685665.28
+[2025-07-03 20:01:15.073] Got 10 processes
+[2025-07-03 20:01:15.073] Checking 22 maps against 10 processes
+[2025-07-03 20:01:15.074] Process: name='logservice', dir='./logservice/logservice', pid=639827968
+[2025-07-03 20:01:15.074]   - processFileName: ''
+[2025-07-03 20:01:15.074]   - processParams: ''
+[2025-07-03 20:01:15.074]   - mem: 671088.64
+[2025-07-03 20:01:15.075]   - cpu: 167772.16
+[2025-07-03 20:01:15.075] Process: name='uniquenamed', dir='./uniquenamed/uniquenamed', pid=774045696
+[2025-07-03 20:01:15.075]   - processFileName: ''
+[2025-07-03 20:01:15.075]   - processParams: ''
+[2025-07-03 20:01:15.075]   - mem: 2348810.24
+[2025-07-03 20:01:15.076]   - cpu: 671088.64
+[2025-07-03 20:01:15.076] Process: name='authd', dir='./authd/authd', pid=958595072
+[2025-07-03 20:01:15.076]   - processFileName: ''
+[2025-07-03 20:01:15.076]   - processParams: ''
+[2025-07-03 20:01:15.076]   - mem: 167772.16
+[2025-07-03 20:01:15.077]   - cpu: 0
+[2025-07-03 20:01:15.077] Process: name='gamedbd', dir='./gamedbd/gamedbd', pid=1629683712
+[2025-07-03 20:01:15.077]   - processFileName: ''
+[2025-07-03 20:01:15.077]   - processParams: ''
+[2025-07-03 20:01:15.077]   - mem: 3690987.52
+[2025-07-03 20:01:15.077]   - cpu: 2181038.08
+[2025-07-03 20:01:15.077] Process: name='gdeliveryd', dir='./gdeliveryd/gdeliveryd', pid=2099445760
+[2025-07-03 20:01:15.078]   - processFileName: ''
+[2025-07-03 20:01:15.078]   - processParams: ''
+[2025-07-03 20:01:15.078]   - mem: 2181038.08
+[2025-07-03 20:01:15.078]   - cpu: 335544.32
+[2025-07-03 20:01:15.078] Process: name='gacd', dir='./gacd/gacd', pid=2032336896
+[2025-07-03 20:01:15.078]   - processFileName: ''
+[2025-07-03 20:01:15.078]   - processParams: ''
+[2025-07-03 20:01:15.079]   - mem: 1845493.76
+[2025-07-03 20:01:15.079]   - cpu: 0
+[2025-07-03 20:01:15.079] Process: name='gfactiond', dir='./gfactiond/gfactiond', pid=2065891328
+[2025-07-03 20:01:15.079]   - processFileName: ''
+[2025-07-03 20:01:15.079]   - processParams: ''
+[2025-07-03 20:01:15.079]   - mem: 1006632.96
+[2025-07-03 20:01:15.079]   - cpu: 0
+[2025-07-03 20:01:15.079] Process: name='glinkd', dir='./glinkd/glinkd', pid=-2094858240
+[2025-07-03 20:01:15.079]   - processFileName: ''
+[2025-07-03 20:01:15.079]   - processParams: ''
+[2025-07-03 20:01:15.079]   - mem: 1006632.96
+[2025-07-03 20:01:15.079]   - cpu: 335544.32
+[2025-07-03 20:01:15.080] Process: name='gs', dir='/home/gamed/gs', pid=-1675362304
+[2025-07-03 20:01:15.080]   - processFileName: ''
+[2025-07-03 20:01:15.080]   - processParams: ''
+[2025-07-03 20:01:15.080]   - mem: 3192913.92
+[2025-07-03 20:01:15.080]   - cpu: -13252689.92
+[2025-07-03 20:01:15.080] Process: name='gs', dir='/home/gamed/gs', pid=-1641807872
+[2025-07-03 20:01:15.080]   - processFileName: ''
+[2025-07-03 20:01:15.080]   - processParams: ''
+[2025-07-03 20:01:15.080]   - mem: 13088849.92
+[2025-07-03 20:01:15.080]   - cpu: 2685665.28
+[2025-07-03 20:01:15.080] Checking potential gs process 639827968 against map 'gs01':
+[2025-07-03 20:01:15.080]   - processName contains map tag: False
+[2025-07-03 20:01:15.081]   - processDir contains map tag: False
+[2025-07-03 20:01:15.081]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.081]   - processParams contains map tag: False
+[2025-07-03 20:01:15.081] Checking potential gs process -1675362304 against map 'gs01':
+[2025-07-03 20:01:15.081]   - processName contains map tag: False
+[2025-07-03 20:01:15.081]   - processDir contains map tag: False
+[2025-07-03 20:01:15.081]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.081]   - processParams contains map tag: False
+[2025-07-03 20:01:15.081] Checking potential gs process -1641807872 against map 'gs01':
+[2025-07-03 20:01:15.081]   - processName contains map tag: False
+[2025-07-03 20:01:15.081]   - processDir contains map tag: False
+[2025-07-03 20:01:15.081]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.082]   - processParams contains map tag: False
+[2025-07-03 20:01:15.082] Checking potential gs process 639827968 against map 'is01':
+[2025-07-03 20:01:15.082]   - processName contains map tag: False
+[2025-07-03 20:01:15.082]   - processDir contains map tag: False
+[2025-07-03 20:01:15.082]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.082]   - processParams contains map tag: False
+[2025-07-03 20:01:15.082] Checking potential gs process -1675362304 against map 'is01':
+[2025-07-03 20:01:15.082]   - processName contains map tag: False
+[2025-07-03 20:01:15.082]   - processDir contains map tag: False
+[2025-07-03 20:01:15.082]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.082]   - processParams contains map tag: False
+[2025-07-03 20:01:15.082] Checking potential gs process -1641807872 against map 'is01':
+[2025-07-03 20:01:15.083]   - processName contains map tag: False
+[2025-07-03 20:01:15.083]   - processDir contains map tag: False
+[2025-07-03 20:01:15.083]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.083]   - processParams contains map tag: False
+[2025-07-03 20:01:15.083] Checking potential gs process 639827968 against map 'is02':
+[2025-07-03 20:01:15.083]   - processName contains map tag: False
+[2025-07-03 20:01:15.083]   - processDir contains map tag: False
+[2025-07-03 20:01:15.083]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.083]   - processParams contains map tag: False
+[2025-07-03 20:01:15.083] Checking potential gs process -1675362304 against map 'is02':
+[2025-07-03 20:01:15.083]   - processName contains map tag: False
+[2025-07-03 20:01:15.083]   - processDir contains map tag: False
+[2025-07-03 20:01:15.084]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.084]   - processParams contains map tag: False
+[2025-07-03 20:01:15.084] Checking potential gs process -1641807872 against map 'is02':
+[2025-07-03 20:01:15.084]   - processName contains map tag: False
+[2025-07-03 20:01:15.084]   - processDir contains map tag: False
+[2025-07-03 20:01:15.084]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.084]   - processParams contains map tag: False
+[2025-07-03 20:01:15.084] Checking potential gs process 639827968 against map 'is05':
+[2025-07-03 20:01:15.084]   - processName contains map tag: False
+[2025-07-03 20:01:15.084]   - processDir contains map tag: False
+[2025-07-03 20:01:15.084]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.085]   - processParams contains map tag: False
+[2025-07-03 20:01:15.085] Checking potential gs process -1675362304 against map 'is05':
+[2025-07-03 20:01:15.085]   - processName contains map tag: False
+[2025-07-03 20:01:15.085]   - processDir contains map tag: False
+[2025-07-03 20:01:15.085]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.085]   - processParams contains map tag: False
+[2025-07-03 20:01:15.085] Checking potential gs process -1641807872 against map 'is05':
+[2025-07-03 20:01:15.085]   - processName contains map tag: False
+[2025-07-03 20:01:15.085]   - processDir contains map tag: False
+[2025-07-03 20:01:15.085]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.085]   - processParams contains map tag: False
+[2025-07-03 20:01:15.085] Checking potential gs process 639827968 against map 'is06':
+[2025-07-03 20:01:15.086]   - processName contains map tag: False
+[2025-07-03 20:01:15.086]   - processDir contains map tag: False
+[2025-07-03 20:01:15.086]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.086]   - processParams contains map tag: False
+[2025-07-03 20:01:15.086] Checking potential gs process -1675362304 against map 'is06':
+[2025-07-03 20:01:15.086]   - processName contains map tag: False
+[2025-07-03 20:01:15.086]   - processDir contains map tag: False
+[2025-07-03 20:01:15.086]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.086]   - processParams contains map tag: False
+[2025-07-03 20:01:15.086] Checking potential gs process -1641807872 against map 'is06':
+[2025-07-03 20:01:15.086]   - processName contains map tag: False
+[2025-07-03 20:01:15.086]   - processDir contains map tag: False
+[2025-07-03 20:01:15.086]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.087]   - processParams contains map tag: False
+[2025-07-03 20:01:15.087] Checking potential gs process 639827968 against map 'is07':
+[2025-07-03 20:01:15.087]   - processName contains map tag: False
+[2025-07-03 20:01:15.087]   - processDir contains map tag: False
+[2025-07-03 20:01:15.087]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.087]   - processParams contains map tag: False
+[2025-07-03 20:01:15.087] Checking potential gs process -1675362304 against map 'is07':
+[2025-07-03 20:01:15.087]   - processName contains map tag: False
+[2025-07-03 20:01:15.087]   - processDir contains map tag: False
+[2025-07-03 20:01:15.087]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.087]   - processParams contains map tag: False
+[2025-07-03 20:01:15.087] Checking potential gs process -1641807872 against map 'is07':
+[2025-07-03 20:01:15.088]   - processName contains map tag: False
+[2025-07-03 20:01:15.088]   - processDir contains map tag: False
+[2025-07-03 20:01:15.088]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.088]   - processParams contains map tag: False
+[2025-07-03 20:01:15.088] Checking potential gs process 639827968 against map 'is08':
+[2025-07-03 20:01:15.088]   - processName contains map tag: False
+[2025-07-03 20:01:15.088]   - processDir contains map tag: False
+[2025-07-03 20:01:15.088]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.088]   - processParams contains map tag: False
+[2025-07-03 20:01:15.088] Checking potential gs process -1675362304 against map 'is08':
+[2025-07-03 20:01:15.088]   - processName contains map tag: False
+[2025-07-03 20:01:15.088]   - processDir contains map tag: False
+[2025-07-03 20:01:15.089]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.089]   - processParams contains map tag: False
+[2025-07-03 20:01:15.089] Checking potential gs process -1641807872 against map 'is08':
+[2025-07-03 20:01:15.089]   - processName contains map tag: False
+[2025-07-03 20:01:15.089]   - processDir contains map tag: False
+[2025-07-03 20:01:15.089]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.089]   - processParams contains map tag: False
+[2025-07-03 20:01:15.089] Checking potential gs process 639827968 against map 'is09':
+[2025-07-03 20:01:15.089]   - processName contains map tag: False
+[2025-07-03 20:01:15.089]   - processDir contains map tag: False
+[2025-07-03 20:01:15.089]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.089]   - processParams contains map tag: False
+[2025-07-03 20:01:15.089] Checking potential gs process -1675362304 against map 'is09':
+[2025-07-03 20:01:15.090]   - processName contains map tag: False
+[2025-07-03 20:01:15.090]   - processDir contains map tag: False
+[2025-07-03 20:01:15.090]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.090]   - processParams contains map tag: False
+[2025-07-03 20:01:15.090] Checking potential gs process -1641807872 against map 'is09':
+[2025-07-03 20:01:15.090]   - processName contains map tag: False
+[2025-07-03 20:01:15.090]   - processDir contains map tag: False
+[2025-07-03 20:01:15.090]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.090]   - processParams contains map tag: False
+[2025-07-03 20:01:15.090] Checking potential gs process 639827968 against map 'is10':
+[2025-07-03 20:01:15.090]   - processName contains map tag: False
+[2025-07-03 20:01:15.090]   - processDir contains map tag: False
+[2025-07-03 20:01:15.091]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.091]   - processParams contains map tag: False
+[2025-07-03 20:01:15.091] Checking potential gs process -1675362304 against map 'is10':
+[2025-07-03 20:01:15.091]   - processName contains map tag: False
+[2025-07-03 20:01:15.091]   - processDir contains map tag: False
+[2025-07-03 20:01:15.091]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.091]   - processParams contains map tag: False
+[2025-07-03 20:01:15.091] Checking potential gs process -1641807872 against map 'is10':
+[2025-07-03 20:01:15.091]   - processName contains map tag: False
+[2025-07-03 20:01:15.091]   - processDir contains map tag: False
+[2025-07-03 20:01:15.091]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.091]   - processParams contains map tag: False
+[2025-07-03 20:01:15.092] Checking potential gs process 639827968 against map 'is11':
+[2025-07-03 20:01:15.092]   - processName contains map tag: False
+[2025-07-03 20:01:15.092]   - processDir contains map tag: False
+[2025-07-03 20:01:15.092]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.092]   - processParams contains map tag: False
+[2025-07-03 20:01:15.092] Checking potential gs process -1675362304 against map 'is11':
+[2025-07-03 20:01:15.092]   - processName contains map tag: False
+[2025-07-03 20:01:15.092]   - processDir contains map tag: False
+[2025-07-03 20:01:15.092]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.092]   - processParams contains map tag: False
+[2025-07-03 20:01:15.092] Checking potential gs process -1641807872 against map 'is11':
+[2025-07-03 20:01:15.092]   - processName contains map tag: False
+[2025-07-03 20:01:15.093]   - processDir contains map tag: False
+[2025-07-03 20:01:15.093]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.093]   - processParams contains map tag: False
+[2025-07-03 20:01:15.093] Checking potential gs process 639827968 against map 'is12':
+[2025-07-03 20:01:15.093]   - processName contains map tag: False
+[2025-07-03 20:01:15.093]   - processDir contains map tag: False
+[2025-07-03 20:01:15.093]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.093]   - processParams contains map tag: False
+[2025-07-03 20:01:15.093] Checking potential gs process -1675362304 against map 'is12':
+[2025-07-03 20:01:15.093]   - processName contains map tag: False
+[2025-07-03 20:01:15.093]   - processDir contains map tag: False
+[2025-07-03 20:01:15.093]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.093]   - processParams contains map tag: False
+[2025-07-03 20:01:15.094] Checking potential gs process -1641807872 against map 'is12':
+[2025-07-03 20:01:15.094]   - processName contains map tag: False
+[2025-07-03 20:01:15.094]   - processDir contains map tag: False
+[2025-07-03 20:01:15.094]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.094]   - processParams contains map tag: False
+[2025-07-03 20:01:15.094] Checking potential gs process 639827968 against map 'is13':
+[2025-07-03 20:01:15.094]   - processName contains map tag: False
+[2025-07-03 20:01:15.094]   - processDir contains map tag: False
+[2025-07-03 20:01:15.094]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.094]   - processParams contains map tag: False
+[2025-07-03 20:01:15.094] Checking potential gs process -1675362304 against map 'is13':
+[2025-07-03 20:01:15.095]   - processName contains map tag: False
+[2025-07-03 20:01:15.095]   - processDir contains map tag: False
+[2025-07-03 20:01:15.095]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.095]   - processParams contains map tag: False
+[2025-07-03 20:01:15.095] Checking potential gs process -1641807872 against map 'is13':
+[2025-07-03 20:01:15.095]   - processName contains map tag: False
+[2025-07-03 20:01:15.095]   - processDir contains map tag: False
+[2025-07-03 20:01:15.095]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.095]   - processParams contains map tag: False
+[2025-07-03 20:01:15.096] Checking potential gs process 639827968 against map 'is14':
+[2025-07-03 20:01:15.096]   - processName contains map tag: False
+[2025-07-03 20:01:15.096]   - processDir contains map tag: False
+[2025-07-03 20:01:15.096]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.096]   - processParams contains map tag: False
+[2025-07-03 20:01:15.096] Checking potential gs process -1675362304 against map 'is14':
+[2025-07-03 20:01:15.096]   - processName contains map tag: False
+[2025-07-03 20:01:15.096]   - processDir contains map tag: False
+[2025-07-03 20:01:15.096]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.096]   - processParams contains map tag: False
+[2025-07-03 20:01:15.096] Checking potential gs process -1641807872 against map 'is14':
+[2025-07-03 20:01:15.096]   - processName contains map tag: False
+[2025-07-03 20:01:15.097]   - processDir contains map tag: False
+[2025-07-03 20:01:15.097]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.097]   - processParams contains map tag: False
+[2025-07-03 20:01:15.097] Checking potential gs process 639827968 against map 'is15':
+[2025-07-03 20:01:15.097]   - processName contains map tag: False
+[2025-07-03 20:01:15.097]   - processDir contains map tag: False
+[2025-07-03 20:01:15.097]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.097]   - processParams contains map tag: False
+[2025-07-03 20:01:15.097] Checking potential gs process -1675362304 against map 'is15':
+[2025-07-03 20:01:15.097]   - processName contains map tag: False
+[2025-07-03 20:01:15.097]   - processDir contains map tag: False
+[2025-07-03 20:01:15.097]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.097]   - processParams contains map tag: False
+[2025-07-03 20:01:15.098] Checking potential gs process -1641807872 against map 'is15':
+[2025-07-03 20:01:15.098]   - processName contains map tag: False
+[2025-07-03 20:01:15.098]   - processDir contains map tag: False
+[2025-07-03 20:01:15.098]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.098]   - processParams contains map tag: False
+[2025-07-03 20:01:15.098] Checking potential gs process 639827968 against map 'is16':
+[2025-07-03 20:01:15.098]   - processName contains map tag: False
+[2025-07-03 20:01:15.098]   - processDir contains map tag: False
+[2025-07-03 20:01:15.098]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.098]   - processParams contains map tag: False
+[2025-07-03 20:01:15.098] Checking potential gs process -1675362304 against map 'is16':
+[2025-07-03 20:01:15.098]   - processName contains map tag: False
+[2025-07-03 20:01:15.099]   - processDir contains map tag: False
+[2025-07-03 20:01:15.099]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.099]   - processParams contains map tag: False
+[2025-07-03 20:01:15.099] Checking potential gs process -1641807872 against map 'is16':
+[2025-07-03 20:01:15.099]   - processName contains map tag: False
+[2025-07-03 20:01:15.099]   - processDir contains map tag: False
+[2025-07-03 20:01:15.099]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.099]   - processParams contains map tag: False
+[2025-07-03 20:01:15.099] Checking potential gs process 639827968 against map 'is17':
+[2025-07-03 20:01:15.099]   - processName contains map tag: False
+[2025-07-03 20:01:15.099]   - processDir contains map tag: False
+[2025-07-03 20:01:15.100]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.100]   - processParams contains map tag: False
+[2025-07-03 20:01:15.100] Checking potential gs process -1675362304 against map 'is17':
+[2025-07-03 20:01:15.100]   - processName contains map tag: False
+[2025-07-03 20:01:15.100]   - processDir contains map tag: False
+[2025-07-03 20:01:15.100]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.100]   - processParams contains map tag: False
+[2025-07-03 20:01:15.100] Checking potential gs process -1641807872 against map 'is17':
+[2025-07-03 20:01:15.100]   - processName contains map tag: False
+[2025-07-03 20:01:15.100]   - processDir contains map tag: False
+[2025-07-03 20:01:15.100]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.100]   - processParams contains map tag: False
+[2025-07-03 20:01:15.101] Checking potential gs process 639827968 against map 'is18':
+[2025-07-03 20:01:15.101]   - processName contains map tag: False
+[2025-07-03 20:01:15.101]   - processDir contains map tag: False
+[2025-07-03 20:01:15.101]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.101]   - processParams contains map tag: False
+[2025-07-03 20:01:15.101] Checking potential gs process -1675362304 against map 'is18':
+[2025-07-03 20:01:15.101]   - processName contains map tag: False
+[2025-07-03 20:01:15.101]   - processDir contains map tag: False
+[2025-07-03 20:01:15.101]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.101]   - processParams contains map tag: False
+[2025-07-03 20:01:15.101] Checking potential gs process -1641807872 against map 'is18':
+[2025-07-03 20:01:15.101]   - processName contains map tag: False
+[2025-07-03 20:01:15.102]   - processDir contains map tag: False
+[2025-07-03 20:01:15.102]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.102]   - processParams contains map tag: False
+[2025-07-03 20:01:15.102] Checking potential gs process 639827968 against map 'is19':
+[2025-07-03 20:01:15.102]   - processName contains map tag: False
+[2025-07-03 20:01:15.102]   - processDir contains map tag: False
+[2025-07-03 20:01:15.102]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.102]   - processParams contains map tag: False
+[2025-07-03 20:01:15.102] Checking potential gs process -1675362304 against map 'is19':
+[2025-07-03 20:01:15.102]   - processName contains map tag: False
+[2025-07-03 20:01:15.102]   - processDir contains map tag: False
+[2025-07-03 20:01:15.102]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.103]   - processParams contains map tag: False
+[2025-07-03 20:01:15.103] Checking potential gs process -1641807872 against map 'is19':
+[2025-07-03 20:01:15.103]   - processName contains map tag: False
+[2025-07-03 20:01:15.103]   - processDir contains map tag: False
+[2025-07-03 20:01:15.103]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.103]   - processParams contains map tag: False
+[2025-07-03 20:01:15.103] Checking potential gs process 639827968 against map 'is20':
+[2025-07-03 20:01:15.103]   - processName contains map tag: False
+[2025-07-03 20:01:15.103]   - processDir contains map tag: False
+[2025-07-03 20:01:15.103]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.103]   - processParams contains map tag: False
+[2025-07-03 20:01:15.103] Checking potential gs process -1675362304 against map 'is20':
+[2025-07-03 20:01:15.104]   - processName contains map tag: False
+[2025-07-03 20:01:15.104]   - processDir contains map tag: False
+[2025-07-03 20:01:15.104]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.104]   - processParams contains map tag: False
+[2025-07-03 20:01:15.104] Checking potential gs process -1641807872 against map 'is20':
+[2025-07-03 20:01:15.104]   - processName contains map tag: False
+[2025-07-03 20:01:15.104]   - processDir contains map tag: False
+[2025-07-03 20:01:15.104]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.104]   - processParams contains map tag: False
+[2025-07-03 20:01:15.104] Checking potential gs process 639827968 against map 'bg01':
+[2025-07-03 20:01:15.104]   - processName contains map tag: False
+[2025-07-03 20:01:15.105]   - processDir contains map tag: False
+[2025-07-03 20:01:15.105]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.105]   - processParams contains map tag: False
+[2025-07-03 20:01:15.105] Checking potential gs process -1675362304 against map 'bg01':
+[2025-07-03 20:01:15.105]   - processName contains map tag: False
+[2025-07-03 20:01:15.105]   - processDir contains map tag: False
+[2025-07-03 20:01:15.105]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.105]   - processParams contains map tag: False
+[2025-07-03 20:01:15.105] Checking potential gs process -1641807872 against map 'bg01':
+[2025-07-03 20:01:15.105]   - processName contains map tag: False
+[2025-07-03 20:01:15.105]   - processDir contains map tag: False
+[2025-07-03 20:01:15.106]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.106]   - processParams contains map tag: False
+[2025-07-03 20:01:15.106] Checking potential gs process 639827968 against map 'bg02':
+[2025-07-03 20:01:15.106]   - processName contains map tag: False
+[2025-07-03 20:01:15.106]   - processDir contains map tag: False
+[2025-07-03 20:01:15.106]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.106]   - processParams contains map tag: False
+[2025-07-03 20:01:15.106] Checking potential gs process -1675362304 against map 'bg02':
+[2025-07-03 20:01:15.106]   - processName contains map tag: False
+[2025-07-03 20:01:15.106]   - processDir contains map tag: False
+[2025-07-03 20:01:15.107]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.107]   - processParams contains map tag: False
+[2025-07-03 20:01:15.107] Checking potential gs process -1641807872 against map 'bg02':
+[2025-07-03 20:01:15.107]   - processName contains map tag: False
+[2025-07-03 20:01:15.107]   - processDir contains map tag: False
+[2025-07-03 20:01:15.107]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.107]   - processParams contains map tag: False
+[2025-07-03 20:01:15.107] Checking potential gs process 639827968 against map 'arena01':
+[2025-07-03 20:01:15.107]   - processName contains map tag: False
+[2025-07-03 20:01:15.107]   - processDir contains map tag: False
+[2025-07-03 20:01:15.107]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.108]   - processParams contains map tag: False
+[2025-07-03 20:01:15.108] Checking potential gs process -1675362304 against map 'arena01':
+[2025-07-03 20:01:15.108]   - processName contains map tag: False
+[2025-07-03 20:01:15.108]   - processDir contains map tag: False
+[2025-07-03 20:01:15.108]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.108]   - processParams contains map tag: False
+[2025-07-03 20:01:15.108] Checking potential gs process -1641807872 against map 'arena01':
+[2025-07-03 20:01:15.108]   - processName contains map tag: False
+[2025-07-03 20:01:15.108]   - processDir contains map tag: False
+[2025-07-03 20:01:15.109]   - processFileName contains map tag: False
+[2025-07-03 20:01:15.109]   - processParams contains map tag: False
+[2025-07-03 20:01:15.109] Total maps: 22, Running: 0
+[2025-07-03 20:01:15.109] Set serverInfo.maps with 22 items
+[2025-07-03 20:01:15.109] Got ServerInfo - Memory: 255270928MB, Processes: 10
+[2025-07-03 20:01:15.152] Found Active Maps List GroupBox
+[2025-07-03 20:01:15.152] Found maps DataGridView with 4 columns
+[2025-07-03 20:01:15.152] Populating maps grid with 22 total maps
+[2025-07-03 20:01:15.152] Available template: tag=gs01, name=World, pid=0
+[2025-07-03 20:01:15.152] Available template: tag=is01, name=City of Abominations, pid=0
+[2025-07-03 20:01:15.152] Available template: tag=is02, name=Secret Passage, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is05, name=Firecrag Grotto, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is06, name=Den of Rabid Wolves, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is07, name=Cave of the Vicious, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is08, name=Hall of Deception, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is09, name=Gate of Delirium, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is10, name=Secret Frostcover Grounds, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is11, name=Valley of Disaster, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is12, name=Forest Ruins, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is13, name=Cave of Sadistic Glee, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is14, name=Wraithgate, pid=0
+[2025-07-03 20:01:15.153] Available template: tag=is15, name=Hallucinatory Trench, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=is16, name=Eden, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=is17, name=Brimstone Pit, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=is18, name=Temple of the Dragon, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=is19, name=Nightscream Island, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=is20, name=Snake Isle, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=bg01, name=Territory War T-3 PvP, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=bg02, name=Territory War T-3 PvE, pid=0
+[2025-07-03 20:01:15.154] Available template: tag=arena01, name=Etherblade Arena, pid=0
+[2025-07-03 20:01:15.154] Showing 0 running instances out of 22 total maps
+[2025-07-03 20:01:15.171] Online player count not implemented in server yet

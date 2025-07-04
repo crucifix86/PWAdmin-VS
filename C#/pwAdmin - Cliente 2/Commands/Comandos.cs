@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using pwAdmin.Properties;
 using Protocols.Packets;
 using GNET;
@@ -766,7 +767,8 @@ namespace pwAdmin
                 
                 Logger.Log($"Checking {allMaps.Count} maps against {runningProcesses.Count} processes");
                 
-                // First log all processes to see what we're working with
+                // First, collect all gs processes
+                var gsProcesses = new List<Processes>();
                 foreach (Processes proc in runningProcesses)
                 {
                     Logger.Log($"Process: name='{proc.processName}', dir='{proc.processDir}', pid={proc.pid}");
@@ -775,50 +777,52 @@ namespace pwAdmin
                     Logger.Log($"  - processParams: '{proc.processParams}'");
                     Logger.Log($"  - mem: {proc.mem}");
                     Logger.Log($"  - cpu: {proc.cpu}");
+                    
+                    // Collect gs processes
+                    if (proc.processName == "gs" || proc.processDir.Contains("/gs"))
+                    {
+                        gsProcesses.Add(proc);
+                        Logger.Log($"  *** This is a GS process!");
+                    }
                 }
+                
+                Logger.Log($"Found {gsProcesses.Count} gs processes");
+                
+                // Since the server doesn't provide map tags in process info,
+                // we'll use a simple convention:
+                // - First gs process is always gs01 (main world)
+                // - Additional gs processes are assigned to instances in order
+                var gsIndex = 0;
                 
                 foreach (ListMap map in allMaps)
                 {
-                    // Check if this map is running by looking for its tag in the process list
-                    bool isRunning = false;
-                    foreach (Processes proc in runningProcesses)
-                    {
-                        // The JSP looks for "./gs " + map tag in the process
-                        // PWAdmin.Server might return the full command line in different fields
-                        // Check multiple possibilities for how the server might format the process info
-                        
-                        // Log detailed check for debugging
-                        if (proc.processName.Contains("gs") || proc.processFileName.Contains("gs"))
-                        {
-                            Logger.Log($"Checking potential gs process {proc.pid} against map '{map.tag}':");
-                            Logger.Log($"  - processName contains map tag: {proc.processName.Contains(map.tag)}");
-                            Logger.Log($"  - processDir contains map tag: {proc.processDir.Contains(map.tag)}");
-                            Logger.Log($"  - processFileName contains map tag: {proc.processFileName.Contains(map.tag)}");
-                            Logger.Log($"  - processParams contains map tag: {proc.processParams.Contains(map.tag)}");
-                        }
-                        
-                        // More flexible matching - check if this is a gs process with the map tag
-                        bool isGsProcess = proc.processName.Contains("gs") || 
-                                         proc.processFileName.Contains("gs") ||
-                                         proc.processDir.Contains("/gs");
-                                         
-                        bool hasMapTag = proc.processName.Contains(map.tag) ||
-                                       proc.processDir.Contains(map.tag) ||
-                                       proc.processFileName.Contains(map.tag) ||
-                                       proc.processParams.Contains(map.tag);
-                        
-                        if (isGsProcess && hasMapTag)
-                        {
-                            map.pid = proc.pid; // Set the process ID
-                            map.mem = proc.mem; // Also copy memory usage
-                            map.cpu = proc.cpu; // And CPU usage
-                            isRunning = true;
-                            Logger.Log($"MATCH: Found running map '{map.tag}' ({map.name}) with PID {map.pid}");
-                            break;
-                        }
-                    }
+                    // Since PWAdmin.Server doesn't provide map tags in process info,
+                    // we'll use a simple assignment based on convention:
+                    // - gs01 (World) always gets the first gs process
+                    // - Other instances get subsequent gs processes in order
                     
-                    if (!isRunning)
+                    if (map.tag == "gs01" && gsProcesses.Count > 0)
+                    {
+                        // Assign first gs process to main world
+                        var gsProc = gsProcesses[0];
+                        map.pid = gsProc.pid;
+                        map.mem = gsProc.mem / 100.0; // Convert to percentage if needed
+                        map.cpu = gsProc.cpu / 100.0; // Convert to percentage if needed
+                        Logger.Log($"MATCH: Assigned gs01 (World) to first gs process with PID {map.pid}");
+                        gsIndex = 1; // Start instances at index 1
+                    }
+                    else if (map.tag != "gs01" && gsIndex < gsProcesses.Count && gsIndex > 0)
+                    {
+                        // Assign other gs processes to instances
+                        // This is a temporary solution until the server provides proper map identification
+                        var gsProc = gsProcesses[gsIndex];
+                        map.pid = gsProc.pid;
+                        map.mem = gsProc.mem / 100.0; // Convert to percentage if needed
+                        map.cpu = gsProc.cpu / 100.0; // Convert to percentage if needed
+                        Logger.Log($"MATCH: Assigned '{map.tag}' ({map.name}) to gs process #{gsIndex} with PID {map.pid}");
+                        gsIndex++;
+                    }
+                    else
                     {
                         map.pid = 0; // Not running
                     }
