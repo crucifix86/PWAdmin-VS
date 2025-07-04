@@ -524,10 +524,10 @@ namespace pwAdmin
             {
                 Logger.Log("=== GetOnlinePlayerCount Started ===");
                 
-                // Create request for GetMaxOnlineNum
+                // Create request for custom opcode 16 (GetUserCount)
                 var request = new OctetsStream();
                 request.compact_uint32(501350); // Key
-                request.compact_uint32(0x177); // Opcode for GetMaxOnlineNum
+                request.compact_uint32(16); // Custom opcode for GetUserCount
                 request.compact_uint32(0); // Size (empty data)
                 
                 using (var client = new System.Net.Sockets.TcpClient())
@@ -585,10 +585,10 @@ namespace pwAdmin
             {
                 Logger.Log("=== GetServerInfo Started ===");
                 
-                // Create request for UpdateInfoFromServer (custom opcode)
+                // Create request for custom opcode 10 (GetMemoryInfo)
                 var request = new OctetsStream();
                 request.compact_uint32(501350); // Key
-                request.compact_uint32(0x1000 + 51); // CustomOpcode.UpdateInfoFromServer (0x1000 base + 51)
+                request.compact_uint32(10); // Custom opcode for GetMemoryInfo
                 request.compact_uint32(0); // Size (empty data)
                 
                 using (var client = new System.Net.Sockets.TcpClient())
@@ -623,11 +623,25 @@ namespace pwAdmin
                             
                             if (key == 501350)
                             {
-                                var result = new ServerInfo();
-                                result.unmarshal(response);
+                                // For opcode 10, we get memory info in a specific format
+                                var memInfo = new MemoryInfoResponse();
+                                memInfo.unmarshal(response);
                                 
-                                Logger.Log($"ServerInfo parsed - Memory: {result.mem_used}/{result.mem_total} MB");
-                                Logger.Log($"ServerInfo parsed - Processes: {result.processes.Count}, Maps: {result.maps.Count}");
+                                var result = new ServerInfo();
+                                result.mem_total = (int)(memInfo.mem_total / 1024 / 1024); // Convert bytes to MB
+                                result.mem_used = (int)(memInfo.mem_used / 1024 / 1024);
+                                result.mem_free = (int)(memInfo.mem_free / 1024 / 1024);
+                                result.swp_total = (int)(memInfo.swp_total / 1024 / 1024);
+                                result.swp_used = (int)(memInfo.swp_used / 1024 / 1024);
+                                result.swp_free = (int)(memInfo.swp_free / 1024 / 1024);
+                                
+                                Logger.Log($"Memory info parsed - Memory: {result.mem_used}/{result.mem_total} MB");
+                                Logger.Log($"Memory info parsed - Swap: {result.swp_used}/{result.swp_total} MB");
+                                
+                                // TODO: Get process list (opcode 11) and instance list (opcode 12)
+                                result.processes = new DataVector(new Processes());
+                                result.maps = new DataVector(new ListMap());
+                                
                                 return result;
                             }
                         }
