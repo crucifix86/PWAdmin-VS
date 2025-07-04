@@ -517,5 +517,129 @@ namespace pwAdmin
                 return false;
             }
         }
+        
+        public static GetMaxOnlineNum_Re GetOnlinePlayerCount()
+        {
+            try
+            {
+                Logger.Log("=== GetOnlinePlayerCount Started ===");
+                
+                // Create request for GetMaxOnlineNum
+                var request = new OctetsStream();
+                request.compact_uint32(501350); // Key
+                request.compact_uint32(0x177); // Opcode for GetMaxOnlineNum
+                request.compact_uint32(0); // Size (empty data)
+                
+                using (var client = new System.Net.Sockets.TcpClient())
+                {
+                    client.ReceiveTimeout = 5000;
+                    client.SendTimeout = 5000;
+                    client.Connect(ip, port);
+                    
+                    using (var stream = client.GetStream())
+                    {
+                        var data = request.getBytes();
+                        Logger.LogData("Sending GetMaxOnlineNum request", data);
+                        stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        
+                        var buffer = new byte[1024];
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        
+                        if (bytesRead > 0)
+                        {
+                            var responseData = new byte[bytesRead];
+                            Array.Copy(buffer, responseData, bytesRead);
+                            var response = new OctetsStream(responseData);
+                            
+                            // Skip header
+                            var key = response.uncompact_uint32();
+                            var opcode = response.uncompact_uint32();
+                            var size = response.uncompact_uint32();
+                            
+                            Logger.Log($"GetMaxOnlineNum response - Key: {key}, Opcode: {opcode}, Size: {size}");
+                            
+                            if (key == 501350)
+                            {
+                                var result = new GetMaxOnlineNum_Re();
+                                result.unmarshal(response);
+                                
+                                Logger.Log($"Online players: {result.curnum}/{result.maxnum} (fake max: {result.fakemaxnum})");
+                                return result;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("GetOnlinePlayerCount failed", ex);
+            }
+            
+            return null;
+        }
+        
+        public static ServerInfo GetServerInfo()
+        {
+            try
+            {
+                Logger.Log("=== GetServerInfo Started ===");
+                
+                // Create request for UpdateInfoFromServer (custom opcode)
+                var request = new OctetsStream();
+                request.compact_uint32(501350); // Key
+                request.compact_uint32(0x1000 + 51); // CustomOpcode.UpdateInfoFromServer (0x1000 base + 51)
+                request.compact_uint32(0); // Size (empty data)
+                
+                using (var client = new System.Net.Sockets.TcpClient())
+                {
+                    client.ReceiveTimeout = 5000;
+                    client.SendTimeout = 5000;
+                    client.Connect(ip, port);
+                    
+                    using (var stream = client.GetStream())
+                    {
+                        var data = request.getBytes();
+                        Logger.LogData("Sending GetServerInfo request", data);
+                        stream.Write(data, 0, data.Length);
+                        stream.Flush();
+                        
+                        var buffer = new byte[65536];
+                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                        
+                        if (bytesRead > 0)
+                        {
+                            Logger.Log($"Received {bytesRead} bytes for ServerInfo");
+                            var responseData = new byte[bytesRead];
+                            Array.Copy(buffer, responseData, bytesRead);
+                            var response = new OctetsStream(responseData);
+                            
+                            // Skip header
+                            var key = response.uncompact_uint32();
+                            var opcode = response.uncompact_uint32();
+                            var size = response.uncompact_uint32();
+                            
+                            Logger.Log($"GetServerInfo response - Key: {key}, Opcode: {opcode}, Size: {size}");
+                            
+                            if (key == 501350)
+                            {
+                                var result = new ServerInfo();
+                                result.unmarshal(response);
+                                
+                                Logger.Log($"ServerInfo parsed - Memory: {result.mem_used}/{result.mem_total} MB");
+                                Logger.Log($"ServerInfo parsed - Processes: {result.processes.Count}, Maps: {result.maps.Count}");
+                                return result;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("GetServerInfo failed", ex);
+            }
+            
+            return null;
+        }
     }
 }

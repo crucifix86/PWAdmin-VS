@@ -875,7 +875,18 @@ namespace pwAdmin
                     {
                         lblStatus.Text = "Loading server data...";
                         PopulateServerConfigData();
+                        
+                        // Get server info (memory, processes, maps)
+                        info = Comandos.GetServerInfo();
                         PopulateServerData();
+                        
+                        // Get online player count
+                        var onlineInfo = Comandos.GetOnlinePlayerCount();
+                        if (onlineInfo != null)
+                        {
+                            PopulateOnlineAccountData(onlineInfo);
+                        }
+                        
                         lblStatus.Text = "Ready";
                         
                         var serverInfo = $"Successfully connected!\n\nIP: {Comandos.ip}\nPort: {Comandos.port}";
@@ -922,6 +933,36 @@ namespace pwAdmin
             }
         }
         
+        private void PopulateOnlineAccountData(GetMaxOnlineNum_Re onlineData)
+        {
+            if (onlineData == null) return;
+            
+            // Find the accounts table on the current page
+            if (currentPage == 0 && pages[0] != null)
+            {
+                var serverInfoGroup = pages[0].Controls.OfType<GroupBox>()
+                    .FirstOrDefault(g => g.Text == "Server Information");
+                    
+                if (serverInfoGroup != null)
+                {
+                    // Find the accounts table (it's at position 180, 115)
+                    var accountsTable = serverInfoGroup.Controls.OfType<TableLayoutPanel>()
+                        .FirstOrDefault(t => t.Location.X == 270 && t.Location.Y == 115);
+                        
+                    if (accountsTable != null && accountsTable.Controls.Count >= 4)
+                    {
+                        // Update online accounts (position 1,0)
+                        var onlineLabel = accountsTable.GetControlFromPosition(1, 0);
+                        if (onlineLabel != null) onlineLabel.Text = onlineData.curnum.ToString();
+                        
+                        // Update total accounts (position 1,1) - using max number
+                        var totalLabel = accountsTable.GetControlFromPosition(1, 1);
+                        if (totalLabel != null) totalLabel.Text = onlineData.maxnum.ToString();
+                    }
+                }
+            }
+        }
+        
         private void PopulateServerConfigData()
         {
             if (serverConfig == null) return;
@@ -964,57 +1005,76 @@ namespace pwAdmin
             // Find the grids on the current page
             if (currentPage == 0 && pages[0] != null) // Server Management page
             {
-                // Find the server info labels
-                var serverInfoGroup = pages[0].Controls["groupServerInfo"] as GroupBox;
+                // Find the server info group
+                var serverInfoGroup = pages[0].Controls.OfType<GroupBox>()
+                    .FirstOrDefault(g => g.Text == "Server Information");
                 if (serverInfoGroup != null)
                 {
-                    // Update memory info table
-                    var memTable = serverInfoGroup.Controls["tableMemory"] as TableLayoutPanel;
+                    // Update memory/swap table (it's at position 10, 20)
+                    var memTable = serverInfoGroup.Controls.OfType<TableLayoutPanel>()
+                        .FirstOrDefault(t => t.Location.X == 10 && t.Location.Y == 20);
                     if (memTable != null)
                     {
-                        // Update memory labels (they should be at specific positions in the table)
-                        if (memTable.Controls.Count >= 6)
-                        {
-                            memTable.Controls[1].Text = $"{info.mem_used} MB"; // Memory Used
-                            memTable.Controls[3].Text = $"{info.mem_free} MB"; // Memory Free
-                            memTable.Controls[5].Text = $"{info.mem_total} MB"; // Memory Total
-                        }
+                        // Memory column is 1, Swap column is 2
+                        // Total row is 1, Used row is 2, Free row is 3
+                        
+                        // Update Memory Total (col 1, row 1)
+                        var memTotal = memTable.GetControlFromPosition(1, 1);
+                        if (memTotal != null) memTotal.Text = $"{info.mem_total} MB";
+                        
+                        // Update Memory Used (col 1, row 2)
+                        var memUsed = memTable.GetControlFromPosition(1, 2);
+                        if (memUsed != null) memUsed.Text = $"{info.mem_used} MB";
+                        
+                        // Update Memory Free (col 1, row 3)
+                        var memFree = memTable.GetControlFromPosition(1, 3);
+                        if (memFree != null) memFree.Text = $"{info.mem_free} MB";
+                        
+                        // Update Swap Total (col 2, row 1)
+                        var swapTotal = memTable.GetControlFromPosition(2, 1);
+                        if (swapTotal != null) swapTotal.Text = $"{info.swp_total} MB";
+                        
+                        // Update Swap Used (col 2, row 2)
+                        var swapUsed = memTable.GetControlFromPosition(2, 2);
+                        if (swapUsed != null) swapUsed.Text = $"{info.swp_used} MB";
+                        
+                        // Update Swap Free (col 2, row 3)
+                        var swapFree = memTable.GetControlFromPosition(2, 3);
+                        if (swapFree != null) swapFree.Text = $"{info.swp_free} MB";
                     }
-                    
-                    // Update swap info table
-                    var swapTable = serverInfoGroup.Controls["tableSwap"] as TableLayoutPanel;
-                    if (swapTable != null)
+                }
+                
+                // Update Process List - find it by type and text
+                var processGroup = pages[0].Controls.OfType<GroupBox>()
+                    .FirstOrDefault(g => g.Text == "Process List");
+                if (processGroup != null)
+                {
+                    var processGrid = processGroup.Controls.OfType<DataGridView>().FirstOrDefault();
+                    if (processGrid != null)
                     {
-                        if (swapTable.Controls.Count >= 6)
+                        processGrid.Rows.Clear();
+                        foreach (Processes proc in info.processes)
                         {
-                            swapTable.Controls[1].Text = $"{info.swp_used} MB"; // Swap Used
-                            swapTable.Controls[3].Text = $"{info.swp_free} MB"; // Swap Free
-                            swapTable.Controls[5].Text = $"{info.swp_total} MB"; // Swap Total
+                            processGrid.Rows.Add(proc.processName, $"{proc.mem} MB", $"{proc.cpu}%");
                         }
                     }
                 }
                 
-                // Update Process List
-                var processGrid = pages[0].Controls["gridProcessList"] as DataGridView;
-                if (processGrid != null)
+                // Update Active Maps List - find it by type and text
+                var mapsGroup = pages[0].Controls.OfType<GroupBox>()
+                    .FirstOrDefault(g => g.Text == "Active Maps List");
+                if (mapsGroup != null)
                 {
-                    processGrid.Rows.Clear();
-                    foreach (Processes proc in info.processes)
+                    var mapsGrid = mapsGroup.Controls.OfType<DataGridView>().FirstOrDefault();
+                    if (mapsGrid != null)
                     {
-                        processGrid.Rows.Add(proc.processName, $"{proc.mem} MB", $"{proc.cpu}%");
-                    }
-                }
-                
-                // Update Active Maps List
-                var mapsGrid = pages[0].Controls["gridActiveMapsList"] as DataGridView;
-                if (mapsGrid != null)
-                {
-                    mapsGrid.Rows.Clear();
-                    foreach (ListMap map in info.maps)
-                    {
-                        if (map.pid != 0) // Only show active instances
+                        mapsGrid.Rows.Clear();
+                        foreach (ListMap map in info.maps)
                         {
-                            mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem} MB", $"{map.cpu}%");
+                            if (map.pid != 0) // Only show active instances
+                            {
+                                mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem} MB", $"{map.cpu}%");
+                            }
                         }
                     }
                 }
