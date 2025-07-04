@@ -260,6 +260,9 @@ namespace pwAdmin
             dgvMaps.Columns.Add("Instance", "Instance");
             dgvMaps.Columns.Add("Memory", "Mem (%)");
             dgvMaps.Columns.Add("CPU", "CPU (%)");
+            dgvMaps.AllowUserToAddRows = false;
+            dgvMaps.ReadOnly = true;
+            dgvMaps.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grpMaps.Controls.Add(dgvMaps);
             
             page.Controls.Add(grpMaps);
@@ -1087,18 +1090,32 @@ namespace pwAdmin
                     .FirstOrDefault(g => g.Text == "Active Maps List");
                 if (mapsGroup != null)
                 {
+                    Utils.Logger.Log($"Found Active Maps List GroupBox");
                     var mapsGrid = mapsGroup.Controls.OfType<DataGridView>().FirstOrDefault();
                     if (mapsGrid != null)
                     {
+                        Utils.Logger.Log($"Found maps DataGridView with {mapsGrid.Columns.Count} columns");
                         mapsGrid.Rows.Clear();
                         Utils.Logger.Log($"Populating maps grid with {info.maps.Count} maps");
                         foreach (ListMap map in info.maps)
                         {
                             // Show all instances returned by the server
                             Utils.Logger.Log($"Map: tag={map.tag}, name={map.name}, pid={map.pid}, mem={map.mem}, cpu={map.cpu}");
-                            mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem}%", $"{map.cpu}%");
+                            var rowIndex = mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem}%", $"{map.cpu}%");
+                            Utils.Logger.Log($"Added row at index {rowIndex}");
                         }
+                        Utils.Logger.Log($"Maps grid now has {mapsGrid.Rows.Count} rows");
+                        // Force UI refresh
+                        mapsGrid.Refresh();
                     }
+                    else
+                    {
+                        Utils.Logger.Log("ERROR: Could not find maps DataGridView");
+                    }
+                }
+                else
+                {
+                    Utils.Logger.Log("ERROR: Could not find Active Maps List GroupBox");
                 }
             }
         }
