@@ -1096,15 +1096,24 @@ namespace pwAdmin
                     {
                         Utils.Logger.Log($"Found maps DataGridView with {mapsGrid.Columns.Count} columns");
                         mapsGrid.Rows.Clear();
-                        Utils.Logger.Log($"Populating maps grid with {info.maps.Count} maps");
+                        Utils.Logger.Log($"Populating maps grid with {info.maps.Count} total maps");
+                        int runningCount = 0;
                         foreach (ListMap map in info.maps)
                         {
-                            // Show all instances returned by the server
-                            Utils.Logger.Log($"Map: tag={map.tag}, name={map.name}, pid={map.pid}, mem={map.mem}, cpu={map.cpu}");
-                            var rowIndex = mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem}%", $"{map.cpu}%");
-                            Utils.Logger.Log($"Added row at index {rowIndex}");
+                            // Only show running instances (pid > 0)
+                            if (map.pid > 0)
+                            {
+                                Utils.Logger.Log($"Running instance: tag={map.tag}, name={map.name}, pid={map.pid}, mem={map.mem}, cpu={map.cpu}");
+                                var rowIndex = mapsGrid.Rows.Add(map.tag, map.name, $"{map.mem}%", $"{map.cpu}%");
+                                Utils.Logger.Log($"Added row at index {rowIndex}");
+                                runningCount++;
+                            }
+                            else
+                            {
+                                Utils.Logger.Log($"Available template: tag={map.tag}, name={map.name}, pid={map.pid}");
+                            }
                         }
-                        Utils.Logger.Log($"Maps grid now has {mapsGrid.Rows.Count} rows");
+                        Utils.Logger.Log($"Showing {runningCount} running instances out of {info.maps.Count} total maps");
                         // Force UI refresh
                         mapsGrid.Refresh();
                     }

@@ -673,20 +673,6 @@ namespace pwAdmin
                 {
                     serverInfo.maps = instances;
                     Logger.Log($"Set serverInfo.maps with {instances.Count} items");
-                    
-                    // Debug: Let's add a fake instance to test if GUI works
-                    if (instances.Count == 0)
-                    {
-                        Logger.Log("DEBUG: Adding fake instance for testing");
-                        var fakeMap = new ListMap();
-                        fakeMap.tag = "test_instance";
-                        fakeMap.pid = 1234;
-                        fakeMap.name = "Test Instance 1234";
-                        fakeMap.mem = 50.5;
-                        fakeMap.cpu = 25.3;
-                        instances.add(fakeMap);
-                        Logger.Log($"Added fake instance, now have {instances.Count} maps");
-                    }
                 }
             }
             catch (Exception ex)
