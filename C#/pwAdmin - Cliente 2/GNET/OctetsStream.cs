@@ -24,6 +24,7 @@ namespace GNET
         public OctetsStream(byte[] data)
         {
             stream = new MemoryStream(data);
+            stream.Position = 0; // Ensure we start at the beginning
             writer = new BinaryWriter(stream);
             reader = new BinaryReader(stream);
         }
@@ -50,6 +51,9 @@ namespace GNET
             stream.SetLength(0);
             stream.Position = 0;
         }
+
+        public long Position => stream.Position;
+        public long Remaining => stream.Length - stream.Position;
 
         // Marshal methods for writing data
         public OctetsStream marshal(byte b)

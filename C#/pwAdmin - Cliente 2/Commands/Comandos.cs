@@ -234,6 +234,7 @@ namespace pwAdmin
                                 }
                                 
                                 // Parse ServerConfig
+                                Logger.Log($"Stream position before ServerConfig parse: {response.Position}, remaining: {response.Remaining}");
                                 var serverConfig = new ServerConfig();
                                 serverConfig.unmarshal(response);
                                 

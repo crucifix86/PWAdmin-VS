@@ -88,10 +88,12 @@ namespace Protocols.Packets
         public override OctetsStream unmarshal(OctetsStream os)
         {
             // Skip the first byte (0x02) - protocol version or flag
-            os.unmarshal_byte();
+            var skipByte = os.unmarshal_byte();
+            pwAdmin.Utils.Logger.Log($"ServerConfig unmarshal: skipped byte 0x{skipByte:X2}, position: {os.Position}, remaining: {os.Remaining}");
             
             // All strings use byte-length prefix in this response
             ServName = os.unmarshal_String_ByteLength();
+            pwAdmin.Utils.Logger.Log($"Read ServName: '{ServName}', position: {os.Position}, remaining: {os.Remaining}");
             Password = os.unmarshal_String_ByteLength();
             Port = os.unmarshal_int();
             HomePath = os.unmarshal_String_ByteLength();
