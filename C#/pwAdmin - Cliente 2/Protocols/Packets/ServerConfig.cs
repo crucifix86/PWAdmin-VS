@@ -87,9 +87,9 @@ namespace Protocols.Packets
 
         public override OctetsStream unmarshal(OctetsStream os)
         {
-            // Skip the first byte (0x02) - protocol version or flag
-            var skipByte = os.unmarshal_byte();
-            pwAdmin.Utils.Logger.Log($"ServerConfig unmarshal: skipped byte 0x{skipByte:X2}, position: {os.Position}, remaining: {os.Remaining}");
+            // DO NOT skip any bytes - the data starts immediately after the header
+            // The 0x02 we saw in the Python analysis was part of the complete response
+            // but after the header is parsed, we're at the correct position
             
             // All strings use byte-length prefix in this response
             ServName = os.unmarshal_String_ByteLength();
