@@ -664,6 +664,7 @@ namespace pwAdmin
                 if (processes != null)
                 {
                     serverInfo.processes = processes;
+                    Logger.Log($"Set serverInfo.processes with {processes.Count} items");
                 }
                 
                 // Get instance list (opcode 12)
@@ -671,6 +672,21 @@ namespace pwAdmin
                 if (instances != null)
                 {
                     serverInfo.maps = instances;
+                    Logger.Log($"Set serverInfo.maps with {instances.Count} items");
+                    
+                    // Debug: Let's add a fake instance to test if GUI works
+                    if (instances.Count == 0)
+                    {
+                        Logger.Log("DEBUG: Adding fake instance for testing");
+                        var fakeMap = new ListMap();
+                        fakeMap.tag = "test_instance";
+                        fakeMap.pid = 1234;
+                        fakeMap.name = "Test Instance 1234";
+                        fakeMap.mem = 50.5;
+                        fakeMap.cpu = 25.3;
+                        instances.add(fakeMap);
+                        Logger.Log($"Added fake instance, now have {instances.Count} maps");
+                    }
                 }
             }
             catch (Exception ex)
@@ -772,8 +788,11 @@ namespace pwAdmin
                         
                         if (bytesRead > 0)
                         {
+                            Logger.Log($"GetInstanceList received {bytesRead} bytes");
                             var responseData = new byte[bytesRead];
                             Array.Copy(buffer, responseData, bytesRead);
+                            Logger.LogData("GetInstanceList raw response", responseData);
+                            
                             var response = new OctetsStream(responseData);
                             
                             // Skip header
@@ -781,10 +800,17 @@ namespace pwAdmin
                             var opcode = response.uncompact_uint32();
                             var size = response.uncompact_uint32();
                             
+                            Logger.Log($"GetInstanceList response - Key: {key}, Opcode: {opcode}, Size: {size}");
+                            
                             if (key == 501350)
                             {
+                                // Log remaining bytes before parsing
+                                Logger.Log($"Bytes remaining before count: {response.Remaining}");
+                                
                                 // Parse instance list
                                 var count = response.uncompact_uint32();
+                                Logger.Log($"Instance count from server: {count}");
+                                
                                 var instances = new DataVector(); // Don't add template object
                                 
                                 for (uint i = 0; i < count; i++)
@@ -796,10 +822,10 @@ namespace pwAdmin
                                     map.mem = 0; // Server doesn't send memory for instances
                                     map.cpu = 0;
                                     instances.add(map);
-                                    Logger.Log($"Instance: tag={map.tag}, id={map.pid}");
+                                    Logger.Log($"Instance {i}: tag={map.tag}, id={map.pid}");
                                 }
                                 
-                                Logger.Log($"Got {count} instances");
+                                Logger.Log($"Parsed {instances.Count} instances total");
                                 return instances;
                             }
                         }
