@@ -878,13 +878,26 @@ namespace pwAdmin
                         
                         // Get server info (memory, processes, maps)
                         info = Comandos.GetServerInfo();
-                        PopulateServerData();
+                        if (info != null)
+                        {
+                            Utils.Logger.Log($"Got ServerInfo - Memory: {info.mem_total}MB, Processes: {info.processes.Count}");
+                            PopulateServerData();
+                        }
+                        else
+                        {
+                            Utils.Logger.Log("Failed to get ServerInfo - server may not support this opcode");
+                        }
                         
                         // Get online player count
                         var onlineInfo = Comandos.GetOnlinePlayerCount();
                         if (onlineInfo != null)
                         {
+                            Utils.Logger.Log($"Got online player count: {onlineInfo.curnum}/{onlineInfo.maxnum}");
                             PopulateOnlineAccountData(onlineInfo);
+                        }
+                        else
+                        {
+                            Utils.Logger.Log("Failed to get online player count");
                         }
                         
                         lblStatus.Text = "Ready";
@@ -945,7 +958,15 @@ namespace pwAdmin
                     
                 if (serverInfoGroup != null)
                 {
-                    // Find the accounts table (it's at position 180, 115)
+                    // Debug - log all TableLayoutPanels
+                    var tables = serverInfoGroup.Controls.OfType<TableLayoutPanel>().ToList();
+                    Utils.Logger.Log($"Found {tables.Count} tables in Server Information group");
+                    foreach (var table in tables)
+                    {
+                        Utils.Logger.Log($"Table at {table.Location.X},{table.Location.Y} size {table.Size.Width}x{table.Size.Height}");
+                    }
+                    
+                    // Find the accounts table (it's at position 270, 115)
                     var accountsTable = serverInfoGroup.Controls.OfType<TableLayoutPanel>()
                         .FirstOrDefault(t => t.Location.X == 270 && t.Location.Y == 115);
                         
