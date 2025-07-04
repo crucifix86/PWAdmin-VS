@@ -730,6 +730,9 @@ namespace pwAdmin
                                     proc.pid = response.unmarshal_int();
                                     proc.mem = response.unmarshal_int() / 100.0; // Server sends as int * 100
                                     proc.cpu = response.unmarshal_int() / 100.0;
+                                    
+                                    Logger.Log($"Process {i}: name='{proc.processName}', dir='{proc.processDir}', pid={proc.pid}, mem={proc.mem}, cpu={proc.cpu}");
+                                    
                                     processes.add(proc);
                                 }
                                 
@@ -761,19 +764,30 @@ namespace pwAdmin
                 // Process the map list to set PIDs for running instances
                 var instances = new DataVector();
                 
+                Logger.Log($"Checking {allMaps.Count} maps against {runningProcesses.Count} processes");
+                
+                // First log all processes to see what we're working with
+                foreach (Processes proc in runningProcesses)
+                {
+                    Logger.Log($"Process: name='{proc.processName}', dir='{proc.processDir}', pid={proc.pid}");
+                }
+                
                 foreach (ListMap map in allMaps)
                 {
                     // Check if this map is running by looking for its tag in the process list
                     bool isRunning = false;
                     foreach (Processes proc in runningProcesses)
                     {
-                        // Check if process name contains the map tag (e.g., "./gs gs01" or "gs is01")
-                        if (proc.processName.Contains(map.tag) || 
-                            (proc.processDir != null && proc.processDir.Contains(map.tag)))
+                        // The JSP looks for "./gs " + map tag in the process
+                        // So we need to check if the process name is "gs" and the dir/params contains the map tag
+                        if (proc.processName == "gs" && 
+                            (proc.processDir.Contains(map.tag) || 
+                             proc.processFileName.Contains(map.tag) ||
+                             proc.processParams.Contains(map.tag)))
                         {
                             map.pid = proc.pid; // Set the process ID
                             isRunning = true;
-                            Logger.Log($"Found running map: {map.tag} with PID {map.pid}");
+                            Logger.Log($"MATCH: Found running map '{map.tag}' ({map.name}) with PID {map.pid}");
                             break;
                         }
                     }
