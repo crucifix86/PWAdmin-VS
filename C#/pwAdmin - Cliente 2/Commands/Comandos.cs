@@ -770,6 +770,11 @@ namespace pwAdmin
                 foreach (Processes proc in runningProcesses)
                 {
                     Logger.Log($"Process: name='{proc.processName}', dir='{proc.processDir}', pid={proc.pid}");
+                    // Log all fields to understand what data we have
+                    Logger.Log($"  - processFileName: '{proc.processFileName}'");
+                    Logger.Log($"  - processParams: '{proc.processParams}'");
+                    Logger.Log($"  - mem: {proc.mem}");
+                    Logger.Log($"  - cpu: {proc.cpu}");
                 }
                 
                 foreach (ListMap map in allMaps)
@@ -779,13 +784,34 @@ namespace pwAdmin
                     foreach (Processes proc in runningProcesses)
                     {
                         // The JSP looks for "./gs " + map tag in the process
-                        // So we need to check if the process name is "gs" and the dir/params contains the map tag
-                        if (proc.processName == "gs" && 
-                            (proc.processDir.Contains(map.tag) || 
-                             proc.processFileName.Contains(map.tag) ||
-                             proc.processParams.Contains(map.tag)))
+                        // PWAdmin.Server might return the full command line in different fields
+                        // Check multiple possibilities for how the server might format the process info
+                        
+                        // Log detailed check for debugging
+                        if (proc.processName.Contains("gs") || proc.processFileName.Contains("gs"))
+                        {
+                            Logger.Log($"Checking potential gs process {proc.pid} against map '{map.tag}':");
+                            Logger.Log($"  - processName contains map tag: {proc.processName.Contains(map.tag)}");
+                            Logger.Log($"  - processDir contains map tag: {proc.processDir.Contains(map.tag)}");
+                            Logger.Log($"  - processFileName contains map tag: {proc.processFileName.Contains(map.tag)}");
+                            Logger.Log($"  - processParams contains map tag: {proc.processParams.Contains(map.tag)}");
+                        }
+                        
+                        // More flexible matching - check if this is a gs process with the map tag
+                        bool isGsProcess = proc.processName.Contains("gs") || 
+                                         proc.processFileName.Contains("gs") ||
+                                         proc.processDir.Contains("/gs");
+                                         
+                        bool hasMapTag = proc.processName.Contains(map.tag) ||
+                                       proc.processDir.Contains(map.tag) ||
+                                       proc.processFileName.Contains(map.tag) ||
+                                       proc.processParams.Contains(map.tag);
+                        
+                        if (isGsProcess && hasMapTag)
                         {
                             map.pid = proc.pid; // Set the process ID
+                            map.mem = proc.mem; // Also copy memory usage
+                            map.cpu = proc.cpu; // And CPU usage
                             isRunning = true;
                             Logger.Log($"MATCH: Found running map '{map.tag}' ({map.name}) with PID {map.pid}");
                             break;
