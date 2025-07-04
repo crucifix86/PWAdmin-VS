@@ -752,78 +752,95 @@ namespace pwAdmin
         {
             try
             {
-                var request = new OctetsStream();
-                request.compact_uint32(501350); // Key
-                request.compact_uint32(12); // Custom opcode for GetInstanceList
-                request.compact_uint32(0); // Size
+                // Create the full list of all possible maps (like the JSP does)
+                var allMaps = GetAllPossibleMaps();
                 
-                using (var client = new System.Net.Sockets.TcpClient())
+                // Get the list of running processes to determine which maps are active
+                var runningProcesses = GetProcessList();
+                
+                // Process the map list to set PIDs for running instances
+                var instances = new DataVector();
+                
+                foreach (ListMap map in allMaps)
                 {
-                    client.ReceiveTimeout = 5000;
-                    client.SendTimeout = 5000;
-                    client.Connect(ip, port);
-                    
-                    using (var stream = client.GetStream())
+                    // Check if this map is running by looking for its tag in the process list
+                    bool isRunning = false;
+                    foreach (Processes proc in runningProcesses)
                     {
-                        var data = request.getBytes();
-                        stream.Write(data, 0, data.Length);
-                        stream.Flush();
-                        
-                        var buffer = new byte[65536];
-                        int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                        
-                        if (bytesRead > 0)
+                        // Check if process name contains the map tag (e.g., "./gs gs01" or "gs is01")
+                        if (proc.processName.Contains(map.tag) || 
+                            (proc.processDir != null && proc.processDir.Contains(map.tag)))
                         {
-                            Logger.Log($"GetInstanceList received {bytesRead} bytes");
-                            var responseData = new byte[bytesRead];
-                            Array.Copy(buffer, responseData, bytesRead);
-                            Logger.LogData("GetInstanceList raw response", responseData);
-                            
-                            var response = new OctetsStream(responseData);
-                            
-                            // Skip header
-                            var key = response.uncompact_uint32();
-                            var opcode = response.uncompact_uint32();
-                            var size = response.uncompact_uint32();
-                            
-                            Logger.Log($"GetInstanceList response - Key: {key}, Opcode: {opcode}, Size: {size}");
-                            
-                            if (key == 501350)
-                            {
-                                // Log remaining bytes before parsing
-                                Logger.Log($"Bytes remaining before count: {response.Remaining}");
-                                
-                                // Parse instance list
-                                var count = response.uncompact_uint32();
-                                Logger.Log($"Instance count from server: {count}");
-                                
-                                var instances = new DataVector(); // Don't add template object
-                                
-                                for (uint i = 0; i < count; i++)
-                                {
-                                    var map = new ListMap();
-                                    map.tag = response.unmarshal_String();
-                                    map.pid = response.unmarshal_int(); // Instance ID
-                                    map.name = $"Instance {map.pid}"; // Show instance ID in name
-                                    map.mem = 0; // Server doesn't send memory for instances
-                                    map.cpu = 0;
-                                    instances.add(map);
-                                    Logger.Log($"Instance {i}: tag={map.tag}, id={map.pid}");
-                                }
-                                
-                                Logger.Log($"Parsed {instances.Count} instances total");
-                                return instances;
-                            }
+                            map.pid = proc.pid; // Set the process ID
+                            isRunning = true;
+                            Logger.Log($"Found running map: {map.tag} with PID {map.pid}");
+                            break;
                         }
                     }
+                    
+                    if (!isRunning)
+                    {
+                        map.pid = 0; // Not running
+                    }
+                    
+                    instances.add(map);
                 }
+                
+                // Count running instances
+                int runningCount = 0;
+                foreach (ListMap map in instances)
+                {
+                    if (map.pid > 0) runningCount++;
+                }
+                Logger.Log($"Total maps: {instances.Count}, Running: {runningCount}");
+                return instances;
             }
             catch (Exception ex)
             {
                 Logger.LogError("GetInstanceList failed", ex);
             }
             
-            return new DataVector(); // Return empty DataVector without template object
+            return new DataVector();
+        }
+        
+        private static DataVector GetAllPossibleMaps()
+        {
+            var maps = new DataVector();
+            
+            // Main world
+            maps.add(new ListMap { pid = 0, tag = "gs01", name = "World" });
+            
+            // Instances
+            maps.add(new ListMap { pid = 0, tag = "is01", name = "City of Abominations" });
+            maps.add(new ListMap { pid = 0, tag = "is02", name = "Secret Passage" });
+            maps.add(new ListMap { pid = 0, tag = "is05", name = "Firecrag Grotto" });
+            maps.add(new ListMap { pid = 0, tag = "is06", name = "Den of Rabid Wolves" });
+            maps.add(new ListMap { pid = 0, tag = "is07", name = "Cave of the Vicious" });
+            maps.add(new ListMap { pid = 0, tag = "is08", name = "Hall of Deception" });
+            maps.add(new ListMap { pid = 0, tag = "is09", name = "Gate of Delirium" });
+            maps.add(new ListMap { pid = 0, tag = "is10", name = "Secret Frostcover Grounds" });
+            maps.add(new ListMap { pid = 0, tag = "is11", name = "Valley of Disaster" });
+            maps.add(new ListMap { pid = 0, tag = "is12", name = "Forest Ruins" });
+            maps.add(new ListMap { pid = 0, tag = "is13", name = "Cave of Sadistic Glee" });
+            maps.add(new ListMap { pid = 0, tag = "is14", name = "Wraithgate" });
+            maps.add(new ListMap { pid = 0, tag = "is15", name = "Hallucinatory Trench" });
+            maps.add(new ListMap { pid = 0, tag = "is16", name = "Eden" });
+            maps.add(new ListMap { pid = 0, tag = "is17", name = "Brimstone Pit" });
+            maps.add(new ListMap { pid = 0, tag = "is18", name = "Temple of the Dragon" });
+            maps.add(new ListMap { pid = 0, tag = "is19", name = "Nightscream Island" });
+            maps.add(new ListMap { pid = 0, tag = "is20", name = "Snake Isle" });
+            
+            // Add more maps as needed...
+            // For now, just adding a subset to test
+            
+            // Territory War maps
+            maps.add(new ListMap { pid = 0, tag = "bg01", name = "Territory War T-3 PvP" });
+            maps.add(new ListMap { pid = 0, tag = "bg02", name = "Territory War T-3 PvE" });
+            
+            // Arena maps
+            maps.add(new ListMap { pid = 0, tag = "arena01", name = "Etherblade Arena" });
+            
+            return maps;
         }
     }
 }
