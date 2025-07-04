@@ -724,7 +724,7 @@ namespace pwAdmin
                                 {
                                     var proc = new Processes();
                                     proc.processName = response.unmarshal_String();
-                                    proc.processPath = response.unmarshal_String();
+                                    proc.processDir = response.unmarshal_String(); // Server sends path, we store in processDir
                                     proc.pid = response.unmarshal_int();
                                     proc.mem = response.unmarshal_int() / 100.0; // Server sends as int * 100
                                     proc.cpu = response.unmarshal_int() / 100.0;
